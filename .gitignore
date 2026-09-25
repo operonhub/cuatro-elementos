@@ -1,0 +1,7 @@
+img/
+.deploy/
+.netlify/
+_media/
+.impeccable/
+.vercel/
+__pycache__/

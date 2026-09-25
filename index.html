@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--
+  CABAÑAS 4 ELEMENTOS — demo Operon (2026-09-19)
+  Huacalera, Quebrada de Humahuaca, Jujuy. Atendido por Lili y Luis.
+  index.html se genera con build.py (inyecta el widget de reservas). Editar src.html.
+-->
+<title>Cabañas 4 Elementos · Huacalera, Quebrada de Humahuaca</title>
+<meta name="description" content="Cuatro cabañas —tierra, agua, fuego y aire— en Huacalera, Jujuy, a 300 metros del Trópico de Capricornio. Atendidas por sus dueños, Lili y Luis.">
+<meta property="og:title" content="Cabañas 4 Elementos · Huacalera, Jujuy">
+<meta property="og:description" content="Cuatro cabañas en el medio de la Quebrada, a 300 m del Trópico de Capricornio.">
+<meta property="og:image" content="f/complejo-atardecer.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 2L46 24L24 46L2 24Z' fill='%23fff' stroke='%23B27314' stroke-width='3'/%3E%3Cpath d='M9 27H39L24 42Z' fill='%23B27314'/%3E%3Cpath d='M14 20L24 11L34 20' fill='none' stroke='%23B27314' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="f/complejo-atardecer.webp" media="(min-width:760px)">
+<link rel="preload" as="image" href="f/complejo-dorado.webp" media="(max-width:759px)">
+<style>
+:root{
+  --cal:#F3F1EC;        /* fondo: la cal de las paredes y el ripio claro */
+  --cal-2:#E8E4DB;
+  --piedra:#25221F;     /* texto: la piedra de la base de las cabañas */
+  --piedra-soft:#5B554E;
+  --ocre:#D5AE3A;       /* principal: el amarillo de sus paredes */
+  --ocre-hondo:#8A6A12;
+  --ocre-logo:#B27314;  /* el rombo del logo: solo marca y detalles */
+  --turquesa:#0B7A68;   /* acento, SOLO CTAs: las sillas del patio */
+  --turquesa-hover:#09695A;
+  --noche:#121C2E;      /* el cielo de Huacalera después de las 20 */
+  --line:rgba(37,34,31,.14);
+  --radius:6px;
+  --display:'Barlow Condensed',system-ui,sans-serif;
+  --body:'Barlow',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--cal);color:var(--piedra);font-family:var(--body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ocre-hondo)}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:-.005em}
+h2{font-size:clamp(2.6rem,6.4vw,5.2rem)}
+/* títulos de apoyo: equipamiento, ubicación, FAQ. Los enormes quedan para los momentos principales */
+h2.sm{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+.lead{font-size:1.18rem;color:var(--piedra-soft);max-width:34em}
+:focus-visible{outline:3px solid var(--ocre);outline-offset:3px}
+
+/* ---------- botones ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:52px;padding:0 1.5em;border-radius:100px;font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:2px solid transparent;transition:background .2s,transform .2s var(--ease),border-color .2s}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.btn-primary{background:var(--turquesa);color:#fff}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+@media (hover:hover){
+  .btn-primary:hover{background:var(--turquesa-hover);transform:translateY(-2px)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+}
+
+/* ---------- glifos del cartel ---------- */
+.g{fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s,color .3s;color:var(--piedra);background:rgba(243,241,236,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.nav.solid{background:rgba(243,241,236,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--piedra);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand img{width:50px;height:50px;flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+.brand-txt{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.95;font-size:.82rem;letter-spacing:.09em}
+.brand-txt b{display:block;font-size:1.28rem;letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.95rem;text-decoration:none;opacity:.9}
+.nav-links .btn{min-height:44px;font-size:.95rem;padding:0 1.2em;opacity:1}
+@media (hover:hover){.nav-links a:not(.btn):hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}}
+.burger{display:none;width:46px;height:46px;border:1.5px solid currentColor;border-radius:50%;background:none;place-items:center}
+.burger span{display:block;width:18px;height:2px;background:currentColor;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor;transition:transform .25s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+@media (max-width:860px){
+  .burger{display:grid}
+  .nav-links{position:fixed;inset:72px 0 auto;flex-direction:column;align-items:stretch;gap:0;background:var(--cal);color:var(--piedra);padding:8px 16px 20px;box-shadow:0 20px 30px rgba(0,0,0,.12);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+  .nav-links li a:not(.btn){display:block;padding:14px 4px;border-bottom:1px solid var(--line);font-size:1.15rem}
+  .nav-links li:last-child{margin-top:16px}
+  .nav-links .btn{width:100%;min-height:52px}
+  .nav.open .nav-links{opacity:1;transform:none;pointer-events:auto}
+  .nav.open{background:var(--cal);color:var(--piedra)}
+  .nav.open .burger span{background:transparent}
+  .nav.open .burger span::before{transform:translateY(6px) rotate(45deg)}
+  .nav.open .burger span::after{transform:translateY(-6px) rotate(-45deg)}
+}
+
+/* ---------- intro: el logo se arma y vuela a la barra ---------- */
+@property --p{syntax:"<number>";inherits:true;initial-value:0}
+.intro{position:fixed;inset:0;z-index:200;pointer-events:none}
+.intro-bg{position:absolute;inset:0;background:var(--cal);pointer-events:auto}
+.intro-bg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ocre-logo);transform-origin:left;transform:scaleX(var(--p,0))}
+.intro-logo{position:absolute;left:50%;top:50%;width:min(240px,54vw);aspect-ratio:1;translate:-50% -56%;will-change:transform}
+.intro-logo svg{width:100%;height:100%;overflow:visible;display:block}
+.intro-tag{position:absolute;left:0;right:0;top:calc(50% + min(120px,27vw) + 6px);text-align:center;font-family:var(--display);font-weight:700;letter-spacing:.32em;text-transform:uppercase;font-size:.85rem;color:var(--piedra-soft);opacity:0}
+.intro .lg-frame{stroke-dasharray:1 1;stroke-dashoffset:1;fill-opacity:0}
+.intro .lg-fill{clip-path:inset(100% 0 0 0)}
+.intro .lg-illus,.intro .lg-line,.intro .lg-glyph{opacity:0}
+.intro .lg-line,.intro .lg-glyph,.intro .lg-illus{transform-box:fill-box;transform-origin:center}
+html.intro-lock{overflow:hidden}
+html.intro-lock .nav .brand img{opacity:0}
+
+/* ---------- hero: texto + ventana de fotos (a resolución real, sin estirar) ---------- */
+.hero{position:relative;min-height:100svh;padding:86px 0 clamp(16px,2.4vw,28px);display:flex;background:var(--cal)}
+.hero-in{width:min(1320px,100% - 32px);margin-inline:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:clamp(28px,5vw,80px);align-items:stretch}
+.hero-txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(10px,3vh,40px) 0}
+.hero .eyebrow{display:flex;flex-wrap:wrap;gap:.4em 1em}
+.hero h1{font-size:clamp(2.7rem,6vw,5.8rem);margin:.24em 0 .3em;max-width:9em;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--ocre-logo)}
+.hero-lead{font-size:clamp(1.06rem,1.4vw,1.22rem);max-width:29em;color:var(--piedra-soft)}
+.hero-elems{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--display);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem}
+.hero-elems span{display:inline-flex;align-items:center;gap:7px}
+.hero-elems svg{width:22px;height:22px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .btn-ghost{color:var(--piedra)}
+@media (hover:hover){.hero .btn-ghost:hover{background:rgba(37,34,31,.06)}}
+.hero-proof{display:flex;align-items:center;gap:14px;margin-top:30px;font-size:.95rem;color:var(--piedra-soft)}
+.hero-proof strong{font-family:var(--display);font-size:1.7rem;color:var(--piedra);line-height:1}
+.hero-proof .sep{width:1px;height:30px;background:var(--line)}
+.hero-media{position:relative;border-radius:16px;overflow:hidden;min-height:min(78svh,780px);background:#3b3129;isolation:isolate}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.hero-media img.on{opacity:1;animation:kb 7s linear both}
+@keyframes kb{from{transform:scale(1.07)}to{transform:scale(1)}}
+.hero-media::after{content:"";position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(0deg,rgba(20,16,12,.62),rgba(20,16,12,0));z-index:1;pointer-events:none}
+.hero-cap{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:.85rem}
+.hero-cap b{display:block;font-size:1.25rem;letter-spacing:.04em;font-weight:800}
+.hero-bars{display:flex;gap:6px}
+.hero-bars i{width:34px;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden;position:relative}
+.hero-bars i::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.hero-bars i.done::after{transform:none}
+.hero-bars i.on::after{animation:bar 5.6s linear forwards}
+@keyframes bar{to{transform:none}}
+/* entrada escalonada del hero (después de la intro) */
+.hr{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.hero.go .hr{opacity:1;transform:none}
+.hero-media.hr{transform:none;clip-path:inset(8% 6% 8% 6% round 16px);transition:opacity .6s ease,clip-path 1.2s var(--ease)}
+.hero.go .hero-media.hr{clip-path:inset(0 0 0 0 round 16px)}
+@media (max-width:860px){
+  .hero{padding-top:80px;min-height:0}
+  .hero-in{grid-template-columns:1fr;gap:0}
+  .hero-media{order:-1;min-height:44svh;border-radius:14px}
+  .hero-txt{padding:20px 0 8px}
+  .hero h1{font-size:clamp(2.4rem,11vw,3.4rem);margin:.2em 0 .25em}
+  .hero-lead{font-size:1.02rem}
+  .hero-elems{display:none}
+  .hero-ctas{margin-top:22px}
+  .hero-ctas .btn{flex:1 1 100%}
+  .hero-proof{margin-top:22px}
+  .hero-cap{left:14px;right:14px;bottom:12px}
+  .hero-cap b{font-size:1.05rem}
+}
+
+/* ---------- el reloj de sol (factor sorpresa) ---------- */
+.reloj{position:relative;height:340vh;background:var(--noche)}
+.reloj-stage{position:sticky;top:0;height:100svh;overflow:hidden;color:#fff}
+.reloj svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.reloj-head{position:absolute;z-index:3;left:max(16px,calc((100% - 1180px)/2));top:96px;max-width:min(520px,calc(100% - 32px))}
+.reloj-read{display:flex;gap:26px;align-items:flex-end;margin-bottom:18px}
+.reloj-read div{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;font-weight:600;opacity:.8}
+.reloj-read b{display:block;font-size:2.5rem;letter-spacing:0;font-weight:800;opacity:1;line-height:1;font-variant-numeric:tabular-nums;margin-top:4px}
+.reloj-read .sombra b{color:var(--ocre)}
+.cap{position:absolute;left:0;top:112px;width:100%;opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s var(--ease)}
+.cap.on{opacity:1;transform:none}
+.cap h2{font-size:clamp(2.2rem,5.2vw,4.3rem);margin-bottom:.35em;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.cap p{font-size:1.1rem;line-height:1.55;color:rgba(255,255,255,.9);max-width:27em;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.reloj-bar{position:absolute;z-index:3;left:max(16px,calc((100% - 1180px)/2));right:max(16px,calc((100% - 1180px)/2));bottom:26px;display:flex;justify-content:space-between;font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.reloj-bar::before{content:"";position:absolute;left:0;right:0;top:-10px;height:2px;background:rgba(255,255,255,.2)}
+.reloj-bar i{position:absolute;left:0;top:-10px;height:2px;background:var(--ocre);width:var(--p,0%)}
+@media (max-width:759px){
+  .reloj-head{top:84px}
+  .reloj-read b{font-size:2rem}
+  .cap{top:92px}
+  .cap p{font-size:1rem}
+}
+
+/* ---------- secciones generales ---------- */
+section.block{padding:clamp(80px,11vw,140px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 60px;align-items:end;margin-bottom:56px}
+.sec-head h2{margin-top:.2em}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+/* ---------- las 4 cabañas: una ficha por unidad, con su foto ---------- */
+.cabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,22px)}
+.cab{position:relative;display:flex;flex-direction:column;background:var(--cal);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;isolation:isolate}
+.cab[data-element="tierra"]{--element-rgb:174,105,65;--element-ink:#8B512F}
+.cab[data-element="agua"]{--element-rgb:27,143,137;--element-ink:#126F6A}
+.cab[data-element="fuego"]{--element-rgb:223,101,47;--element-ink:#AD4824}
+.cab[data-element="aire"]{--element-rgb:111,159,185;--element-ink:#476F86}
+.cab-foto{position:relative;aspect-ratio:4/5;overflow:hidden;border:0;padding:0;background:var(--cal-2);display:block;width:100%}
+.cab-foto img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.cab-foto::after{content:"";position:absolute;inset:auto 0 0;height:4px;background:var(--element-ink)}
+/* magic-card (magicui) portado: el spotlight del color del elemento sigue al cursor */
+.cab-txt{position:relative;padding:18px clamp(16px,1.6vw,22px) 22px;flex:1}
+.cab-txt::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .35s;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(var(--element-rgb),.3),rgba(var(--element-rgb),.06) 50%,transparent 75%)}
+@media (hover:hover) and (pointer:fine){.cab:hover .cab-txt::before{opacity:1}.cab:hover .cab-foto img{transform:scale(1.04)}}
+.cab-top{display:flex;align-items:center;gap:12px}
+.cab-top svg{width:40px;height:40px;flex:none;color:var(--element-ink)}
+.cab h3{font-size:clamp(2rem,2.6vw,2.5rem)}
+.cab h3 small{display:block;font-size:.8rem;letter-spacing:.14em;font-weight:700;color:var(--piedra-soft);margin-bottom:2px}
+.cab p{margin-top:10px;color:var(--piedra-soft);font-size:.98rem;line-height:1.5}
+@media (max-width:1000px){.cabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){
+  .cabs{gap:10px}
+  .cab-foto{aspect-ratio:1}
+  .cab-top svg{width:30px;height:30px}
+  .cab h3{font-size:1.7rem}
+  .cab p{font-size:.9rem}
+  .cab-txt{padding:14px 12px 16px}
+}
+.caps{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:34px;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.caps span{display:inline-flex;align-items:baseline;gap:6px}
+.caps b{font-size:2.2rem;line-height:1;font-weight:800}
+.caps .dot{width:6px;height:6px;border-radius:50%;background:var(--ocre)}
+
+/* ---------- adentro: lista editorial que cambia la foto ---------- */
+.adentro{background:var(--cal-2)}
+.equipo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,6vw,90px);align-items:start}
+.equipo-foto{position:sticky;top:100px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--cal);margin:0}
+.equipo-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .6s var(--ease),transform 1.4s var(--ease)}
+.equipo-foto img.on{opacity:1;transform:none}
+.equipo-foto figcaption{position:absolute;left:16px;bottom:16px;z-index:2;background:var(--cal);border-radius:100px;padding:8px 14px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem}
+.eqs{list-style:none;border-top:2px solid var(--piedra)}
+.eq{border-bottom:1px solid var(--line)}
+.eq-btn{width:100%;display:grid;grid-template-columns:48px minmax(0,1fr) 28px;column-gap:14px;align-items:center;padding:20px 0;background:none;border:0;text-align:left}
+.eq-n{font-family:var(--display);font-weight:700;letter-spacing:.12em;font-size:.85rem;color:var(--piedra-soft)}
+.eq-t{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(1.55rem,2.6vw,2.2rem);line-height:1;transition:color .3s,transform .4s var(--ease)}
+.eq-a{width:28px;height:28px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;opacity:.35;transition:opacity .3s,transform .4s var(--ease),background .3s,color .3s}
+.eq-a svg{width:14px;height:14px}
+.eq-d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.eq-d>div{overflow:hidden}
+.eq-d p{padding:0 42px 20px 62px;color:var(--piedra-soft)}
+.eq-d img{display:none}
+.eq.on .eq-d{grid-template-rows:1fr}
+.eq.on .eq-t{color:var(--ocre-hondo);transform:translateX(6px)}
+.eq.on .eq-a{opacity:1;background:var(--piedra);color:var(--cal);transform:rotate(-45deg)}
+@media (hover:hover){.eq-btn:hover .eq-a{opacity:1}}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.facts span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);border-radius:100px;background:var(--cal);font-size:.92rem;font-weight:500}
+.facts svg{width:17px;height:17px;color:var(--ocre-hondo)}
+@media (max-width:860px){
+  .equipo{grid-template-columns:1fr}
+  .equipo-foto{display:none}
+  .eq-d p{padding:0 0 14px 62px}
+  .eq-d img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:18px}
+  .eq-btn{padding:17px 0}
+}
+
+/* ---------- la mesa de Lili, el fuego de Luis (columnas de revista) ---------- */
+.mesa-head{max-width:760px;margin-bottom:clamp(40px,6vw,70px)}
+.mesa-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:start}
+.mesa-col:last-child{margin-top:clamp(0px,9vw,120px)}
+.mesa-fotos{position:relative;padding-bottom:14%;margin-bottom:34px}
+.mesa-fotos img:first-child{width:84%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+.mesa-fotos img:last-child{position:absolute;right:0;bottom:0;width:50%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius);border:6px solid var(--cal)}
+.mesa-col h3{font-size:clamp(2rem,3.4vw,2.8rem)}
+.mesa-col .quien{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;color:var(--ocre-hondo);margin-bottom:6px}
+.mesa-col>p{margin-top:12px;color:var(--piedra-soft);max-width:30em}
+.horario{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 16px;border:1.5px solid var(--piedra);border-radius:100px;font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.horario svg{width:20px;height:20px}
+.platos{list-style:none;margin:24px 0 0;border-top:2px solid var(--piedra)}
+.platos li{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:1.4rem;text-transform:uppercase}
+.platos li::after{content:"";flex:1;border-bottom:2px dotted rgba(37,34,31,.28);transform:translateY(-6px);order:2}
+.platos li span{order:3;font-family:var(--body);font-weight:500;font-size:.92rem;text-transform:none;color:var(--piedra-soft);text-align:right}
+.fuente{margin-top:14px;font-size:.88rem;color:var(--piedra-soft);font-style:italic}
+@media (max-width:860px){.mesa-cols{grid-template-columns:1fr}.mesa-col:last-child{margin-top:0}}
+
+/* ---------- videos: portada + reproducción voluntaria ---------- */
+.videos{background:var(--noche);color:var(--cal)}
+.videos .eyebrow{color:var(--ocre)}
+.videos .lead{color:rgba(243,241,236,.75)}
+.vids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px)}
+.vid{position:relative}
+.vid-box{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#0b111c;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.vid-box video,.vid-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vid-play{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:12px;padding:20px;border:0;background:linear-gradient(0deg,rgba(10,14,24,.85),rgba(10,14,24,0) 55%);color:#fff;text-align:left}
+.vid-play .ico{width:64px;height:64px;border-radius:50%;background:var(--turquesa);display:grid;place-items:center;box-shadow:0 10px 24px -6px rgba(0,0,0,.5);transition:transform .25s var(--ease),background .2s}
+.vid-play .ico svg{width:24px;height:24px;margin-left:4px}
+@media (hover:hover){.vid-play:hover .ico{transform:scale(1.08);background:var(--turquesa-hover)}}
+.vid-play b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.6rem;line-height:1}
+.vid-play small{font-size:.9rem;color:rgba(255,255,255,.8)}
+.vid.on .vid-play{display:none}
+@media (max-width:760px){
+  .vids{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:74%;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px 10px;margin:0 -16px;scrollbar-width:none}
+  .vid{scroll-snap-align:center}
+}
+
+/* ---------- ruta 9 ---------- */
+.ruta{background:var(--piedra);color:var(--cal)}
+.ruta .eyebrow{color:var(--ocre)}
+.ruta .lead{color:rgba(243,241,236,.75)}
+.linea{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:70px}
+.linea::before{content:"";position:absolute;left:0;right:0;top:15px;height:4px;background:repeating-linear-gradient(90deg,var(--ocre) 0 26px,transparent 26px 40px)}
+.parada{position:relative;padding-top:48px;padding-right:12px}
+.parada::before{content:"";position:absolute;top:6px;left:0;width:22px;height:22px;border-radius:50%;background:var(--piedra);border:3px solid var(--cal)}
+.parada b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.4vw,2.1rem);text-transform:uppercase;line-height:1}
+.parada span{display:block;margin-top:6px;color:rgba(243,241,236,.72);font-size:.95rem}
+.parada .min{font-family:var(--display);font-weight:700;color:var(--ocre);font-size:1.25rem;letter-spacing:.04em}
+.parada.aca::before{width:34px;height:34px;top:0;left:-6px;background:var(--ocre);border-color:var(--ocre);box-shadow:0 0 0 8px rgba(213,174,58,.22)}
+.parada.aca b{color:var(--ocre)}
+@media (max-width:760px){
+  .linea{grid-template-columns:1fr;margin-top:44px;padding-left:44px}
+  .linea::before{left:13px;right:auto;top:0;bottom:0;width:4px;height:auto;background:repeating-linear-gradient(180deg,var(--ocre) 0 20px,transparent 20px 32px)}
+  .parada{padding:0 0 30px}
+  .parada::before{left:-42px;top:2px}
+  .parada.aca::before{left:-48px;top:-4px}
+}
+
+/* ---------- promo ---------- */
+.promo{background:var(--ocre);color:var(--piedra);padding:clamp(56px,8vw,90px) 0;overflow:hidden}
+.promo .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:30px 60px;align-items:center}
+.promo h2{font-size:clamp(2.8rem,7vw,6rem)}
+.promo p{font-size:1.12rem;max-width:26em}
+.promo .eyebrow{color:var(--piedra)}
+.promo-side{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.promo-meses{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.promo-meses span{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;padding:4px 10px;border:1.5px solid var(--piedra);border-radius:100px}
+.promo-meses span.hoy{background:var(--piedra);color:var(--ocre)}
+.promo-vigente{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.9rem}
+.promo-vigente i{width:9px;height:9px;border-radius:50%;background:var(--piedra);box-shadow:0 0 0 4px rgba(37,34,31,.18)}
+.promo-vigente[hidden]{display:none}
+.promo .letra{font-size:.9rem;opacity:.8}
+@media (max-width:860px){.promo .wrap{grid-template-columns:1fr}.promo-side .btn{width:100%}}
+
+/* ---------- galería asimétrica + lightbox ---------- */
+.gal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(90px,10vw,130px);gap:12px}
+.gal button{position:relative;border:0;padding:0;background:var(--cal-2);border-radius:var(--radius);overflow:hidden}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gal button span{position:absolute;left:12px;bottom:10px;font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+@media (hover:hover){.gal button:hover img{transform:scale(1.05)}}
+.gal .a{grid-column:span 7;grid-row:span 4}.gal .b{grid-column:span 5;grid-row:span 2}.gal .c{grid-column:span 5;grid-row:span 2}
+.gal .d{grid-column:span 4;grid-row:span 3}.gal .e{grid-column:span 4;grid-row:span 3}.gal .f{grid-column:span 4;grid-row:span 3}
+.gal .g1{grid-column:span 5;grid-row:span 3}.gal .h{grid-column:span 7;grid-row:span 3}
+@media (max-width:760px){
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}
+  .gal button{grid-column:span 1 !important;grid-row:span 1 !important}
+  .gal .a,.gal .h{grid-column:span 2 !important;grid-row:span 2 !important}
+}
+.lb{position:fixed;inset:0;z-index:9999;background:rgba(14,13,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px}
+.lb p{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:#fff;font-family:var(--display);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.lb button{position:absolute;width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);background:rgba(0,0,0,.3);color:#fff;display:grid;place-items:center}
+.lb button svg{width:22px;height:22px}
+.lb .x{top:14px;right:14px}.lb .prev{left:14px;top:50%;translate:0 -50%}.lb .next{right:14px;top:50%;translate:0 -50%}
+
+/* ---------- reseñas ---------- */
+.voces{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px 70px;align-items:start}
+.cifras{display:grid;gap:26px}
+.cifra b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,7vw,5.6rem);line-height:.9}
+.cifra span{color:var(--piedra-soft)}
+.quote{border-left:4px solid var(--ocre);padding:4px 0 4px 26px;margin-bottom:40px}
+.quote p{font-size:clamp(1.25rem,2.1vw,1.6rem);line-height:1.4;font-weight:500}
+.quote footer{margin-top:12px;font-size:.92rem;color:var(--piedra-soft)}
+@media (max-width:860px){.voces{grid-template-columns:1fr}}
+
+/* ---------- reservas ---------- */
+.reservas{background:var(--cal-2)}
+.res-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:40px 80px;align-items:start}
+.res-card{background:var(--cal);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,3vw,34px);box-shadow:0 30px 60px -30px rgba(37,34,31,.35)}
+.res-notas{list-style:none;margin-top:30px;display:grid;gap:14px}
+.res-notas li{display:flex;gap:12px;align-items:flex-start}
+.res-notas svg{width:22px;height:22px;flex:none;color:var(--ocre-hondo);margin-top:2px}
+@media (max-width:900px){.res-grid{grid-template-columns:1fr}}
+
+/* ---------- ubicación ---------- */
+.mapa{position:relative;border-radius:var(--radius);overflow:hidden;min-height:480px;background:var(--cal-2)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+.mapa::after{content:"";position:absolute;inset:0;background:var(--ocre);mix-blend-mode:multiply;opacity:.32;pointer-events:none}
+.visita{position:absolute;z-index:2;left:20px;top:20px;width:min(360px,calc(100% - 40px));background:var(--cal);border-radius:var(--radius);padding:24px;box-shadow:0 20px 40px -12px rgba(0,0,0,.35)}
+.visita h3{font-size:2rem}
+.estado{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;margin:10px 0 14px}
+.estado i{width:9px;height:9px;border-radius:50%;background:#9a948c}
+.estado.abierto i{background:#1f9d57;box-shadow:0 0 0 4px rgba(31,157,87,.18)}
+.visita dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.95rem;margin-bottom:18px}
+.visita dt{color:var(--piedra-soft)}
+.visita dd{font-weight:600}
+.visita .btn{width:100%;min-height:48px}
+@media (max-width:700px){
+  .mapa{min-height:0;display:flex;flex-direction:column}
+  .mapa iframe{position:relative;height:300px;order:2}
+  .mapa::after{top:auto;height:300px}
+  .visita{position:relative;left:0;top:0;width:100%;box-shadow:none;border:1px solid var(--line);border-bottom:0;border-radius:var(--radius) var(--radius) 0 0}
+}
+
+/* ---------- FAQ: accordion (shadcn) portado ---------- */
+.faq{max-width:860px}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-item:first-child{border-top:2px solid var(--piedra)}
+.acc-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;background:none;border:0;text-align:left;font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2.2vw,1.65rem);text-transform:uppercase;letter-spacing:.01em}
+.acc-ico{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--piedra);position:relative;transition:transform .35s var(--ease),background .2s,color .2s}
+.acc-ico::before,.acc-ico::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:currentColor;translate:-50% -50%;transition:transform .35s var(--ease)}
+.acc-ico::after{transform:rotate(90deg)}
+.acc-item.open .acc-ico{transform:rotate(180deg);background:var(--piedra);color:var(--cal)}
+.acc-item.open .acc-ico::after{transform:rotate(0)}
+@media (hover:hover){.acc-trigger:hover .acc-ico{background:var(--piedra);color:var(--cal)}}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.acc-panel>div{overflow:hidden}
+.acc-panel p{padding:0 60px 26px 0;color:var(--piedra-soft);opacity:0;filter:blur(4px);transition:opacity .35s .05s,filter .35s .05s}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-item.open .acc-panel p{opacity:1;filter:none}
+
+/* ---------- cierre ---------- */
+.cierre{position:relative;color:#fff;padding:clamp(110px,16vw,200px) 0;overflow:hidden;background:var(--noche)}
+.cierre img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.cierre::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,28,46,.92) 0%,rgba(18,28,46,.55) 55%,rgba(18,28,46,.2))}
+.cierre .wrap{position:relative;z-index:2}
+@media (min-width:900px){.cierre img{left:auto;width:58%;opacity:.75}.cierre::after{background:linear-gradient(90deg,var(--noche) 42%,rgba(18,28,46,.35) 70%,rgba(18,28,46,.1))}}
+.cierre h2{font-size:clamp(3rem,8vw,6.8rem);max-width:8.5em}
+.cierre p{font-size:1.2rem;max-width:27em;margin:22px 0 32px;color:rgba(255,255,255,.88)}
+.cierre .hero-ctas .btn-ghost{color:#fff}
+
+footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 30px;font-size:.95rem}
+.pie-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px 50px}
+.pie .brand{color:var(--cal)}
+.pie .pie-logo img{width:110px;height:110px;filter:none}
+.pie a{text-decoration:none}
+@media (hover:hover){.pie a:hover{color:#fff;text-decoration:underline}}
+.pie-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(243,241,236,.14);font-size:.84rem}
+.operon{display:inline-flex;align-items:center;gap:.3em;color:rgba(243,241,236,.55);text-decoration:none;font-size:.8rem;transition:color .2s}
+.operon svg{height:1.45em;width:auto}
+@media (hover:hover){.operon:hover{color:rgba(243,241,236,.9)}}
+
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:40;width:58px;height:58px;border-radius:50%;background:var(--turquesa);color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px -8px rgba(0,0,0,.45);transform:scale(0);transition:transform .3s var(--ease)}
+.wa-float.on{transform:none}
+.wa-float svg{width:28px;height:28px}
+@media (max-width:760px){.wa-float{bottom:4.6rem}}
+
+/* reveals: siempre terminan visibles aunque el scroll sea rápido */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- glifos del logo (árbol, olas, llama, viento), redibujados en trazo -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="g-tierra" viewBox="0 0 48 48"><path class="g" d="M24 44V24M24 32l-6-6M24 29l7-7"/><path class="g" d="M17 27a7 7 0 0 1-2-13a9 9 0 0 1 17-3a7 7 0 0 1 3 13a6 6 0 0 1-6 3"/></symbol>
+    <symbol id="g-agua" viewBox="0 0 48 48"><path class="g" d="M5 15q4.75-5 9.5 0t9.5 0t9.5 0t9.5 0M5 25q4.75-5 9.5 0t9.5 0t9.5 0t9.5 0M5 35q4.75-5 9.5 0t9.5 0t9.5 0t9.5 0"/></symbol>
+    <symbol id="g-fuego" viewBox="0 0 48 48"><path class="g" d="M11 43C5 35 9 27 13 21C15 27 17 29 19 30C20 21 24 13 23 5C31 12 40 22 39 33C38.5 37 37 40 35 43M19 43C17.5 39 20 35 23 32C24 35 25.5 37 27 37C28 34 29 32 29 29C32 33 33 38 30 43"/></symbol>
+    <symbol id="g-aire" viewBox="0 0 48 48"><path class="g" d="M6 18H31a6 6 0 1 0-6-6M4 26H39a6 6 0 1 1-6 6M10 34H24"/></symbol>
+  </defs>
+</svg>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-bg" id="introBg"></div>
+  <div class="intro-logo" id="introLogo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" aria-hidden="true" aria-labelledby="lg-t">
+  <title id="lg-t">Cabañas 4 Elementos · Huacalera, Jujuy</title>
+  <defs><clipPath id="lg-abajo"><rect x="0" y="360" width="600" height="240"/></clipPath></defs>
+  <path class="lg-frame" d="M300 14 L586 300 L300 586 L14 300 Z" fill="#fff" stroke="#B27314" stroke-width="12" stroke-linejoin="miter" pathLength="1"/>
+  <g clip-path="url(#lg-abajo)"><path class="lg-fill" d="M300 36 L564 300 L300 564 L36 300 Z" fill="#B27314"/></g>
+  
+  <g class="lg-illus" fill="none" stroke="#B27314" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="330" cy="104" r="19" fill="#B27314" stroke="none"/>
+    <path d="M200 184 L246 132 L258 142 L296 92 L314 114 L326 104 L376 160 L400 184" fill="#fff" stroke-width="4.5"/>
+    <path d="M283 110 L296 124 L304 112 M318 118 L326 128" stroke-width="3.5"/>
+    <path d="M228 174 L240 128 L252 174 Z M232 158 H248 M235 144 H245" fill="#B27314" stroke-width="2"/>
+    <path d="M352 164 L362 124 L372 164 Z M355 150 H369 M357 138 H367" fill="#B27314" stroke-width="2"/>
+    <path d="M262 166 L300 134 L340 166" stroke-width="8"/>
+    <path d="M272 166 V180 H328 V166" fill="#fff" stroke-width="4"/>
+    <rect x="292" y="164" width="12" height="10" fill="#B27314" stroke="none"/>
+    <path d="M330 164 L350 148 L370 164" stroke-width="7"/>
+    <rect x="344" y="162" width="10" height="9" fill="#B27314" stroke="none"/>
+    <path d="M196 196 Q300 176 404 196" stroke-width="5"/>
+    <path d="M214 206 Q300 192 386 206 Q300 200 214 206 Z" fill="#B27314" stroke-width="3"/>
+    <path d="M238 214 Q300 207 362 214" stroke-width="3"/>
+  </g>
+  <g><path class="lg-line" d="M154.70836943337378 236.31744931554323Q154.70836943337378 215.92652919771268 174.5427135678392 215.92652919771268Q179.3495061514469 215.92652919771268 183.47322821001558 217.09027898111245Q187.5969502685843 218.2540287645122 189.6208629353665 219.67076763125974V232.32022179864842H177.47738693467338V228.67717899844047Q177.47738693467338 226.7544619649974 176.61722405129095 225.84370126494542Q175.75706116790852 224.93294056489344 174.03673540114366 224.93294056489344Q172.3164096343788 224.93294056489344 171.45624675099637 225.84370126494542Q170.59608386761394 226.7544619649974 170.59608386761394 228.67717899844047V243.957719632646Q170.59608386761394 245.88043666608905 171.45624675099637 246.79119736614103Q172.3164096343788 247.70195806619304 174.03673540114366 247.70195806619304Q175.75706116790852 247.70195806619304 176.61722405129095 246.79119736614103Q177.47738693467338 245.88043666608905 177.47738693467338 243.957719632646V239.85929648241205H189.6208629353665V252.96413099982672Q187.54635245191474 254.38086986657424 183.47322821001558 255.544619649974Q179.40010396811644 256.7083694333738 174.6439092011783 256.7083694333738Q165.08092185063248 256.7083694333738 159.89464564200313 251.8509790330965Q154.70836943337378 246.99358863281927 154.70836943337378 236.31744931554323ZM230.7062900710449 247.70195806619304H232.73020273782709V256.0H212.89585860336163V247.70195806619304H215.9317276035349L215.12216253682206 243.65413273262865H208.24085946976263L207.43129440304975 247.70195806619304H210.46716340322303V256.0H193.1627101022353V247.70195806619304H195.1866227690175L203.73765378617225 216.63489863108646H222.15525905389015ZM209.3540114364928 238.29076416565587H214.00901057009185L211.9345000866401 228.22179864841448H211.42852191994456ZM236.373245538035 247.70195806619304H238.90313637151274V224.93294056489344H236.373245538035V216.63489863108646H259.5976433893606Q265.92237047305497 216.63489863108646 269.4642176399238 219.21538728123375Q273.0060648067926 221.79587593138103 273.0060648067926 226.60266851498875Q273.0060648067926 229.58793969849245 271.5893259400451 231.63715127360942Q270.17258707329756 233.6863628487264 268.2751689481893 234.72361809045225Q266.37775082308093 235.76087333217814 264.6068272396465 236.11505804886502V236.62103621556057Q268.1992722231849 236.97522093224745 271.0833477733495 238.89793796569052Q273.96742332351414 240.8206549991336 273.96742332351414 245.77924103274995Q273.96742332351414 251.0920117830532 269.97019580661936 253.5460058915266Q265.9729682897245 256.0 259.5976433893606 256.0H236.373245538035ZM255.80280713914402 233.2309824987004Q257.27014382256107 233.2309824987004 258.0038121642696 232.4467163403223Q258.73748050597817 231.6624501819442 258.73748050597817 229.9927222318489V228.17120083174493Q258.73748050597817 226.50147288164962 258.0038121642696 225.71720672327154Q257.27014382256107 224.93294056489344 255.80280713914402 224.93294056489344H253.07052503898805V233.2309824987004ZM256.1569918558309 247.70195806619304Q257.624328539248 247.70195806619304 258.35799688095653 246.91769190781494Q259.0916652226651 246.13342574943684 259.0916652226651 244.46369779934153V242.23739386588113Q259.0916652226651 240.56766591578582 258.35799688095653 239.78339975740772Q257.624328539248 238.99913359902962 256.1569918558309 238.99913359902962H253.07052503898805V247.70195806619304ZM314.74926355917523 247.70195806619304H316.7731762259574V256.0H296.938832091492V247.70195806619304H299.9747010916652L299.16513602495235 243.65413273262865H292.2838329578929L291.47426789118003 247.70195806619304H294.51013689135334V256.0H277.20568359036565V247.70195806619304H279.2295962571478L287.78062727430256 216.63489863108646H306.1982325420205ZM293.39698492462315 238.29076416565587H298.05198405822216L295.97747357477044 228.22179864841448H295.4714954080749ZM349.5605614278288 216.63489863108646H366.1566452954428V224.93294056489344H363.626754461965V256.0H349.40876797782016L334.58360769364066 233.18038468203085V247.70195806619304H337.0123028937793V256.0H320.4162190261653V247.70195806619304H322.94610985964306V224.93294056489344H320.4162190261653V216.63489863108646H338.68203084387454L351.98925662796745 236.9246231155779V224.93294056489344H349.5605614278288ZM343.13463871079534 212.5870732975221Q341.0095304106741 212.1316929474961 339.79518281060473 211.90400277248312Q338.58083521053544 211.67631259747012 337.36648761046615 211.67631259747012Q336.0509443770577 211.67631259747012 335.1907814936753 212.20758967250043Q334.33061861029285 212.73886674753075 334.33061861029285 213.54843181424363H331.4971408767978Q331.4971408767978 209.29821521400103 332.8885808352105 207.45139490556227Q334.2800207936233 205.60457459712353 338.07485704383987 205.60457459712353Q339.7445849939352 205.60457459712353 341.26251949402183 205.85756368047132Q342.7804539941085 206.1105527638191 344.80436666089065 206.61653093051464Q346.7270836943337 207.02131346387108 347.84023566106396 207.2237047305493Q348.95338762779414 207.42609599722752 350.1171374111939 207.42609599722752Q351.53387627794143 207.42609599722752 352.3434413446543 206.97071564720153Q353.1530064113672 206.51533529717554 353.1530064113672 205.6551724137931H355.98648414486223Q355.98648414486223 208.48865014728815 355.4299081614971 210.18367700571824Q354.87333217813205 211.87870386414832 353.4565933113845 212.73886674753075Q352.039854444637 213.59902963091318 349.40876797782016 213.59902963091318Q348.04262692774216 213.59902963091318 346.60058915265984 213.3460405475654Q345.15855137757757 213.09305146421764 343.13463871079534 212.5870732975221ZM407.2420724311212 247.70195806619304H409.26598509790335V256.0H389.4316409634379V247.70195806619304H392.4675099636112L391.6579448968983 243.65413273262865H384.77664182983887L383.967076763126 247.70195806619304H387.0029457632993V256.0H369.6984924623116V247.70195806619304H371.7224051290938L380.2734361462485 216.63489863108646H398.69104141396645ZM385.8897937965691 238.29076416565587H390.5447929301681L388.4702824467164 228.22179864841448H387.9643042800208ZM412.7572344481026 253.9760873332178V243.957719632646H423.88875411540465Q423.88875411540465 245.5262519494022 424.5971235487784 246.23462138277597Q425.3054929821522 246.94299081614972 427.1776121989257 246.94299081614972Q428.7461445156819 246.94299081614972 429.4292150407209 246.46231155778895Q430.11228556575986 245.98163229942818 430.11228556575986 245.02027378270662Q430.11228556575986 244.21070871599375 429.4545139490557 243.62883382429388Q428.79674233235147 243.046958932594 427.1776121989257 242.43978513255934L422.826199965344 240.9218506324727Q417.2098423150234 238.7967423323514 414.75584820655 235.9126667821868Q412.3018540980766 233.02859123202217 412.3018540980766 228.12060301507537Q412.3018540980766 222.15006064806792 416.2231848899671 219.03829492289032Q420.1445156818576 215.92652919771268 429.302720499047 215.92652919771268Q433.70473054929823 215.92652919771268 437.57546352451914 216.8119909894299Q441.4461964997401 217.69745278114712 443.8242938832092 219.1647894645642V228.22179864841448H433.70473054929823Q433.70473054929823 225.69190781493674 430.5676659157859 225.69190781493674Q429.0497314156992 225.69190781493674 428.4172587073298 226.0713914399584Q427.7847859989604 226.45087506498007 427.7847859989604 227.4122335817016Q427.7847859989604 228.27239646508403 428.5184543406689 228.77837463177957Q429.25212268237743 229.28435279847514 430.92185063247274 229.84092878184023L435.323860682724 231.3588632819269Q440.6872292496968 233.18038468203085 443.14122335817024 236.08975914053025Q445.5952174666436 238.99913359902962 445.5952174666436 243.7047305492982Q445.5952174666436 250.13065326633165 441.26910414139667 253.4195113498527Q436.94299081614975 256.7083694333738 428.5943510656732 256.7083694333738Q423.736960665396 256.7083694333738 419.4108473401491 255.87350545832612Q415.08473401490215 255.03864148327847 412.7572344481026 253.9760873332178Z" fill="#F4EEDC" stroke="#7C7770" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round"/><path class="lg-line" d="M101.39767523775977 306.0V299.65973934483975H84.91299753434308V291.34131736526945L102.41211694258541 266.5382176822825H114.78830574145826V291.94998238816487H118.28812962310673V299.65973934483975H114.78830574145826V306.0ZM94.29658330398027 291.94998238816487H101.39767523775977V281.95773159563225ZM139.48996125396263 306.0V297.68157802042975H142.02606551602676V274.8566396618528H139.48996125396263V266.5382176822825H173.7273687918281V281.85628742514973H162.36562169778088V274.8566396618528H156.22824938358576V282.87072912997536H160.6917928848186V288.6530468474815H156.22824938358576V297.68157802042975H162.36562169778088V289.66748855230713H173.7273687918281V306.0ZM177.6836914406481 306.0V297.68157802042975H180.21979570271222V274.8566396618528H177.6836914406481V266.5382176822825H199.08841141246916V274.8566396618528H194.42197957027122V297.68157802042975H198.9869672419866V293.01514617823176H209.08066220500174V306.0ZM212.8340965128566 306.0V297.68157802042975H215.37020077492073V274.8566396618528H212.8340965128566V266.5382176822825H247.07150405072207V281.85628742514973H235.70975695667485V274.8566396618528H229.57238464247973V282.87072912997536H234.03592814371257V288.6530468474815H229.57238464247973V297.68157802042975H235.70975695667485V289.66748855230713H247.07150405072207V306.0ZM306.9742867206763 274.8566396618528H304.4381824586122V297.68157802042975H306.9742867206763V306.0H287.8013384994716V297.68157802042975H290.23599859105315V279.928848185981L281.6132441000352 306.0H274.10637548432544L265.2300105671011 280.18245861218736V297.68157802042975H267.6646706586826V306.0H251.02782669954206V297.68157802042975H253.5639309616062V274.8566396618528H251.02782669954206V266.5382176822825H274.2585417400493L279.53363860514264 282.3635082775625L284.60584712927084 266.5382176822825H306.9742867206763ZM311.03205353997885 306.0V297.68157802042975H313.56815780204295V274.8566396618528H311.03205353997885V266.5382176822825H345.2694610778443V281.85628742514973H333.9077139837971V274.8566396618528H327.770341669602V282.87072912997536H332.2338851708348V288.6530468474815H327.770341669602V297.68157802042975H333.9077139837971V289.66748855230713H345.2694610778443V306.0ZM378.44170482564283 266.5382176822825H395.0785487847834V274.8566396618528H392.5424445227193V306.0H378.289538569919L363.42796759422333 283.1243395561818V297.68157802042975H365.86262768580485V306.0H349.2257837266643V297.68157802042975H351.7618879887284V274.8566396618528H349.2257837266643V266.5382176822825H367.53645649876717L380.87636491722435 286.8777738640366V274.8566396618528H378.44170482564283ZM436.8735470235999 278.8129623106728H428.1493483620993V274.8566396618528H424.9031349066573V297.68157802042975H428.453680873547V306.0H407.1504050722085V297.68157802042975H410.7009510390983V274.8566396618528H407.4547375836562V278.8129623106728H398.7305389221557V266.5382176822825H436.8735470235999ZM440.32264882000703 286.26910884114125Q440.32264882000703 275.56674885523074 445.3694963015146 270.69742867206764Q450.41634378302217 265.82810848890455 459.69848538217684 265.82810848890455Q468.98062698133145 265.82810848890455 474.027474462839 270.69742867206764Q479.0743219443466 275.56674885523074 479.0743219443466 286.26910884114125Q479.0743219443466 296.9714688270518 474.027474462839 301.84078901021485Q468.98062698133145 306.71010919337795 459.69848538217684 306.71010919337795Q450.41634378302217 306.71010919337795 445.3694963015146 301.84078901021485Q440.32264882000703 296.9714688270518 440.32264882000703 286.26910884114125ZM463.147587178584 293.92814371257487V278.6100739697076Q463.147587178584 276.6826347305389 462.2853117294822 275.76963719619584Q461.4230362803804 274.8566396618528 459.69848538217684 274.8566396618528Q457.9739344839732 274.8566396618528 457.1116590348714 275.76963719619584Q456.24938358576964 276.6826347305389 456.24938358576964 278.6100739697076V293.92814371257487Q456.24938358576964 295.90630503698486 457.1116590348714 296.7939415287073Q457.9739344839732 297.68157802042975 459.69848538217684 297.68157802042975Q461.4230362803804 297.68157802042975 462.2853117294822 296.76858048608665Q463.147587178584 295.8555829517436 463.147587178584 293.92814371257487ZM482.67558999647764 303.97111659034874V293.92814371257487H493.8344487495597Q493.8344487495597 295.5005283550546 494.5445579429377 296.21063754843254Q495.2546671363156 296.9207467418105 497.13138429024303 296.9207467418105Q498.7037689327228 296.9207467418105 499.3885170834801 296.4388869320183Q500.0732652342374 295.9570271222261 500.0732652342374 294.99330750264176Q500.0732652342374 294.1817541387813 499.4138781261007 293.5984501585065Q498.7544910179641 293.01514617823176 497.13138429024303 292.4064811553364L492.7692849594928 290.8848185980979Q487.1391334977105 288.7544910179641 484.6791123635083 285.863332159211Q482.2190912293061 282.9721733004579 482.2190912293061 278.0521310320535Q482.2190912293061 272.0669249735822 486.15005283550545 268.94751673124335Q490.08101444170484 265.82810848890455 499.2617118703769 265.82810848890455Q503.67453328636844 265.82810848890455 507.5547728073266 266.715744980627Q511.43501232828464 267.60338147234944 513.8189503346249 269.0743219443466V278.1535752025361H503.67453328636844Q503.67453328636844 275.617470940472 500.529764001409 275.617470940472Q499.0081014441705 275.617470940472 498.3740753786545 275.9978865797816Q497.74004931313846 276.3783022190912 497.74004931313846 277.3420218386756Q497.74004931313846 278.20429728777736 498.47551954913706 278.7115181401902Q499.2109897851356 279.21873899260305 500.8848185980979 279.77668193025715L505.2976400140895 281.29834448749557Q510.6741810496654 283.1243395561818 513.1342021838676 286.0408594575555Q515.5942233180698 288.9573793589292 515.5942233180698 293.67453328636844Q515.5942233180698 300.1162381120113 511.25748502994014 303.4131736526946Q506.9207467418105 306.71010919337795 498.551602676999 306.71010919337795Q493.6822824938359 306.71010919337795 489.34554420570623 305.87319478689676Q485.00880591757664 305.03628038041563 482.67558999647764 303.97111659034874Z" fill="#F4EEDC" stroke="#7C7770" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round"/><path class="lg-line" d="M120.91708126036484 317.59867330016584H119.09286898839137V334.01658374792703H120.91708126036484V340.0H107.12603648424545V334.01658374792703H108.87728026533996V327.9966832504146H103.76948590381426V334.01658374792703H105.52072968490879V340.0H91.72968490878938V334.01658374792703H93.55389718076285V317.59867330016584H91.72968490878938V311.6152570480929H105.52072968490879V317.59867330016584H103.76948590381426V323.14427860696514H108.87728026533996V317.59867330016584H107.12603648424545V311.6152570480929H120.91708126036484ZM125.51409618573797 329.82089552238807V317.59867330016584H123.6898839137645V311.6152570480929H137.18905472636814V317.59867330016584H135.72968490878938V331.681592039801Q135.72968490878938 332.88557213930346 136.25870646766168 333.45107794361525Q136.78772802653398 334.01658374792703 137.8457711442786 334.01658374792703Q138.90381426202322 334.01658374792703 139.43283582089552 333.45107794361525Q139.96185737976782 332.88557213930346 139.96185737976782 331.681592039801V317.59867330016584H138.50248756218906V311.6152570480929H151.01658374792703V317.59867330016584H149.19237147595356V329.82089552238807Q149.19237147595356 335.4759535655058 146.16417910447763 337.9933665008292Q143.13598673300166 340.5107794361526 137.4809286898839 340.5107794361526Q131.75290215588723 340.5107794361526 128.6334991708126 337.9933665008292Q125.51409618573797 335.4759535655058 125.51409618573797 329.82089552238807ZM180.56882255389718 334.01658374792703H182.02819237147594V340.0H167.72636815920396V334.01658374792703H169.91542288557213L169.33167495854062 331.0978441127695H164.3698175787728L163.7860696517413 334.01658374792703H165.97512437810943V340.0H153.49751243781094V334.01658374792703H154.9568822553897L161.12271973466002 311.6152570480929H174.40298507462686ZM165.1724709784411 327.23051409618574H168.5290215588723L167.03316749585406 319.97014925373134H166.66832504145935ZM184.4361525704809 325.80762852404644Q184.4361525704809 311.1044776119403 198.7379767827529 311.1044776119403Q202.20398009950247 311.1044776119403 205.1774461028192 311.9436152570481Q208.15091210613596 312.7827529021559 209.61028192371475 313.80431177446104V322.92537313432837H200.8540630182421V320.2985074626866Q200.8540630182421 318.91210613598673 200.23383084577114 318.2553897180763Q199.61359867330015 317.59867330016584 198.3731343283582 317.59867330016584Q197.13266998341624 317.59867330016584 196.51243781094524 318.2553897180763Q195.89220563847428 318.91210613598673 195.89220563847428 320.2985074626866V331.3167495854063Q195.89220563847428 332.70315091210614 196.51243781094524 333.3598673300166Q197.13266998341624 334.01658374792703 198.3731343283582 334.01658374792703Q199.61359867330015 334.01658374792703 200.23383084577114 333.3598673300166Q200.8540630182421 332.70315091210614 200.8540630182421 331.3167495854063V328.3615257048093H209.61028192371475V337.81094527363183Q208.1144278606965 338.832504145937 205.1774461028192 339.67164179104475Q202.24046434494193 340.5107794361526 198.81094527363183 340.5107794361526Q191.91542288557213 340.5107794361526 188.17578772802653 337.0082918739635Q184.4361525704809 333.50580431177445 184.4361525704809 325.80762852404644ZM239.23548922056384 334.01658374792703H240.6948590381426V340.0H226.39303482587061V334.01658374792703H228.58208955223878L227.99834162520727 331.0978441127695H223.03648424543945L222.45273631840794 334.01658374792703H224.64179104477608V340.0H212.1641791044776V334.01658374792703H213.62354892205636L219.78938640132668 311.6152570480929H233.0696517412935ZM223.83913764510777 327.23051409618574H227.19568822553896L225.69983416252072 319.97014925373134H225.334991708126ZM243.32172470978438 340.0V334.01658374792703H245.14593698175784V317.59867330016584H243.32172470978438V311.6152570480929H258.71807628524044V317.59867330016584H255.36152570480925V334.01658374792703H258.6451077943615V330.66003316749584H265.9054726368159V340.0ZM268.60530679933663 340.0V334.01658374792703H270.4295190713101V317.59867330016584H268.60530679933663V311.6152570480929H293.2321724709784V322.6334991708126H285.0597014925373V317.59867330016584H280.6451077943615V323.363184079602H283.8557213930348V327.5223880597015H280.6451077943615V334.01658374792703H285.0597014925373V328.2520729684909H293.2321724709784V340.0ZM296.077943615257 334.01658374792703H297.9021558872305V317.59867330016584H296.077943615257V311.6152570480929H312.8242122719734Q317.53067993366494 311.6152570480929 320.01160862354885 313.54892205638475Q322.49253731343276 315.48258706467664 322.49253731343276 319.82421227197347Q322.49253731343276 322.2686567164179 321.5074626865671 324.0563847429519Q320.5223880597014 325.8441127694859 318.69817578772796 326.53731343283584L318.7346600331675 326.9021558872305Q322.23714759535653 327.4494195688226 322.23714759535653 331.20729684908787V334.01658374792703H323.9519071310116V340.0H312.3864013266998V331.4262023217247Q312.3864013266998 330.0033167495854 311.9668325041459 329.27363184079604Q311.54726368159197 328.54394693200663 310.653399668325 328.28855721393035Q309.759535655058 328.03316749585406 308.1177446102819 328.03316749585406V334.01658374792703H310.5257048092869V340.0H296.077943615257ZM310.0878938640132 323.5820895522388Q311.1459369817578 323.5820895522388 311.67495854063014 323.01658374792703Q312.2039800995025 322.45107794361525 312.2039800995025 321.2470978441128V319.9336650082919Q312.2039800995025 318.7296849087894 311.67495854063014 318.1641791044776Q311.1459369817578 317.59867330016584 310.0878938640132 317.59867330016584H308.1177446102819V323.5820895522388ZM353.5041459369817 334.01658374792703H354.9635157545605V340.0H340.6616915422885V334.01658374792703H342.8507462686566L342.26699834162514 331.0978441127695H337.3051409618573L336.7213930348258 334.01658374792703H338.91044776119395V340.0H326.43283582089543V334.01658374792703H327.89220563847425L334.05804311774455 311.6152570480929H347.3383084577114ZM338.10779436152563 327.23051409618574H341.4643449419568L339.96849087893855 319.97014925373134H339.6036484245439ZM369.703150912106 338.10281923714757V331.681592039801H376.9999999999999V332.0464344941957Q376.9999999999999 334.01658374792703 378.8971807628523 334.01658374792703Q379.882255389718 334.01658374792703 380.37479270315083 333.48756218905476Q380.86733001658365 332.9585406301824 380.86733001658365 331.82752902155886V317.59867330016584H377.5837479270314V311.6152570480929H392.90713101160856V317.59867330016584H391.0829187396351V329.8573797678275Q391.0829187396351 335.2205638474295 387.9452736318407 337.86567164179104Q384.8076285240463 340.5107794361526 379.2255389718075 340.5107794361526Q376.4162520729684 340.5107794361526 373.89883913764504 339.8723051409619Q371.3814262023216 339.23383084577114 369.703150912106 338.10281923714757ZM397.43117744610277 329.82089552238807V317.59867330016584H395.60696517412924V311.6152570480929H409.1061359867329V317.59867330016584H407.64676616915415V331.681592039801Q407.64676616915415 332.88557213930346 408.1757877280264 333.45107794361525Q408.70480928689875 334.01658374792703 409.76285240464335 334.01658374792703Q410.82089552238796 334.01658374792703 411.3499170812603 333.45107794361525Q411.87893864013256 332.88557213930346 411.87893864013256 331.681592039801V317.59867330016584H410.4195688225538V311.6152570480929H422.93366500829177V317.59867330016584H421.1094527363183V329.82089552238807Q421.1094527363183 335.4759535655058 418.08126036484236 337.9933665008292Q415.0530679933664 340.5107794361526 409.39800995024865 340.5107794361526Q403.66998341625197 340.5107794361526 400.55058043117737 337.9933665008292Q397.43117744610277 335.4759535655058 397.43117744610277 329.82089552238807ZM425.4145936981757 338.10281923714757V331.681592039801H432.71144278606954V332.0464344941957Q432.71144278606954 334.01658374792703 434.60862354892197 334.01658374792703Q435.59369817578767 334.01658374792703 436.0862354892205 333.48756218905476Q436.5787728026533 332.9585406301824 436.5787728026533 331.82752902155886V317.59867330016584H433.2951907131011V311.6152570480929H448.6185737976782V317.59867330016584H446.79436152570474V329.8573797678275Q446.79436152570474 335.2205638474295 443.6567164179104 337.86567164179104Q440.519071310116 340.5107794361526 434.9369817578772 340.5107794361526Q432.12769485903806 340.5107794361526 429.61028192371464 339.8723051409619Q427.0928689883913 339.23383084577114 425.4145936981757 338.10281923714757ZM453.14262023217236 329.82089552238807V317.59867330016584H451.3184079601989V311.6152570480929H464.81757877280256V317.59867330016584H463.3582089552238V331.681592039801Q463.3582089552238 332.88557213930346 463.88723051409613 333.45107794361525Q464.4162520729684 334.01658374792703 465.474295190713 334.01658374792703Q466.5323383084576 334.01658374792703 467.06135986732994 333.45107794361525Q467.59038142620227 332.88557213930346 467.59038142620227 331.681592039801V317.59867330016584H466.13101160862345V311.6152570480929H478.6451077943614V317.59867330016584H476.82089552238796V329.82089552238807Q476.82089552238796 335.4759535655058 473.792703150912 337.9933665008292Q470.7645107794361 340.5107794361526 465.1094527363183 340.5107794361526Q459.3814262023216 340.5107794361526 456.262023217247 337.9933665008292Q453.14262023217236 335.4759535655058 453.14262023217236 329.82089552238807ZM497.3615257048092 311.6152570480929H508.5621890547263V317.59867330016584H507.1028192371475L500.06135986732994 330.22222222222223V334.01658374792703H501.8855721393034V340.0H488.02155887230504V334.01658374792703H489.8457711442785V330.22222222222223L482.58540630182415 317.59867330016584H481.12603648424533V311.6152570480929H495.24543946932V317.59867330016584H493.96849087893855L496.12106135986727 323.25373134328356H496.4859038142619L498.63847429519063 317.59867330016584H497.3615257048092Z" fill="#F4EEDC" stroke="#7C7770" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round"/></g>
+  
+  <g class="lg-glyph" fill="#fff">
+    <path d="M194 450 V414 M194 432 L182 420 M194 426 L206 412" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <circle cx="186" cy="396" r="12"/><circle cx="202" cy="392" r="13"/><circle cx="194" cy="380" r="12"/>
+    <circle cx="180" cy="408" r="9"/><circle cx="208" cy="406" r="10"/><circle cx="194" cy="404" r="11"/>
+  </g>
+  <g class="lg-glyph" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round">
+    <path d="M254 392 q9 -7 18 0 t18 0 t18 0 t18 0 t18 0"/>
+    <path d="M254 406 q9 -7 18 0 t18 0 t18 0 t18 0 t18 0"/>
+    <path d="M254 420 q9 -7 18 0 t18 0 t18 0 t18 0 t18 0"/>
+  </g>
+  <g class="lg-glyph" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round">
+    <path d="M362 392 H398 a8 8 0 1 0 -8 -8"/>
+    <path d="M356 404 H414 a9 9 0 1 1 -9 9"/>
+    <path d="M366 416 H392"/>
+  </g>
+  <path class="lg-glyph" fill="#fff" d="M300 528 C274 528 262 510 266 490 C269 476 278 468 280 454 C288 462 290 472 290 480 C294 468 300 456 298 438 C314 452 334 474 334 496 C334 516 322 528 300 528 Z M300 520 C312 520 318 512 318 502 C318 492 312 484 306 476 C306 486 302 492 298 496 C296 490 294 486 290 482 C286 490 282 496 282 504 C282 514 290 520 300 520 Z" fill-rule="evenodd"/>
+</svg>
+</div>
+  <p class="intro-tag" id="introTag">Huacalera · Jujuy</p>
+</div>
+<script>
+  // antes de pintar: si la intro no va (ya vista o movimiento reducido), ni aparece
+  (function(){ var skip=matchMedia('(prefers-reduced-motion: reduce)').matches; try{ skip=skip||sessionStorage.getItem('ce-intro'); }catch(e){}
+    if(skip||location.hash){ var i=document.getElementById('intro'); i.parentNode.removeChild(i); } else document.documentElement.classList.add('intro-lock'); })();
+</script>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Cabañas 4 Elementos, inicio">
+      <img src="f/logo.svg" alt="" width="50" height="50">
+      <span class="brand-txt">Cabañas<b>4 Elementos</b></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <ul class="nav-links" id="menu">
+      <li><a href="#cabanas">Las cabañas</a></li>
+      <li><a href="#mesa">La mesa</a></li>
+      <li><a href="#tropico">El Trópico</a></li>
+      <li><a href="#llegar">Cómo llegar</a></li>
+      <li><a class="btn btn-primary" href="#reservar">Reservar</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero-in">
+    <div class="hero-txt">
+      <p class="eyebrow hr" style="--d:.05s"><span>Huacalera · Jujuy</span><span>A 300 m del Trópico de Capricornio</span></p>
+      <h1 class="hr" style="--d:.12s">Cuatro cabañas en el <em>medio</em> de la Quebrada</h1>
+      <p class="hero-lead hr" style="--d:.2s">Cabañas nuevas con los cerros enfrente, a una cuadra del Trópico. Lili y Luis te atienden en persona.</p>
+      <p class="hero-elems hr" style="--d:.26s" aria-label="Las cuatro cabañas: Tierra, Agua, Fuego y Aire">
+        <span style="color:#8B512F"><svg aria-hidden="true"><use href="#g-tierra"/></svg>Tierra</span>
+        <span style="color:#126F6A"><svg aria-hidden="true"><use href="#g-agua"/></svg>Agua</span>
+        <span style="color:#AD4824"><svg aria-hidden="true"><use href="#g-fuego"/></svg>Fuego</span>
+        <span style="color:#476F86"><svg aria-hidden="true"><use href="#g-aire"/></svg>Aire</span>
+      </p>
+      <div class="hero-ctas hr" style="--d:.32s">
+        <a class="btn btn-primary" href="#reservar">Ver fechas disponibles</a>
+        <a class="btn btn-ghost" href="https://wa.me/5493885186442?text=Hola%20Lili!%20Vi%20la%20web%20y%20quer%C3%ADa%20consultar%20por%20las%20caba%C3%B1as." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>
+          Escribile a Lili
+        </a>
+      </div>
+      <div class="hero-proof hr" style="--d:.4s">
+        <strong>5/5</strong><span>en Tripadvisor</span>
+        <span class="sep" aria-hidden="true"></span>
+        <strong>94%</strong><span>lo recomienda en Facebook</span>
+      </div>
+    </div>
+    <div class="hero-media hr" id="heroMedia" style="--d:0s">
+      <img class="on" src="f/complejo-dorado.webp" alt="Cabaña amarilla del complejo con los cerros de la Quebrada iluminados por el sol de la tarde" width="960" height="1280" fetchpriority="high" data-cap="La tarde sobre los cerros">
+      <img src="f/hero.webp" alt="Patio de ripio con sillas turquesa frente a una de las cabañas, con el cerro y el cielo de fondo" width="1800" height="1350" decoding="async" data-cap="El patio de las cabañas">
+      <img src="f/complejo-atardecer.webp" alt="Las cabañas al atardecer, con nubes doradas sobre los cerros" width="1280" height="1280" decoding="async" data-cap="Atardecer en Huacalera">
+      <div class="hero-cap" aria-hidden="true"><span>Cabañas 4 Elementos<b id="heroCap">La tarde sobre los cerros</b></span><span class="hero-bars" id="heroBars"><i class="on"></i><i></i><i></i></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LAS CABAÑAS ================= -->
+<section class="block" id="cabanas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv">
+        <p class="eyebrow">Las cabañas</p>
+        <h2>Cuatro cabañas, cuatro elementos</h2>
+      </div>
+      <p class="lead rv">Cada cabaña lleva el nombre de un elemento. Todas son nuevas, amplias y equipadas, con techos de vigas, piedra y telares de la zona. Tocá una foto para verla grande.</p>
+    </div>
+
+    <div class="cabs rv" id="cabs">
+      <article class="cab" data-element="tierra">
+        <button class="cab-foto" type="button" data-cap="Cabaña Tierra · living y cocina"><img src="f/cab-tierra.webp" alt="Cabaña Tierra: living con sillón verde, sillones terracota y cocina integrada al fondo" loading="lazy" width="960" height="1280"></button>
+        <div class="cab-txt">
+          <div class="cab-top"><svg aria-hidden="true"><use href="#g-tierra"/></svg><h3><small>Cabaña</small>Tierra</h3></div>
+          <p>Living amplio con cocina integrada y mesa para todos. Telares en cada rincón.</p>
+        </div>
+      </article>
+      <article class="cab" data-element="agua">
+        <button class="cab-foto" type="button" data-cap="Cabaña Agua · dormitorio"><img src="f/cab-agua.webp" alt="Cabaña Agua: cama matrimonial con cabecera de piedra y pie de cama fucsia" loading="lazy" width="960" height="1280"></button>
+        <div class="cab-txt">
+          <div class="cab-top"><svg aria-hidden="true"><use href="#g-agua"/></svg><h3><small>Cabaña</small>Agua</h3></div>
+          <p>Dormitorio con cabecera de piedra y el sol de la mañana entrando por la ventana.</p>
+        </div>
+      </article>
+      <article class="cab" data-element="fuego">
+        <button class="cab-foto" type="button" data-cap="Cabaña Fuego · dormitorio"><img src="f/cab-fuego.webp" alt="Cabaña Fuego: cama con manta de rayas de colores, pared de piedra y ventana al patio" loading="lazy" width="960" height="1280"></button>
+        <div class="cab-txt">
+          <div class="cab-top"><svg aria-hidden="true"><use href="#g-fuego"/></svg><h3><small>Cabaña</small>Fuego</h3></div>
+          <p>Manta de colores, pared de piedra y ventana al patio y a los cerros.</p>
+        </div>
+      </article>
+      <article class="cab" data-element="aire">
+        <button class="cab-foto" type="button" data-cap="Cabaña Aire · living y cocina"><img src="f/cab-aire.webp" alt="Cabaña Aire: living con sillones rojos, mesa ratona con telar y cocina con pared amarilla" loading="lazy" width="1600" height="1200"></button>
+        <div class="cab-txt">
+          <div class="cab-top"><svg aria-hidden="true"><use href="#g-aire"/></svg><h3><small>Cabaña</small>Aire</h3></div>
+          <p>Living luminoso con sillones rojos y la pared amarilla de la cocina.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="caps rv" aria-label="Capacidades: cabañas para 2, 3, 4 y 5 personas">
+      <span>Para</span>
+      <span><b>2</b></span><i class="dot"></i><span><b>3</b></span><i class="dot"></i><span><b>4</b></span><i class="dot"></i><span><b>5</b></span>
+      <span>personas · parejas, familias y grupos</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADENTRO ================= -->
+<section class="block adentro" aria-labelledby="adentro-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="eyebrow">Adentro y afuera</p><h2 class="sm" id="adentro-t">Todo lo que necesitás para quedarte</h2></div>
+      <p class="lead rv">Totalmente equipadas para una estadía autónoma: llegás, dejás el bolso y salís a recorrer.</p>
+    </div>
+    <div class="equipo rv">
+      <figure class="equipo-foto" id="eqFoto" aria-hidden="true">
+      <img class="on" src="f/cocina-living.webp" alt="Cocina comedor con pared amarilla y mesa de madera" loading="lazy" width="1080" height="810">
+      <img src="f/dormitorio.webp" alt="Dormitorio con cama matrimonial, techo de vigas y cabecera de piedra" loading="lazy" width="810" height="1080">
+      <img src="f/sillones.webp" alt="Living con sillones fucsia y mesa ratona con camino de telar" loading="lazy" width="1024" height="768">
+      <img src="f/galeria.webp" alt="Galería con mesa redonda y sillas blancas, con los cerros de fondo" loading="lazy" width="1024" height="768">
+      <img src="f/quincho.webp" alt="Pérgola de caña con mesa de piedra y parrilla, con los cerros detrás" loading="lazy" width="810" height="1080">
+      <img src="f/salon-ventana.webp" alt="Salón desayunador con mesa de madera junto a una ventana con vista al árbol" loading="lazy" width="1200" height="1600">
+      <img src="f/cardon-piedra.webp" alt="Cardón hecho de piedras en el estacionamiento del complejo" loading="lazy" width="960" height="1280">
+        <figcaption id="eqCap">Cocina comedor</figcaption>
+      </figure>
+      <div>
+        <ul class="eqs" id="eqs">
+      <li class="eq on"><button class="eq-btn" type="button" aria-expanded="true" aria-controls="eq-0"><span class="eq-n">01</span><span class="eq-t">Cocina comedor</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-0"><div><p>Anafe, frigobar, vajilla completa y una mesa grande para comer todos juntos.</p><img src="f/cocina-living.webp" alt="" loading="lazy" width="1080" height="810"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-1"><span class="eq-n">02</span><span class="eq-t">Dormitorios</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-1"><div><p>Techos de vigas, cabeceras de piedra, calefacción y ropa blanca incluida.</p><img src="f/dormitorio.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-2"><span class="eq-n">03</span><span class="eq-t">Living con telares</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-2"><div><p>Sillones, Wi-Fi y TV. Telares de la zona en cada ambiente.</p><img src="f/sillones.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-3"><span class="eq-n">04</span><span class="eq-t">Galerías al cerro</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-3"><div><p>Mesa afuera para el mate de la tarde, mirando los colores de la Quebrada.</p><img src="f/galeria.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-4"><span class="eq-n">05</span><span class="eq-t">Pérgola con parrillas</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-4"><div><p>Bajo la caña, con mesa de piedra: para hacer tu asado a la vista del cerro.</p><img src="f/quincho.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-5"><span class="eq-n">06</span><span class="eq-t">Salón desayunador</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-5"><div><p>El desayuno de Lili, de 8 a 10 h y con reserva previa.</p><img src="f/salon-ventana.webp" alt="" loading="lazy" width="1200" height="1600"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-6"><span class="eq-n">07</span><span class="eq-t">Estacionamiento privado</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-6"><div><p>Gratis y dentro del complejo, junto al cardón de piedra de la entrada.</p><img src="f/cardon-piedra.webp" alt="" loading="lazy" width="960" height="1280"></div></div></li>
+        </ul>
+        <div class="facts">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><circle cx="12" cy="19.5" r=".8" fill="currentColor"/></svg>Wi-Fi y TV</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Check-in de 13 a 21 h</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M12 7v6h5l2 5M12 10H8M10 21a5 5 0 1 1 0-10"/></svg>Adaptado a movilidad reducida</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg>Traslado al aeropuerto, a coordinar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOCES ================= -->
+<section class="block" aria-labelledby="voces-t">
+  <div class="wrap voces">
+    <div class="cifras rv">
+      <p class="eyebrow" id="voces-t">Lo que dicen</p>
+      <div class="cifra"><b>5/5</b><span>Puntaje en Tripadvisor</span></div>
+      <div class="cifra"><b>94%</b><span>Lo recomienda en Facebook</span></div>
+    </div>
+    <div class="rv">
+      <blockquote class="quote">
+        <p>“Excelente estadía y cabañas muy cómodas, amplias y nuevas. Y lo mejor de todo es la esmerada atención de sus dueños, que siempre están en cada detalle.”</p>
+        <footer>Huésped · reseña en Alquiler Argentina, abril 2024</footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“Estar en Huacalera ya es una estadía de belleza por los cuatro puntos cardinales. Está a quince minutos de Tilcara. Las cabañas están muy lindas y cómodas, con vista a esas montañas.”</p>
+        <footer>Huésped · reseña en Tripadvisor, mayo 2024</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LA MESA DE LILI ================= -->
+<section class="block" id="mesa" aria-labelledby="mesa-t">
+  <div class="wrap">
+    <div class="mesa-head rv">
+      <p class="eyebrow">Atendido por sus dueños</p>
+      <h2 id="mesa-t">La mesa de Lili, el fuego de Luis</h2>
+      <p class="lead" style="margin-top:22px">Lo que más repiten los huéspedes no es la vista: es el trato. Lili te recibe a la mañana con el desayuno; Luis se encarga del fuego a la noche.</p>
+    </div>
+    <div class="mesa-cols">
+      <div class="mesa-col rv">
+        <div class="mesa-fotos">
+          <img src="f/desayuno-ventana.webp" alt="Mesa de desayuno junto a la ventana, con pan casero, dulces y jugo de naranja" loading="lazy" width="960" height="1280">
+          <img src="f/salon-desayunador.webp" alt="Salón desayunador con techo de caña, mesas de madera y ventanales al patio" loading="lazy" width="1200" height="1600">
+        </div>
+        <p class="quien">A la mañana · Lili</p>
+        <h3>El desayuno</h3>
+        <p>En el salón desayunador, con vista al patio: pan casero tostado, dulces en cazuelitas de barro, manteca, jugo y café con leche en tazas de cerámica.</p>
+        <p class="horario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>De 8 a 10 h · previa reserva</p>
+      </div>
+      <div class="mesa-col rv">
+        <div class="mesa-fotos">
+          <img src="f/asado-estaca.webp" alt="Asado a la estaca: cortes enteros alrededor del fuego, en el patio del complejo" loading="lazy" width="1200" height="1600">
+          <img src="f/disco.webp" alt="Comida al disco cocinándose sobre la leña" loading="lazy" width="1200" height="1600">
+        </div>
+        <p class="quien">A la noche · Luis</p>
+        <h3>El fuego</h3>
+        <p>Luis es el que cocina, y su especialidad se hace despacio y a la vista: el asado a la estaca, junto a la pérgola con parrillas.</p>
+        <ul class="platos">
+          <li>Asado a la estaca <span>la especialidad de Luis</span></li>
+          <li>Al disco <span>a la leña</span></li>
+          <li>Pérgola con parrillas <span>para tu propio asado</span></li>
+        </ul>
+        <p class="fuente">Consultá el menú y los días de asado cuando reserves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EL RELOJ DE SOL (factor sorpresa) ================= -->
+<section class="reloj" id="tropico" aria-label="El Trópico de Capricornio: un día del 21 de diciembre en Huacalera">
+  <div class="reloj-stage">
+    <svg class="scene" id="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop id="sky0" offset="0" stop-color="#0B1426"/><stop id="sky1" offset="1" stop-color="#1D2B48"/></linearGradient>
+        <radialGradient id="sunGlow"><stop offset="0" stop-color="#FFE9A8" stop-opacity=".8"/><stop offset=".24" stop-color="#F9CE8D" stop-opacity=".28"/><stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/></radialGradient>
+        <linearGradient id="ridgeShade" x2=".8" y2="1"><stop stop-color="#FFE1B3" stop-opacity=".2"/><stop offset=".5" stop-color="#623D47" stop-opacity="0"/><stop offset="1" stop-color="#352D3A" stop-opacity=".38"/></linearGradient>
+        <linearGradient id="groundShade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#CDB58B" stop-opacity=".2"/><stop offset="1" stop-color="#493B32" stop-opacity=".4"/></linearGradient>
+        <linearGradient id="stoneEdge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8A7861"/><stop offset="1" stop-color="#514838"/></linearGradient>
+        <linearGradient id="stoneLight" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#FFF3D6" stop-opacity=".22"/><stop offset=".55" stop-color="#FFF3D6" stop-opacity="0"/><stop offset="1" stop-color="#4D3A24" stop-opacity=".13"/></linearGradient>
+        <linearGradient id="cactusLight"><stop stop-color="#E1D99B" stop-opacity=".38"/><stop offset=".32" stop-color="#AFC27D" stop-opacity=".14"/><stop offset=".57" stop-color="#163F35" stop-opacity="0"/><stop offset="1" stop-color="#0E251F" stop-opacity=".7"/></linearGradient>
+        <linearGradient id="readingShade"><stop stop-color="#152029" stop-opacity=".28"/><stop offset=".6" stop-color="#152029" stop-opacity="0"/></linearGradient>
+        <filter id="blur2" x="-10%" y="-70%" width="120%" height="240%"><feGaussianBlur stdDeviation="2.2"/></filter>
+        <path id="ridgeBack" d="M-400 660 L-60 551 0 546 49 519 82 528 121 492 148 499 192 454 211 462 252 434 282 456 311 450 356 479 389 467 429 430 457 418 476 397 492 403 519 387 546 406 568 399 604 430 641 443 684 414 714 392 737 369 754 376 778 350 795 358 812 345 834 370 861 381 885 407 918 423 949 411 977 380 1004 367 1038 343 1054 352 1072 341 1097 369 1122 378 1156 412 1194 429 1222 414 1258 382 1284 376 1310 347 1327 355 1341 345 1367 369 1394 387 1418 409 1451 414 1489 390 1516 385 1553 363 1577 370 1616 359 1660 386 2000 540 V900 H-400Z"/><path id="ridgeFront" d="M-400 780 L-70 682 0 650 53 636 88 612 118 619 156 588 190 581 221 553 241 560 269 535 292 542 317 526 346 546 373 561 402 588 441 602 487 582 513 563 543 574 565 565 611 592 642 604 683 595 721 566 749 555 779 532 797 541 817 530 841 548 867 556 893 580 917 589 952 580 982 552 1009 558 1041 535 1072 528 1094 515 1118 526 1147 546 1184 556 1216 582 1242 591 1283 576 1316 553 1343 557 1378 535 1408 522 1440 536 1470 552 1511 570 1547 553 1587 547 1626 521 1690 558 2000 660 V900 H-400Z"/>
+        <path id="cactusShape" d="M784 773 C786 733 783 696 784 662 L762 662 C747 662 740 654 740 640 L739 592 C739 578 744 570 753 570 C763 570 768 579 768 592 L769 635 C769 639 773 640 784 640 L784 526 C784 507 789 494 800 493 C813 493 819 507 819 526 L817 616 L833 616 C840 616 843 612 843 604 L842 563 C842 550 847 541 857 541 C868 541 873 550 873 563 L874 621 C874 637 866 645 849 645 L817 645 C815 685 819 728 818 773Z"/>
+        <clipPath id="backClip"><use href="#ridgeBack"/></clipPath><clipPath id="frontClip"><use href="#ridgeFront"/></clipPath>
+        <clipPath id="cactusClip"><use href="#cactusShape"/></clipPath>
+        <clipPath id="dialClip"><ellipse cx="800" cy="770" rx="558" ry="110"/></clipPath>
+        <pattern id="stoneGrain" width="43" height="31" patternUnits="userSpaceOnUse"><path d="M4 9l3-1m18 14 4 1m7-20h2" stroke="#594B39" stroke-width=".8" opacity=".2"/><circle cx="16" cy="17" r=".8" fill="#FFF2D7" opacity=".35"/></pattern>
+      </defs>
+      <rect x="-400" y="-1200" width="2400" height="2100" fill="url(#sky)"/>
+      <g id="stars" opacity="1"></g>
+      <circle id="glow" r="230" fill="url(#sunGlow)" cx="-300" cy="900"/>
+      <circle id="sun" r="34" fill="#FFF3C9" cx="-300" cy="900"/>
+      <g id="moon" opacity="0"><circle r="27" fill="#F4EEDD"/><circle cx="-8" cy="-5" r="6" fill="#C1C6CD" opacity=".2"/><circle cx="9" cy="8" r="9" fill="#C1C6CD" opacity=".18"/><circle cx="8" cy="-12" r="3" fill="#C1C6CD" opacity=".25"/></g>
+      <!-- Ilustración editorial: relieve estratificado, no reproducción topográfica. -->
+      <path d="M-400 650L0 505 120 457 210 478 356 375 410 392 520 347 623 390 746 313 826 357 917 335 1038 302 1160 361 1302 310 1460 365 1560 321 1760 450 2000 490V900H-400Z" fill="#858398" opacity=".3"/>
+      <use id="m2" href="#ridgeBack" fill="#B97C62"/>
+      <g id="backStrata" clip-path="url(#backClip)">
+        <path d="M-200 512 Q110 622 340 488T740 462T1120 458T1610 438L1800 481Q1490 479 1200 510T730 512T260 548T-200 575Z" fill="#D5A580" opacity=".64"/>
+        <path d="M-200 553Q90 682 352 530T746 510T1130 501T1660 477L1840 506Q1480 528 1200 553T738 556T332 577T-200 609Z" fill="#E0BB91" opacity=".55"/>
+        <path d="M-200 620Q102 712 360 578T750 548T1140 548T1680 512L1810 551Q1470 584 1150 591T731 594T322 626T-200 670Z" fill="#784D56" opacity=".6"/>
+        <path d="M-200 660Q100 738 362 621T748 600T1160 592T1700 559" fill="none" stroke="#D2AD7E" stroke-width="13" opacity=".5"/>
+        <g fill="#523D48" opacity=".23"><path d="M317 526 476 397 445 487 501 599 388 586Z"/><path d="M812 345 771 460 832 580 914 619 853 446Z"/><path d="M1072 341 1031 447 1090 541 1194 571 1111 429Z"/><path d="M1341 345 1305 442 1363 545 1458 564 1376 424Z"/></g>
+        <use href="#ridgeBack" fill="url(#ridgeShade)"/>
+        <g fill="none" stroke="#F5D3A0" stroke-width="1.2" opacity=".26"><path d="M778 350 753 422 710 467 684 524M754 376 711 429 682 471M1038 343 1003 421 976 450M1310 347 1276 427 1229 473M1553 363 1510 434 1457 467"/></g>
+      </g>
+      <use id="m1" href="#ridgeFront" fill="#94593F"/>
+      <g id="frontStrata" clip-path="url(#frontClip)">
+        <path d="M-150 681Q100 737 301 604T640 672T985 609T1330 648T1750 592" fill="none" stroke="#D59D6B" stroke-width="32" opacity=".46"/>
+        <path d="M-150 711Q100 767 301 643T640 709T985 646T1330 685T1750 629" fill="none" stroke="#6F514B" stroke-width="19" opacity=".58"/>
+        <path d="M-150 739Q100 795 301 671T640 737T985 674T1330 713T1750 657" fill="none" stroke="#E4B77F" stroke-width="8" opacity=".42"/>
+        <g fill="#412F36" opacity=".23"><path d="M317 526 288 600 352 684 440 714 366 605Z"/><path d="M817 530 776 621 874 727 940 712 865 611Z"/><path d="M1094 515 1053 606 1148 726 1217 731 1138 602Z"/><path d="M1408 522 1378 614 1464 714 1551 701 1461 608Z"/></g>
+        <use href="#ridgeFront" fill="url(#ridgeShade)"/>
+        <g fill="none" stroke="#EEC599" stroke-width="1" opacity=".2"><path d="M269 535 237 611 206 636M779 532 749 586 728 629M1072 528 1043 567 1024 607M1378 535 1342 593 1318 621"/></g>
+      </g>
+      <path id="suelo" d="M-400 711 Q100 681 472 699T1130 697T2000 709V900H-400Z" fill="#A48B69"/>
+      <path d="M-400 711 Q100 681 472 699T1130 697T2000 709V900H-400Z" fill="url(#groundShade)"/>
+      <g id="groundDetails">
+        <path d="M1051.0 709.0l0.8 -0.4 1.2 0.5Z" fill="#554838" opacity=".4"/>
+        <path d="M151.2 724.3l1.7 -0.8 2.5 1.0Z" fill="#77624A" opacity=".4"/>
+        <path d="M56.5 787.5l1.0 -0.5 1.5 0.6Z" fill="#554838" opacity=".4"/>
+        <path d="M318.8 823.2l3.1 -1.5 4.6 1.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M1069.8 811.9l1.8 -0.9 2.7 1.1Z" fill="#77624A" opacity=".4"/>
+        <path d="M400.7 876.1l4.8 -2.4 7.3 2.9Z" fill="#554838" opacity=".4"/>
+        <path d="M1156.7 771.4l1.2 -0.6 1.8 0.7Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M84.0 779.2l1.8 -0.9 2.7 1.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M986.7 863.8l4.5 -2.2 6.7 2.7Z" fill="#77624A" opacity=".4"/>
+        <path d="M124.7 886.6l1.9 -1.0 2.9 1.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1392.9 826.5l4.2 -2.1 6.3 2.5Z" fill="#77624A" opacity=".4"/>
+        <path d="M246.1 717.8l1.5 -0.7 2.2 0.9Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1673.4 873.4l5.2 -2.6 7.9 3.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M400.4 829.9l2.5 -1.2 3.7 1.5Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M539.5 836.7l3.8 -1.9 5.7 2.3Z" fill="#77624A" opacity=".4"/>
+        <path d="M1066.5 824.6l1.7 -0.9 2.6 1.0Z" fill="#77624A" opacity=".4"/>
+        <path d="M340.7 795.5l1.8 -0.9 2.6 1.1Z" fill="#77624A" opacity=".4"/>
+        <path d="M1138.7 747.5l1.3 -0.7 2.0 0.8Z" fill="#554838" opacity=".4"/>
+        <path d="M312.3 710.4l0.9 -0.4 1.3 0.5Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M19.1 884.8l4.1 -2.1 6.2 2.5Z" fill="#77624A" opacity=".4"/>
+        <path d="M466.4 833.8l2.6 -1.3 4.0 1.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M725.9 756.4l1.3 -0.6 1.9 0.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M870.2 851.9l3.0 -1.5 4.5 1.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M618.9 747.4l2.7 -1.3 4.0 1.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M788.3 853.6l4.8 -2.4 7.2 2.9Z" fill="#554838" opacity=".4"/>
+        <path d="M1029.4 860.8l3.1 -1.6 4.7 1.9Z" fill="#554838" opacity=".4"/>
+        <path d="M592.6 822.0l2.7 -1.4 4.1 1.6Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1647.9 874.4l1.5 -0.8 2.3 0.9Z" fill="#77624A" opacity=".4"/>
+        <path d="M106.2 879.2l4.9 -2.4 7.3 2.9Z" fill="#77624A" opacity=".4"/>
+        <path d="M512.3 762.1l1.1 -0.6 1.7 0.7Z" fill="#554838" opacity=".4"/>
+        <path d="M1616.9 877.4l2.7 -1.3 4.0 1.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M1271.5 804.5l1.4 -0.7 2.0 0.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M437.2 830.5l3.4 -1.7 5.0 2.0Z" fill="#554838" opacity=".4"/>
+        <path d="M573.0 736.0l2.3 -1.2 3.5 1.4Z" fill="#77624A" opacity=".4"/>
+        <path d="M1553.3 822.6l2.8 -1.4 4.2 1.7Z" fill="#554838" opacity=".4"/>
+        <path d="M1572.4 878.0l5.2 -2.6 7.8 3.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M331.0 751.7l1.9 -0.9 2.8 1.1Z" fill="#554838" opacity=".4"/>
+        <path d="M54.2 800.2l1.2 -0.6 1.8 0.7Z" fill="#77624A" opacity=".4"/>
+        <path d="M1278.5 729.4l1.4 -0.7 2.0 0.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M197.2 808.5l3.0 -1.5 4.5 1.8Z" fill="#554838" opacity=".4"/>
+        <path d="M1572.0 853.5l4.1 -2.0 6.1 2.5Z" fill="#77624A" opacity=".4"/>
+        <path d="M461.1 901.0l4.8 -2.4 7.2 2.9Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1519.3 793.4l1.7 -0.8 2.5 1.0Z" fill="#554838" opacity=".4"/>
+        <path d="M508.6 820.5l1.9 -1.0 2.9 1.1Z" fill="#554838" opacity=".4"/>
+        <path d="M-87.1 844.2l1.5 -0.8 2.3 0.9Z" fill="#554838" opacity=".4"/>
+        <path d="M1529.8 874.2l1.8 -0.9 2.7 1.1Z" fill="#554838" opacity=".4"/>
+        <path d="M401.3 800.1l2.6 -1.3 3.9 1.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M1583.9 817.1l2.7 -1.3 4.0 1.6Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1353.5 741.7l0.8 -0.4 1.2 0.5Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M537.7 785.4l3.3 -1.6 4.9 2.0Z" fill="#554838" opacity=".4"/>
+        <path d="M1112.1 898.9l2.1 -1.0 3.1 1.3Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1210.8 862.5l1.8 -0.9 2.8 1.1Z" fill="#554838" opacity=".4"/>
+        <path d="M242.4 792.8l2.2 -1.1 3.2 1.3Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M732.7 877.1l1.8 -0.9 2.7 1.1Z" fill="#77624A" opacity=".4"/>
+        <path d="M76.2 833.1l3.2 -1.6 4.7 1.9Z" fill="#554838" opacity=".4"/>
+        <path d="M1644.2 887.4l5.5 -2.7 8.2 3.3Z" fill="#554838" opacity=".4"/>
+        <path d="M631.5 799.3l3.6 -1.8 5.4 2.1Z" fill="#554838" opacity=".4"/>
+        <path d="M196.3 704.4l0.9 -0.4 1.3 0.5Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M413.4 841.9l4.0 -2.0 6.0 2.4Z" fill="#77624A" opacity=".4"/>
+        <path d="M1091.4 800.4l1.6 -0.8 2.4 0.9Z" fill="#554838" opacity=".4"/>
+        <path d="M1643.7 818.7l2.9 -1.5 4.4 1.8Z" fill="#77624A" opacity=".4"/>
+        <path d="M464.5 713.9l1.1 -0.6 1.7 0.7Z" fill="#77624A" opacity=".4"/>
+        <path d="M183.4 894.2l2.0 -1.0 3.0 1.2Z" fill="#554838" opacity=".4"/>
+        <path d="M23.3 717.5l1.7 -0.9 2.6 1.0Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M115.8 880.3l2.6 -1.3 3.9 1.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M-28.5 720.2l1.5 -0.7 2.2 0.9Z" fill="#77624A" opacity=".4"/>
+        <path d="M841.0 889.1l2.5 -1.3 3.8 1.5Z" fill="#77624A" opacity=".4"/>
+        <path d="M465.5 756.6l1.0 -0.5 1.5 0.6Z" fill="#77624A" opacity=".4"/>
+        <path d="M440.0 766.6l2.6 -1.3 3.9 1.5Z" fill="#554838" opacity=".4"/>
+        <path d="M-83.2 827.0l3.1 -1.6 4.7 1.9Z" fill="#554838" opacity=".4"/>
+        <path d="M31.9 746.2l1.2 -0.6 1.8 0.7Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1485.6 878.1l3.1 -1.6 4.7 1.9Z" fill="#554838" opacity=".4"/>
+        <path d="M688.7 811.6l2.0 -1.0 3.1 1.2Z" fill="#77624A" opacity=".4"/>
+        <path d="M852.1 836.2l3.3 -1.6 4.9 2.0Z" fill="#77624A" opacity=".4"/>
+        <path d="M86.5 877.9l2.7 -1.3 4.0 1.6Z" fill="#554838" opacity=".4"/>
+        <path d="M1236.4 734.8l1.1 -0.5 1.6 0.7Z" fill="#554838" opacity=".4"/>
+        <path d="M1191.7 744.3l1.9 -0.9 2.8 1.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M809.7 753.7l2.6 -1.3 4.0 1.6Z" fill="#554838" opacity=".4"/>
+        <path d="M66.1 787.9l1.7 -0.8 2.5 1.0Z" fill="#554838" opacity=".4"/>
+        <path d="M500.4 729.9l2.2 -1.1 3.3 1.3Z" fill="#554838" opacity=".4"/>
+        <path d="M1234.2 813.2l2.5 -1.2 3.7 1.5Z" fill="#554838" opacity=".4"/>
+        <path d="M101.4 891.1l4.8 -2.4 7.2 2.9Z" fill="#554838" opacity=".4"/>
+        <path d="M882.1 869.2l3.9 -2.0 5.9 2.4Z" fill="#554838" opacity=".4"/>
+        <path d="M673.6 712.3l0.9 -0.5 1.4 0.6Z" fill="#554838" opacity=".4"/>
+        <path d="M1518.1 745.6l1.2 -0.6 1.7 0.7Z" fill="#554838" opacity=".4"/>
+        <path d="M536.6 814.9l4.0 -2.0 5.9 2.4Z" fill="#77624A" opacity=".4"/>
+        <path d="M1249.1 887.3l2.6 -1.3 4.0 1.6Z" fill="#554838" opacity=".4"/>
+        <path d="M1657.2 864.5l5.1 -2.6 7.7 3.1Z" fill="#554838" opacity=".4"/>
+        <path d="M222.8 887.0l5.2 -2.6 7.8 3.1Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M1344.0 875.1l5.0 -2.5 7.6 3.0Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M186.6 842.9l2.7 -1.4 4.1 1.6Z" fill="#554838" opacity=".4"/>
+        <path d="M1445.5 748.0l2.3 -1.2 3.5 1.4Z" fill="#DDD0A7" opacity=".4"/>
+        <path d="M529.4 866.5l5.1 -2.6 7.7 3.1Z" fill="#554838" opacity=".4"/>
+        <path d="M-57.4 742.2l1.3 -0.6 1.9 0.8Z" fill="#554838" opacity=".4"/>
+        <path d="M1640.4 759.3l2.2 -1.1 3.3 1.3Z" fill="#DDD0A7" opacity=".4"/>
+      </g>
+      <!-- Piedra tallada: apoyo, espesor y marcas del reloj. -->
+      <ellipse cx="800" cy="796" rx="565" ry="98" fill="#302B25" opacity=".24"/>
+      <path d="M240 770A560 112 0 0 0 1360 770V784A560 112 0 0 1 240 784Z" fill="url(#stoneEdge)"/>
+      <ellipse id="plato" cx="800" cy="770" rx="560" ry="112" fill="#D2C6AE" stroke="#9D896A" stroke-width="2"/>
+      <ellipse cx="800" cy="770" rx="558" ry="110" fill="url(#stoneLight)"/>
+      <ellipse id="stoneTexture" cx="800" cy="770" rx="558" ry="110" fill="url(#stoneGrain)"/>
+      <ellipse cx="800" cy="770" rx="546" ry="105" fill="none" stroke="#F4DEB8" stroke-width="1.2" opacity=".4"/>
+      <ellipse cx="800" cy="770" rx="504" ry="89" fill="none" stroke="#786A51" stroke-width="1" opacity=".55"/>
+      <ellipse cx="800" cy="770" rx="420" ry="59" fill="none" stroke="#786A51" stroke-width=".7" opacity=".25"/>
+      <g id="dialMarks" fill="none" stroke="#6F5E45"></g>
+      <g id="horas" font-family="Barlow Condensed" font-weight="600" font-size="22" fill="#5E513F" text-anchor="middle"></g>
+      <g clip-path="url(#dialClip)" opacity=".3" fill="none" stroke="#76654B" stroke-width=".8"><path d="M338 705 362 729 352 746 379 765M1169 836 1181 819 1174 810 1190 799M575 663 591 685 586 696"/></g>
+      <g id="sombra" transform="translate(800 770)"><path id="sombraPath" fill="#2B2219" opacity=".42" filter="url(#blur2)" d=""/></g>
+      <ellipse cx="801" cy="772" rx="25" ry="5" fill="#323B2B" opacity=".4"/>
+      <!-- Silueta continua, costillas y espinas finas con luz lateral. -->
+      <g id="cardon" fill="#3E5A3A">
+        <use href="#cactusShape"/>
+        <use href="#cactusShape" fill="url(#cactusLight)"/>
+        <g clip-path="url(#cactusClip)" fill="none" stroke-linecap="round">
+          <g stroke="#172F29" stroke-width="2" opacity=".48"><path d="M791 500C787 556 793 622 790 673S791 736 790 777M799 494C794 550 802 611 798 668S802 739 797 777M807 497C805 554 811 614 807 675S811 738 807 777M815 508C812 565 818 616 814 663V777M747 575V639Q747 654 784 650M755 575 755 639Q755 645 784 644M850 547 851 613Q852 630 817 630M859 545 861 619Q861 638 817 638"/></g>
+          <g stroke="#CCCB8D" stroke-width="1.2" opacity=".38"><path d="M794 504C791 554 798 625 793 681L794 771M803 502C799 562 808 622 802 677L804 769M743 588 744 637Q744 657 781 657M846 559 847 611Q848 623 820 623"/></g>
+          <path d="M790 517l-2-3m2 3 2-2 M790 527l-2-3m2 3 2-2 M790 537l-2-3m2 3 2-2 M790 549l-2-3m2 3 2-2 M790 563l-2-3m2 3 2-2 M790 574l-2-3m2 3 2-2 M790 589l-2-3m2 3 2-2 M790 599l-2-3m2 3 2-2 M790 609l-2-3m2 3 2-2 M790 621l-2-3m2 3 2-2 M790 637l-2-3m2 3 2-2 M790 648l-2-3m2 3 2-2 M790 659l-2-3m2 3 2-2 M790 671l-2-3m2 3 2-2 M790 684l-2-3m2 3 2-2 M790 697l-2-3m2 3 2-2 M790 709l-2-3m2 3 2-2 M790 717l-2-3m2 3 2-2 M790 732l-2-3m2 3 2-2 M790 745l-2-3m2 3 2-2 M790 754l-2-3m2 3 2-2 M798 515l-2-3m2 3 2-2 M798 525l-2-3m2 3 2-2 M798 540l-2-3m2 3 2-2 M798 549l-2-3m2 3 2-2 M798 565l-2-3m2 3 2-2 M798 577l-2-3m2 3 2-2 M798 586l-2-3m2 3 2-2 M798 599l-2-3m2 3 2-2 M798 612l-2-3m2 3 2-2 M798 621l-2-3m2 3 2-2 M798 635l-2-3m2 3 2-2 M798 649l-2-3m2 3 2-2 M798 659l-2-3m2 3 2-2 M798 669l-2-3m2 3 2-2 M798 683l-2-3m2 3 2-2 M798 697l-2-3m2 3 2-2 M798 707l-2-3m2 3 2-2 M798 720l-2-3m2 3 2-2 M798 731l-2-3m2 3 2-2 M798 744l-2-3m2 3 2-2 M798 755l-2-3m2 3 2-2 M807 517l-2-3m2 3 2-2 M807 526l-2-3m2 3 2-2 M807 538l-2-3m2 3 2-2 M807 552l-2-3m2 3 2-2 M807 564l-2-3m2 3 2-2 M807 574l-2-3m2 3 2-2 M807 589l-2-3m2 3 2-2 M807 601l-2-3m2 3 2-2 M807 611l-2-3m2 3 2-2 M807 624l-2-3m2 3 2-2 M807 637l-2-3m2 3 2-2 M807 645l-2-3m2 3 2-2 M807 659l-2-3m2 3 2-2 M807 671l-2-3m2 3 2-2 M807 682l-2-3m2 3 2-2 M807 696l-2-3m2 3 2-2 M807 709l-2-3m2 3 2-2 M807 721l-2-3m2 3 2-2 M807 731l-2-3m2 3 2-2 M807 744l-2-3m2 3 2-2 M807 756l-2-3m2 3 2-2 M815 516l-2-3m2 3 2-2 M815 526l-2-3m2 3 2-2 M815 541l-2-3m2 3 2-2 M815 552l-2-3m2 3 2-2 M815 562l-2-3m2 3 2-2 M815 573l-2-3m2 3 2-2 M815 587l-2-3m2 3 2-2 M815 601l-2-3m2 3 2-2 M815 613l-2-3m2 3 2-2 M815 623l-2-3m2 3 2-2 M815 633l-2-3m2 3 2-2 M815 646l-2-3m2 3 2-2 M815 659l-2-3m2 3 2-2 M815 670l-2-3m2 3 2-2 M815 682l-2-3m2 3 2-2 M815 694l-2-3m2 3 2-2 M815 705l-2-3m2 3 2-2 M815 717l-2-3m2 3 2-2 M815 730l-2-3m2 3 2-2 M815 744l-2-3m2 3 2-2 M815 757l-2-3m2 3 2-2" stroke="#DDD4A3" stroke-width=".65" opacity=".45"/>
+        </g>
+        <path d="M784 767 789 765 795 773 803 764 809 772 817 766V777H784Z" fill="#6F6945" opacity=".55"/>
+      </g>
+      <rect x="-400" y="-1200" width="2400" height="2100" fill="url(#readingShade)" pointer-events="none"/>
+    </svg>
+
+    <div class="reloj-head wrap">
+      <div class="reloj-read" aria-hidden="true">
+        <div>21 de diciembre<b id="hora">06:37</b></div>
+        <div class="sombra">Sombra del cardón<b id="largo">—</b></div>
+      </div>
+      <div style="position:relative">
+        <div class="cap" data-from="0" data-to=".16">
+          <h2>Amanece sobre Huacalera</h2>
+          <p>Scrolleá despacio: estás por ver un día entero del 21 de diciembre, a 300 metros de las cabañas.</p>
+        </div>
+        <div class="cap" data-from=".16" data-to=".40">
+          <h2>La sombra se achica</h2>
+          <p>Ese cardón hace de aguja de reloj de sol. Mirá cómo su sombra se va acortando a medida que el sol trepa.</p>
+        </div>
+        <div class="cap" data-from=".40" data-to=".55">
+          <h2>13:20. Cero sombra.</h2>
+          <p>Huacalera está sobre el Trópico de Capricornio: el mediodía del solsticio, el sol se para justo encima tuyo. Es de los pocos lugares del país donde pasa, y el monumento está a una cuadra de las cabañas.</p>
+        </div>
+        <div class="cap" data-from=".55" data-to=".80">
+          <h2>La tarde es de los cerros</h2>
+          <p>La sombra vuelve, del otro lado. Es la hora de la galería, el mate y los colores de la Quebrada cambiando enfrente.</p>
+        </div>
+        <div class="cap" data-from=".80" data-to="1.01">
+          <h2>Y a la noche, sale la luna</h2>
+          <p>Por detrás del cerro, con un cielo que en la ciudad no existe. Lili la filma desde el patio casi todas las semanas.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reloj-bar" aria-hidden="true"><i id="bar"></i><span>Amanecer</span><span>Mediodía solar</span><span>Noche</span></div>
+  </div>
+</section>
+
+<!-- ================= VIDEOS ================= -->
+<section class="block videos" aria-labelledby="vid-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="eyebrow">En video</p><h2 id="vid-t">Así se ve de verdad</h2></div>
+      <p class="lead rv">El reloj del Trópico visto desde el dron, las cabañas por dentro y el complejo cuando cae la noche. Con sonido: tocá para reproducir.</p>
+    </div>
+    <div class="vids rv" id="vids">
+      <figure class="vid">
+        <div class="vid-box">
+          <img src="f/v-tropico.webp" alt="" loading="lazy" width="478" height="850">
+          <button class="vid-play" type="button" data-src="f/v-tropico.mp4" data-poster="f/v-tropico.webp"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>El Trópico desde el aire</b><small>1:17 · el monumento, a una cuadra</small></button>
+        </div>
+      </figure>
+      <figure class="vid">
+        <div class="vid-box">
+          <img src="f/v-complejo.webp" alt="" loading="lazy" width="476" height="848">
+          <button class="vid-play" type="button" data-src="f/v-complejo.mp4" data-poster="f/v-complejo.webp"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>Las cabañas por dentro</b><small>1:18 · galerías, livings y patio</small></button>
+        </div>
+      </figure>
+      <figure class="vid">
+        <div class="vid-box">
+          <img src="f/v-noche.webp" alt="" loading="lazy" width="478" height="850">
+          <button class="vid-play" type="button" data-src="f/v-noche.mp4" data-poster="f/v-noche.webp"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>Cuando cae la noche</b><small>1:00 · el complejo iluminado</small></button>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EL COMPLEJO (galería) ================= -->
+<section class="block" aria-labelledby="gal-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="eyebrow">El complejo</p><h2 id="gal-t">Vista al cerro desde cualquier rincón</h2></div>
+      <p class="lead rv">Patio de ripio, cardones, galerías y pérgolas de caña. Tocá una foto para verla grande.</p>
+    </div>
+    <div class="gal rv" id="gal">
+      <button class="a" data-cap="El patio bajo la pérgola"><img src="f/pergola-patio.webp" alt="Patio de ripio visto desde la pérgola de caña, con sillas turquesa y las cabañas amarillas" loading="lazy" width="960" height="1280"><span>El patio</span></button>
+      <button class="b" data-cap="Espacios para compartir"><img src="f/espacios-compartir.webp" alt="Sillas blancas de hierro con almohadones turquesa sobre el ripio, bajo el cielo azul" loading="lazy" width="960" height="1280"><span>Para compartir</span></button>
+      <button class="c" data-cap="Las galerías"><img src="f/galeria-mesa.webp" alt="Galería techada con mesa redonda blanca, sillas de hierro y una vasija de barro" loading="lazy" width="960" height="1280"><span>Galerías</span></button>
+      <button class="d" data-cap="El quincho"><img src="f/comedor-quincho.webp" alt="Quincho con mesas largas de madera, caminos de telar y paredes de adobe" loading="lazy" width="960" height="1280"><span>Quincho</span></button>
+      <button class="e" data-cap="Trabajar con esta vista"><img src="f/galeria-remoto.webp" alt="Notebook y termo sobre la mesa de la galería, con los cerros de fondo" loading="lazy" width="960" height="1280"><span>Galería</span></button>
+      <button class="f" data-cap="El cardón de piedra de la entrada"><img src="f/cardon-piedra.webp" alt="Cardón hecho de piedras en el estacionamiento, con los cerros detrás" loading="lazy" width="960" height="1280"><span>La entrada</span></button>
+      <button class="g1" data-cap="Las cabañas y los cerros"><img src="f/complejo-dorado.webp" alt="Cabaña amarilla con techo rojo y los cerros iluminados por el sol de la tarde" loading="lazy" width="960" height="1280"><span>Las cabañas</span></button>
+      <button class="h" data-cap="De noche"><img src="f/noche-patio.webp" alt="El patio iluminado de noche" loading="lazy" width="1080" height="810"><span>De noche</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RUTA 9 ================= -->
+<section class="block ruta" id="quebrada" aria-labelledby="ruta-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="eyebrow">Ruta Nacional 9</p><h2 id="ruta-t">A mitad de camino de todo</h2></div>
+      <p class="lead rv">Huacalera queda justo en el medio de la Quebrada: lejos del ruido de Tilcara, cerca de todo lo que viniste a ver.</p>
+    </div>
+    <div class="linea rv">
+      <div class="parada"><span class="min">35 min</span><b>Purmamarca</b><span>Cerro de los Siete Colores</span></div>
+      <div class="parada"><span class="min">25 min</span><b>Tilcara</b><span>Pucará y la feria</span></div>
+      <div class="parada aca"><span class="min">Estás acá</span><b>Huacalera</b><span>4 Elementos · Trópico de Capricornio</span></div>
+      <div class="parada"><span class="min">45 min</span><b>Humahuaca</b><span>El Monumento y el cabildo</span></div>
+      <div class="parada"><span class="min">1 h 15</span><b>Hornocal</b><span>El cerro de 14 colores</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMO ================= -->
+<section class="promo" aria-labelledby="promo-t">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Promo de temporada</p>
+      <h2 id="promo-t">3 noches en la Quebrada, pagás 2</h2>
+      <div class="promo-meses" id="promo-meses" aria-label="Meses con promo">
+        <span data-m="5">Mayo</span><span data-m="6">Junio</span><span data-m="9">Septiembre</span><span data-m="10">Octubre</span><span data-m="11">Noviembre</span><span data-m="12">Diciembre</span>
+      </div>
+    </div>
+    <div class="promo-side rv">
+      <p class="promo-vigente" id="promo-vigente" hidden><i></i><span>Vigente este mes</span></p>
+      <p>Te quedás tres noches y pagás dos, en mayo, junio y de septiembre a diciembre.</p>
+      <p class="letra">No aplica en feriados ni fines de semana largos.</p>
+      <a class="btn btn-primary" href="https://wa.me/5493885186442?text=Hola%20Lili!%20Quiero%20aprovechar%20la%20promo%20de%203%20noches%20por%202." target="_blank" rel="noopener">Aprovechar la promo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESERVAS (Operon Reservas, simulado) ================= -->
+<section class="block reservas" id="reservar" aria-labelledby="res-t">
+  <div class="wrap res-grid">
+    <div class="rv">
+      <p class="eyebrow">Reservas</p>
+      <h2 id="res-t">Elegí tus días en la Quebrada</h2>
+      <p class="lead" style="margin-top:22px">Buscá tus fechas, elegí la cabaña según cuántos son y dejá la reserva hecha en un minuto. Sin esperar que te contesten un mensaje.</p>
+      <ul class="res-notas">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg><span>Check-in de <b>13 a 21 h</b>. Si llegás más tarde, avisale a Lili.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11h13a3 3 0 0 1 0 6h-1M4 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5M8 3v4M12 3v4"/></svg><span>Desayuno en el salón de <b>8 a 10 h</b>, con reserva previa.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg><span>Traslado desde el aeropuerto de Jujuy (a 130 km), a coordinar.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5ZM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5Z"/></svg><span>Mayo, junio y de septiembre a diciembre: <b>pagás 2 noches y te quedás 3</b> (salvo feriados y fines de semana largos).</span></li>
+      </ul>
+    </div>
+    <div class="res-card rv">
+<!--
+  ============================================================
+  WIDGET DE RESERVAS — Operon Reservas (reutilizable)
+  ============================================================
+  Se probó primero en Cabañas La Ponderosa (index.html) y funciona
+  contra el MISMO backend central multi-tenant para CUALQUIER cabaña.
+
+  CÓMO USARLO EN UNA LANDING NUEVA:
+  1) Dar de alta el tenant primero con provision-tenant.sql
+  2) Pegar este bloque completo (style + html + script) dentro de la
+     sección "Reservá" de la landing, reemplazando el formulario de
+     WhatsApp-only que arma normalmente el skill web-hustler.
+  3) Cambiar SOLO 2 líneas en el bloque CONFIG de más abajo:
+       ORG_SLUG   → el slug que le pusiste al negocio en organizations
+       WA_NUMBER  → WhatsApp del negocio, formato 549XXXXXXXXXX (sin +)
+     El resto del CONFIG (Supabase URL/key, RESERVAS_APP) es SIEMPRE
+     el mismo: es el backend central, no cambia por cliente.
+  4) (Opcional) Sobreescribir la paleta: agregar DESPUÉS de este bloque
+     un <style> con las variables --bkw-* para que combine con los
+     colores de la demo (ver sección "PALETA" más abajo).
+  5) Probar: buscar disponibilidad → reservar → ver que aparezca el
+     desglose de seña → si mpEnabled, que el botón de pagar redirija a
+     Mercado Pago de verdad.
+  ============================================================
+-->
+
+<style>
+  /* ---------- PALETA: sobreescribir estas variables después de este
+     bloque para adaptar el widget a la identidad de cada cliente.
+     Los valores de acá son solo el default si no se pisan. ---------- */
+  .bkw{
+    --bkw-primary:#2E4034;     /* botones principales, precios */
+    --bkw-accent:#C46A2E;      /* acentos, seña destacada */
+    --bkw-bg:#F1ECE3;          /* fondo de los inputs */
+    --bkw-bg-2:#E7E0D3;        /* fondo de tarjetas secundarias */
+    --bkw-text:#221E19;
+    --bkw-text-soft:#5c5348;
+    --bkw-white:#FBFAF6;
+    --bkw-line:rgba(0,0,0,.14);   /* bordes: en demos oscuras pasar a rgba(255,255,255,.16) */
+    --bkw-radius:16px;
+    --bkw-font-display:Georgia, 'Times New Roman', serif;
+    --bkw-font-body:system-ui, -apple-system, sans-serif;
+  }
+
+  .bkw{font-family:var(--bkw-font-body);color:var(--bkw-text)}
+  .bkw *{box-sizing:border-box}
+  .bkw h3{font-family:var(--bkw-font-display);font-size:1.35rem;margin-bottom:4px}
+  .bkw .mini{color:var(--bkw-text-soft);font-size:.88rem;margin-bottom:16px}
+  .bkw .field{margin-bottom:14px}
+  .bkw .field label{display:block;font-size:.8rem;font-weight:700;margin-bottom:5px}
+  .bkw .field input,.bkw .field select,.bkw .field textarea{width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid var(--bkw-line);font-family:inherit;font-size:.94rem;background:var(--bkw-bg);color:var(--bkw-text)}
+  .bkw .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .bkw .btn-primary{width:100%;justify-content:center;display:flex;align-items:center;gap:8px;background:var(--bkw-primary);color:var(--bkw-white);border:none;border-radius:100px;padding:14px;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .2s}
+  .bkw .btn-primary:hover{transform:translateY(-2px)}
+  .bkw .btn-primary:disabled{opacity:.6;cursor:default;transform:none}
+  .bkw .btn-wa{width:100%;justify-content:center;display:flex;align-items:center;gap:8px;background:#25D366;color:#0b3d24;border:none;border-radius:100px;padding:14px;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none}
+  .bkw .bk-back{background:none;border:none;color:var(--bkw-text-soft);font-size:.85rem;font-weight:600;cursor:pointer;padding:0;margin-bottom:14px}
+  .bkw .bk-summary{background:var(--bkw-bg-2);border-radius:11px;padding:12px 15px;font-size:.9rem;margin-bottom:16px}
+  .bkw .bk-summary b{font-family:var(--bkw-font-display)}
+  .bkw .bk-unit{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1.5px solid var(--bkw-line);border-radius:13px;padding:15px;margin-bottom:11px;transition:border-color .2s}
+  .bkw .bk-unit:hover{border-color:var(--bkw-accent)}
+  .bkw .bk-unit h4{font-family:var(--bkw-font-display);font-size:1.05rem;margin-bottom:2px}
+  .bkw .bk-unit small{color:var(--bkw-text-soft);font-size:.82rem;display:block}
+  .bkw .bk-unit .price{font-family:var(--bkw-font-display);font-weight:700;color:var(--bkw-primary);font-size:1.1rem;white-space:nowrap}
+  .bkw .bk-unit .btn-primary{padding:9px 16px;font-size:.83rem;width:auto;margin-top:6px}
+  .bkw .bk-empty{text-align:center;color:var(--bkw-text-soft);font-size:.9rem;padding:18px;border:1.5px dashed var(--bkw-line);border-radius:12px}
+  .bkw .bk-done{text-align:center;padding:6px 0}
+  .bkw .bk-done .ok{width:52px;height:52px;border-radius:50%;background:var(--bkw-bg-2);color:var(--bkw-primary);display:grid;place-items:center;margin:0 auto 10px}
+  .bkw .bk-done .ok svg{width:26px;height:26px}
+  .bkw .bk-code{font-family:var(--bkw-font-display);font-size:1.5rem;font-weight:700;background:var(--bkw-bg-2);border-radius:11px;padding:9px 18px;display:inline-block;margin:8px 0;letter-spacing:.03em}
+  .bkw .bk-price{background:var(--bkw-bg-2);border-radius:11px;padding:12px 16px;margin:12px 0 0;text-align:left;font-size:.87rem}
+  .bkw .bk-price div{display:flex;justify-content:space-between;gap:14px;padding:3px 0}
+  .bkw .bk-price dt{color:var(--bkw-text-soft)}
+  .bkw .bk-price dd{font-weight:700;font-family:var(--bkw-font-display)}
+  .bkw .bk-msg{font-size:.85rem;margin-top:10px;min-height:1em}
+  .bkw .bk-msg.err{color:#b3402e}
+  .bkw .bk-spin{opacity:.7;pointer-events:none}
+</style>
+
+<div class="bkw" id="bkw-root">
+
+  <!-- ===== Reserva online (motor central Operon) — único canal ===== -->
+  <div id="bkw-panel-online">
+    <div id="bkw-step-search">
+      <h3>Elegí tus fechas</h3>
+      <p class="mini">Disponibilidad en tiempo real — reservá al instante, sin esperar respuesta.</p>
+      <div class="field-row">
+        <div class="field"><label for="bkw-in">Llegada</label><input id="bkw-in" type="date"></div>
+        <div class="field"><label for="bkw-out">Salida</label><input id="bkw-out" type="date"></div>
+      </div>
+      <div class="field"><label for="bkw-pax">Huéspedes</label>
+        <select id="bkw-pax">
+          <option value="1">1 persona</option><option value="2" selected>2 personas</option>
+          <option value="3">3 personas</option><option value="4">4 personas</option>
+          <option value="5">5 personas</option><option value="6">6 personas</option>
+        </select>
+      </div>
+      <button class="btn-primary" id="bkw-search" type="button">Ver disponibilidad</button>
+    </div>
+    <div id="bkw-step-results" style="display:none"></div>
+    <div id="bkw-step-form" style="display:none"></div>
+    <div id="bkw-step-done" style="display:none"></div>
+    <p class="bk-msg" id="bkw-msg"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ============================================================
+  // CONFIG — Lo único que cambia por cliente son ORG_SLUG y WA_NUMBER.
+  // El resto es el backend central de Operon Reservas: es SIEMPRE igual.
+  // ============================================================
+  var CONFIG = {
+    ORG_SLUG:     'cabanas-4-elementos',
+    WA_NUMBER:    '5493885186442',
+    SUPA_URL:     'https://guoxthaxwdsgwcsnvefq.supabase.co',
+    SUPA_KEY:     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1b3h0aGF4d2RzZ3djc252ZWZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0MDc1MjAsImV4cCI6MjEwMTk4MzUyMH0.s9MrKfQTs1KyzkY6esVZdxm6OwMUNt4y43ZjbgoEDsc',
+    RESERVAS_APP: 'https://operon-reservas.vercel.app'
+  };
+
+  var ORG = CONFIG.ORG_SLUG, WA_NUM = CONFIG.WA_NUMBER;
+  var mpEnabled = false;
+  var depositPct = 0;
+
+  var $ = function(id){ return document.getElementById(id); };
+  function rpc(fn, body){
+    return fetch(CONFIG.SUPA_URL + '/rest/v1/rpc/' + fn, {
+      method:'POST',
+      headers:{ 'apikey':CONFIG.SUPA_KEY, 'Authorization':'Bearer '+CONFIG.SUPA_KEY, 'Content-Type':'application/json' },
+      body: JSON.stringify(body)
+    }).then(function(r){
+      return r.json().then(function(d){ if(!r.ok) throw new Error((d && d.message) || 'Error'); return d; });
+    });
+  }
+  function money(n){ return '$ ' + Number(n).toLocaleString('es-AR', {maximumFractionDigits:0}); }
+  function iso(d){ var z=new Date(d.getTime()-d.getTimezoneOffset()*60000); return z.toISOString().slice(0,10); }
+  function addDays(s,n){ var d=new Date(s+'T00:00:00'); d.setDate(d.getDate()+n); return iso(d); }
+  function nights(a,b){ return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
+
+  var state = { in:'', out:'', pax:2, unit:null };
+
+  // ----- Fechas por defecto -----
+  var today = iso(new Date());
+  $('bkw-in').min = today; $('bkw-out').min = addDays(today,1);
+  $('bkw-in').value = addDays(today,14); $('bkw-out').value = addDays(today,16);
+  $('bkw-in').addEventListener('change', function(){ $('bkw-out').min = addDays($('bkw-in').value||today, 1); });
+
+  var steps = { search:$('bkw-step-search'), results:$('bkw-step-results'), form:$('bkw-step-form'), done:$('bkw-step-done') };
+  function show(step){ for(var k in steps){ steps[k].style.display = (k===step)?'':'none'; } }
+  var msg = $('bkw-msg');
+  function say(text, cls){ msg.textContent = text||''; msg.className = 'bk-msg' + (cls?(' '+cls):''); }
+
+  // ----- Se resuelven una vez al cargar -----
+  var mpStatusReady = rpc('mp_public_status', { p_org_slug: ORG })
+    .then(function(r){ mpEnabled = !!(r && r.enabled); })
+    .catch(function(){ mpEnabled = false; });
+
+  var propertyReady = rpc('public_property', { p_org_slug: ORG, p_property_slug: null })
+    .then(function(p){ depositPct = (p && Number(p.deposit_pct)) || 0; })
+    .catch(function(){ depositPct = 0; });
+
+  // ----- Buscar disponibilidad -----
+  $('bkw-search').addEventListener('click', function(){
+    var ci=$('bkw-in').value, co=$('bkw-out').value, pax=parseInt($('bkw-pax').value,10)||1;
+    say('');
+    if(!ci || !co){ say('Elegí las fechas de llegada y salida.', 'err'); return; }
+    if(co <= ci){ say('La salida tiene que ser posterior a la llegada.', 'err'); return; }
+    state.in=ci; state.out=co; state.pax=pax;
+    this.classList.add('bk-spin'); this.textContent='Buscando…';
+    var btn=this;
+    Promise.all([
+      rpc('public_availability', { p_org_slug:ORG, p_property_slug:null, p_check_in:ci, p_check_out:co, p_guests:pax }),
+      propertyReady
+    ]).then(function(r){ renderResults(r[0]||[]); })
+      .catch(function(){ say('No pudimos consultar la disponibilidad. Probá de nuevo.', 'err'); })
+      .then(function(){ btn.classList.remove('bk-spin'); btn.textContent='Ver disponibilidad'; });
+  });
+
+  function renderResults(units){
+    var n = nights(state.in, state.out);
+    var html = '<button class="bk-back" id="bkw-back1">&larr; Cambiar fechas</button>'
+      + '<div class="bk-summary">'+state.in+' &rarr; '+state.out+' · <b>'+n+' noche'+(n>1?'s':'')+'</b> · '+state.pax+' huésped'+(state.pax>1?'es':'')+'</div>';
+    if(!units.length){
+      html += '<div class="bk-empty">No hay unidades disponibles para esas fechas. Probá con otras o escribinos por WhatsApp.</div>';
+    } else {
+      units.forEach(function(u){
+        var total = Number(u.price_per_night) * n;
+        var deposit = depositPct > 0 ? Math.round(total * depositPct / 100) : null;
+        html += '<div class="bk-unit">'
+          + '<div><h4>'+u.name+'</h4><small>Hasta '+u.capacity+' huéspedes · '+money(u.price_per_night)+'/noche</small></div>'
+          + '<div style="text-align:right"><div class="price">'+money(total)+'</div>'
+          + (deposit!=null ? '<small>Seña ('+depositPct+'%): '+money(deposit)+'</small>' : '')
+          + '<button class="btn-primary" data-unit="'+u.unit_id+'" data-name="'+encodeURIComponent(u.name)+'" data-total="'+total+'">Reservar</button></div>'
+          + '</div>';
+      });
+    }
+    steps.results.innerHTML = html; show('results');
+    $('bkw-back1').addEventListener('click', function(){ show('search'); say(''); });
+    Array.prototype.forEach.call(steps.results.querySelectorAll('button[data-unit]'), function(b){
+      b.addEventListener('click', function(){
+        state.unit = { id:b.getAttribute('data-unit'), name:decodeURIComponent(b.getAttribute('data-name')), total:b.getAttribute('data-total') };
+        renderForm();
+      });
+    });
+  }
+
+  function renderForm(){
+    var n = nights(state.in, state.out);
+    steps.form.innerHTML = '<button class="bk-back" id="bkw-back2">&larr; Ver otras unidades</button>'
+      + '<div class="bk-summary"><b>'+state.unit.name+'</b> · '+state.in+' &rarr; '+state.out+' · '+n+' noche'+(n>1?'s':'')+' · <b>'+money(state.unit.total)+'</b></div>'
+      + '<div class="field"><label for="bkw-name">Nombre y apellido</label><input id="bkw-name" type="text" placeholder="Tu nombre" required></div>'
+      + '<div class="field-row"><div class="field"><label for="bkw-email">Email</label><input id="bkw-email" type="email" placeholder="tu@mail.com"></div>'
+      + '<div class="field"><label for="bkw-phone">Teléfono / WhatsApp</label><input id="bkw-phone" type="text" placeholder="+54 9…"></div></div>'
+      + '<div class="field"><label for="bkw-notes">Comentarios (opcional)</label><textarea id="bkw-notes" placeholder="Llegada aproximada, mascota, etc."></textarea></div>'
+      + '<button class="btn-primary" id="bkw-confirm" type="button">Confirmar reserva</button>'
+      + '<p class="mini" style="text-align:center;margin-top:10px">La disponibilidad se vuelve a validar al confirmar.</p>';
+    show('form'); say('');
+    $('bkw-back2').addEventListener('click', function(){ show('results'); say(''); });
+    $('bkw-confirm').addEventListener('click', doBooking);
+  }
+
+  function doBooking(){
+    var name=$('bkw-name').value.trim();
+    if(!name){ say('Ingresá tu nombre.', 'err'); return; }
+    var btn=$('bkw-confirm'); btn.classList.add('bk-spin'); btn.textContent='Confirmando…';
+    rpc('create_public_reservation', {
+      p_org_slug:ORG, p_property_slug:null, p_unit_id:state.unit.id,
+      p_check_in:state.in, p_check_out:state.out, p_guests:state.pax,
+      p_full_name:name, p_email:$('bkw-email').value.trim()||null,
+      p_phone:$('bkw-phone').value.trim()||null, p_notes:$('bkw-notes').value.trim()||null
+    }).then(function(res){
+      return mpStatusReady.then(function(){ renderDone(res); });
+    }).catch(function(e){
+      var m = (''+e.message).indexOf('UNAVAILABLE')>=0
+        ? 'Esa unidad se acaba de reservar para esas fechas. Probá con otra.'
+        : 'No se pudo generar la reserva. Probá de nuevo o escribinos por WhatsApp.';
+      say(m, 'err');
+    }).then(function(){ btn.classList.remove('bk-spin'); btn.textContent='Confirmar reserva'; });
+  }
+
+  function renderDone(res){
+    var code = res && res.code;
+    var total = res && res.total_amount;
+    var deposit = res && res.deposit_amount;
+    var wa = 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('¡Hola! Acabo de reservar online.'+(code?(' Mi código es '+code+'.'):'')+' Quería confirmar los detalles.');
+
+    var priceHtml = '';
+    if(total != null || deposit != null){
+      priceHtml += '<dl class="bk-price">';
+      if(total != null) priceHtml += '<div><dt>Total</dt><dd>'+money(total)+'</dd></div>';
+      if(deposit != null) priceHtml += '<div><dt>Seña a pagar ahora</dt><dd>'+money(deposit)+'</dd></div>';
+      if(total != null && deposit != null) priceHtml += '<div><dt>Saldo (en el alojamiento)</dt><dd>'+money(total-deposit)+'</dd></div>';
+      priceHtml += '</dl>';
+    }
+
+    var introHtml = mpEnabled
+      ? '<p class="mini">Pagá la seña para confirmarla al instante — el resto se abona al llegar.</p>'
+      : '<p class="mini">Guardá tu código. Te vamos a contactar para confirmar la seña y los detalles.</p>';
+
+    var payHtml = mpEnabled
+      ? '<button class="btn-primary" id="bkw-pay" type="button" style="margin-top:14px">Pagar seña con Mercado Pago</button>'
+      : '';
+
+    steps.done.innerHTML = '<div class="bk-done">'
+      + '<div class="ok"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
+      + '<h3>¡Reserva generada!</h3>'
+      + introHtml
+      + (code ? '<div class="bk-code">'+code+'</div>' : '')
+      + '<p class="mini">'+state.unit.name+' · '+state.in+' &rarr; '+state.out+'</p>'
+      + priceHtml
+      + payHtml
+      + '<a class="btn-wa" style="margin-top:10px;text-decoration:none" href="'+wa+'" target="_blank" rel="noopener">Avisar por WhatsApp</a>'
+      + '<button class="bk-back" id="bkw-again" style="margin-top:14px">Hacer otra reserva</button>'
+      + '</div>';
+    show('done'); say('');
+    $('bkw-again').addEventListener('click', function(){ state.unit=null; show('search'); });
+
+    if(mpEnabled && code){
+      var payBtn = $('bkw-pay');
+      payBtn.addEventListener('click', function(){
+        payBtn.disabled = true; payBtn.textContent = 'Redirigiendo a Mercado Pago…';
+        fetch(CONFIG.RESERVAS_APP + '/api/mp/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: code, orgSlug: ORG })
+        }).then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+          .then(function(res){
+            if(res.ok && res.data && res.data.init_point){
+              window.location.href = res.data.init_point;
+            } else {
+              payBtn.disabled = false; payBtn.textContent = 'Pagar seña con Mercado Pago';
+              say('No pudimos iniciar el pago. Probá de nuevo o escribinos por WhatsApp.', 'err');
+            }
+          })
+          .catch(function(){
+            payBtn.disabled = false; payBtn.textContent = 'Pagar seña con Mercado Pago';
+            say('No pudimos iniciar el pago. Probá de nuevo o escribinos por WhatsApp.', 'err');
+          });
+      });
+    }
+  }
+
+})();
+</script>
+
+<style>
+  .bkw{
+    --bkw-primary:#0B7A68;   /* = CTA primario (turquesa de las sillas) */
+    --bkw-accent:#8A6A12;    /* = ocre hondo: seña y bordes en hover */
+    --bkw-bg:#FFFFFF;        /* inputs: se despegan del fondo cal de la tarjeta */
+    --bkw-bg-2:#E8E4DB;
+    --bkw-text:#25221F;
+    --bkw-text-soft:#5B554E;
+    --bkw-white:#FFFFFF;     /* texto sobre el turquesa: 5,3:1 */
+    --bkw-line:rgba(37,34,31,.18);
+    --bkw-radius:6px;
+    --bkw-font-display:'Barlow Condensed', system-ui, sans-serif;
+    --bkw-font-body:'Barlow', system-ui, sans-serif;
+  }
+  .bkw h3,.bkw .bk-unit h4{text-transform:uppercase;letter-spacing:.01em}
+  .bkw h3{font-size:1.9rem;font-weight:800;line-height:1}
+  .bkw .bk-unit h4{font-size:1.3rem;font-weight:700}
+  .bkw .btn-primary{font-family:var(--bkw-font-display);text-transform:uppercase;letter-spacing:.06em;font-size:1.02rem}
+  .bkw .field input,.bkw .field select,.bkw .field textarea{border-radius:var(--bkw-radius)}
+  .bkw .bk-summary,.bkw .bk-code,.bkw .bk-unit{border-radius:var(--bkw-radius)}
+</style>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO LLEGAR ================= -->
+<section class="block" id="llegar" aria-labelledby="llegar-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="eyebrow">Cómo llegar</p><h2 class="sm" id="llegar-t">Sobre la Ruta 9, a una cuadra del Trópico</h2></div>
+      <p class="lead rv">Barrio San Lorenzo, Huacalera. A 400 metros del centro del pueblo y a 15 minutos en auto de Tilcara.</p>
+    </div>
+    <div class="mapa rv">
+      <iframe title="Mapa de Cabañas 4 Elementos en Huacalera" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Caba%C3%B1as+4+Elementos,+Huacalera,+Jujuy&z=14&output=embed"></iframe>
+      <div class="visita">
+        <p class="eyebrow">Barrio San Lorenzo · Huacalera</p>
+        <h3>Cabañas 4 Elementos</h3>
+        <p class="estado" id="estado"><i></i><span>Recepción de huéspedes</span></p>
+        <dl>
+          <dt>Check-in</dt><dd id="hoy-checkin">13 a 21 h</dd>
+          <dt>Ruta</dt><dd>RN 9, km del Trópico</dd>
+          <dt>Tilcara</dt><dd>15 km al sur</dd>
+          <dt>Humahuaca</dt><dd>30 km al norte</dd>
+        </dl>
+        <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Caba%C3%B1as+4+Elementos+Huacalera+Jujuy" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="block" style="padding-top:0" aria-labelledby="faq-t">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:40px"><p class="eyebrow">Antes de venir</p><h2 class="sm" id="faq-t">Preguntas frecuentes</h2></div>
+    <div class="faq rv" id="faq">
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Para cuántas personas son las cabañas?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Son cuatro cabañas: para 2, 3, 4 y hasta 5 personas. Sirven para parejas, familias o grupos de amigos que quieren alquilar el complejo entero.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Qué tan cerca está el Trópico de Capricornio?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>A 300 metros: se va caminando. Ahí está el monumento con el reloj de sol que marca el paso del trópico por la Quebrada.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Se puede comer en el complejo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Cada cabaña tiene cocina equipada, y en el patio hay una pérgola con parrillas para tu asado. Luis cocina, y su especialidad es el asado a la estaca: preguntá el menú cuando reserves.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hay desayuno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, en el salón desayunador, de 8 a 10 h y con reserva previa. Avisale a Lili el día anterior.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hace frío en invierno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Huacalera está a más de 2.600 metros: las noches de invierno bajan de cero. Las cabañas tienen calefacción; si sos friolento, avisale a Lili y te deja mantas de más.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Cómo reservo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Desde el buscador de esta página, o escribiéndole a Lili por WhatsApp al 388 518-6442.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CIERRE ================= -->
+<section class="cierre" aria-labelledby="cierre-t">
+  <img src="f/cartel-noche.webp" alt="" loading="lazy" width="1800" height="1350">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--ocre)">Huacalera · Quebrada de Humahuaca</p>
+    <h2 id="cierre-t">Los cuatro elementos te esperan</h2>
+    <p>Elegí tus fechas o escribile a Lili: ella te dice qué cabaña te conviene y cómo armar tus días en la Quebrada.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#reservar">Reservar mi cabaña</a>
+      <a class="btn btn-ghost" href="https://wa.me/5493885186442?text=Hola%20Lili!%20Vi%20la%20web%20y%20quer%C3%ADa%20consultar%20por%20las%20caba%C3%B1as." target="_blank" rel="noopener">WhatsApp 388 518-6442</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie-grid">
+      <a class="brand pie-logo" href="#top" aria-label="Cabañas 4 Elementos, volver arriba">
+        <img src="f/logo.svg" alt="" width="120" height="120" loading="lazy">
+      </a>
+      <div>Barrio San Lorenzo, Huacalera<br>Ruta Nacional 9 · Jujuy, Argentina</div>
+      <div><a href="https://wa.me/5493885186442" target="_blank" rel="noopener">388 518-6442</a><br><a href="mailto:cabanas4elementosjujuy@gmail.com">cabanas4elementosjujuy@gmail.com</a></div>
+      <div><a href="https://www.instagram.com/cabanas_4_elementos/" target="_blank" rel="noopener">@cabanas_4_elementos</a><br>Atendido por Lili y Luis</div>
+    </div>
+    <div class="pie-bottom">
+      <span>© 2026 Cabañas 4 Elementos</span>
+      <a class="operon" href="https://operonhub.com/" target="_blank" rel="noopener" aria-label="Hecho por Operon">
+        <span>Hecho por</span>
+        <svg viewBox="0 0 64 74" fill="none" aria-hidden="true"><circle cx="32" cy="28" r="20" stroke="currentColor" stroke-width="6"/><circle cx="32" cy="28" r="6" fill="#F2C94C"/><path d="M25 47 L39 47 L32 56 Z" fill="currentColor"/><path d="M32 56 C 30 63, 36 65, 33 73" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg><span style="margin-left:-.25em;font-weight:600">peron</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waf" href="https://wa.me/5493885186442?text=Hola%20Lili!%20Vi%20la%20web%20y%20quer%C3%ADa%20consultar%20por%20las%20caba%C3%B1as." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img alt="">
+  <p></p>
+  <button class="x" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- ¿La promo 3x2 aplica en esta fecha? ----
+     Regla de la clienta: mayo, junio y de septiembre a diciembre, pagan 2 noches y se
+     alojan 3. EXCEPTO feriados y fines de semana largos.
+     Se usa para mostrar el cartel "Vigente este mes" en la sección de la promo.
+     Ojo: la fecha tiene que leerse en hora de Jujuy (America/Argentina/Jujuy), no la del visitante. */
+  function isPromoActive(date){
+    // TODO: devolver true si la promo corre en `date`.
+    return false;
+  }
+
+  /* ---- nav ---- */
+  var nav=document.getElementById('nav'), burger=document.getElementById('burger'), waf=document.getElementById('waf');
+  function onNav(){ var y=scrollY; nav.classList.toggle('solid', y>innerHeight*.72); waf.classList.toggle('on', y>innerHeight*.9); }
+  addEventListener('scroll', onNav, {passive:true}); onNav();
+  burger.addEventListener('click', function(){ var o=nav.classList.toggle('open'); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o?'Cerrar menú':'Abrir menú'); });
+  document.querySelectorAll('#menu a').forEach(function(a){ a.addEventListener('click', function(){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }); });
+
+  /* ---- reveals: si el scroll es rápido, igual quedan visibles ---- */
+  var rvs=[].slice.call(document.querySelectorAll('.rv'));
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(el){ io.observe(el); });
+    addEventListener('scroll', function sweep(){ rvs.forEach(function(el){ if(!el.classList.contains('in') && el.getBoundingClientRect().bottom < innerHeight){ el.classList.add('in'); } }); }, {passive:true});
+  } else rvs.forEach(function(el){ el.classList.add('in'); });
+
+  /* ---- magic-card: spotlight del color del elemento, sobre el texto de cada ficha ---- */
+  document.querySelectorAll('.cab').forEach(function(c){
+    var t=c.querySelector('.cab-txt');
+    c.addEventListener('pointermove', function(e){ if(e.pointerType==='touch') return; var r=t.getBoundingClientRect(); t.style.setProperty('--mx',(e.clientX-r.left)+'px'); t.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+  });
+
+  /* ---- videos: el <video> recién se crea al tocar play (no descarga nada antes) ---- */
+  var vidsOn=[];
+  document.querySelectorAll('.vid-play').forEach(function(b){
+    b.addEventListener('click', function(){
+      vidsOn.forEach(function(v){ v.pause(); });
+      var v=document.createElement('video');
+      v.src=b.dataset.src; v.poster=b.dataset.poster; v.controls=true; v.playsInline=true; v.preload='auto';
+      v.setAttribute('aria-label', b.querySelector('b').textContent);
+      v.addEventListener('play', function(){ vidsOn.forEach(function(o){ if(o!==v) o.pause(); }); });
+      b.parentNode.appendChild(v); b.closest('.vid').classList.add('on'); vidsOn.push(v);
+      v.play().catch(function(){}); v.focus();
+    });
+  });
+
+  /* ---- adentro: cada ítem activa su foto (hover/foco en desktop, acordeón en mobile) ---- */
+  var eqs=[].slice.call(document.querySelectorAll('#eqs .eq')), eqImgs=[].slice.call(document.querySelectorAll('#eqFoto img')), eqCap=document.getElementById('eqCap');
+  var fine=matchMedia('(hover:hover) and (pointer:fine)');
+  function eqOn(k){
+    eqs.forEach(function(li,i){ li.classList.toggle('on',i===k); li.querySelector('button').setAttribute('aria-expanded',i===k); });
+    eqImgs.forEach(function(im,i){ im.classList.toggle('on',i===k); });
+    eqCap.textContent=eqs[k].querySelector('.eq-t').textContent;
+  }
+  eqs.forEach(function(li,k){
+    var b=li.querySelector('button');
+    b.addEventListener('click', function(){ eqOn(k); });
+    b.addEventListener('focus', function(){ if(fine.matches) eqOn(k); });
+    b.addEventListener('pointerenter', function(e){ if(e.pointerType==='mouse') eqOn(k); });
+  });
+
+  /* ---- hero: tres fotos en fundido, con barras de progreso ---- */
+  var hImgs=[].slice.call(document.querySelectorAll('#heroMedia img')), hBars=[].slice.call(document.querySelectorAll('#heroBars i')), hCap=document.getElementById('heroCap'), hCur=0;
+  function heroShow(k){
+    hImgs.forEach(function(im,i){ im.classList.toggle('on',i===k); });
+    hBars.forEach(function(b,i){ b.classList.remove('on'); b.classList.toggle('done',i<k); });
+    void hBars[k].offsetWidth; hBars[k].classList.add('on');   // reinicia la animación de la barra
+    hCap.textContent=hImgs[k].dataset.cap; hCur=k;
+  }
+  var heroTimer=null;
+  function heroGo(){
+    document.getElementById('hero').classList.add('go');
+    if(!reduce && !heroTimer){ heroShow(0); heroTimer=setInterval(function(){ if(!document.hidden) heroShow((hCur+1)%hImgs.length); },5600); }
+  }
+
+  /* ---- intro: el logo se arma por partes y vuela a la barra (~2,5 s; cualquier toque la termina) ---- */
+  (function intro(){
+    var el=document.getElementById('intro');
+    if(!el){ heroGo(); return; }
+    try{ sessionStorage.setItem('ce-intro','1'); }catch(e){}
+    scrollTo(0,0);
+    var svg=el.querySelector('svg'), q=function(s){ return [].slice.call(svg.querySelectorAll(s)); };
+    var logo=document.getElementById('introLogo'), bg=document.getElementById('introBg'), tag=document.getElementById('introTag');
+    var navImg=document.querySelector('.nav .brand img');
+    var OUT='cubic-bezier(.22,.8,.24,1)', FLY='cubic-bezier(.7,0,.2,1)', anims=[];
+    function A(node,kf,o){ var a=node.animate(kf,Object.assign({fill:'both',easing:OUT},o)); anims.push(a); return a; }
+
+    A(q('.lg-frame')[0],[{strokeDashoffset:1,fillOpacity:0},{strokeDashoffset:0,fillOpacity:0,offset:.7},{strokeDashoffset:0,fillOpacity:1}],{duration:950,easing:'cubic-bezier(.65,0,.35,1)'});
+    A(q('.lg-fill')[0],[{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(61% 0 0 0)'}],{duration:650,delay:520});
+    A(q('.lg-illus')[0],[{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'none'}],{duration:650,delay:640});
+    q('.lg-line').forEach(function(l,i){ A(l,[{opacity:0,transform:'translateY(12px) scale(.96)'},{opacity:1,transform:'none'}],{duration:520,delay:780+i*90}); });
+    q('.lg-glyph').forEach(function(g,i){ A(g,[{opacity:0,transform:'scale(.4)'},{opacity:1,transform:'none'}],{duration:480,delay:1000+i*85,easing:'cubic-bezier(.34,1.56,.64,1)'}); });
+    A(tag,[{opacity:0,letterSpacing:'.6em'},{opacity:1,letterSpacing:'.32em',offset:.5},{opacity:1,letterSpacing:'.32em',offset:.8},{opacity:0,letterSpacing:'.32em'}],{duration:1500,delay:500});
+    A(bg,[{'--p':0},{'--p':1}],{duration:1700,easing:'linear'});
+
+    // salida: FLIP del logo hasta el de la barra, y el telón sube
+    var from=logo.getBoundingClientRect(), to=navImg.getBoundingClientRect();
+    var dx=(to.left+to.width/2)-(from.left+from.width/2), dy=(to.top+to.height/2)-(from.top+from.height/2), sc=to.width/from.width;
+    A(logo,[{transform:'none'},{transform:'translate('+dx+'px,'+dy+'px) scale('+sc+')'}],{duration:800,delay:1750,easing:FLY});
+    A(bg,[{clipPath:'inset(0 0 0 0)'},{clipPath:'inset(0 0 100% 0)'}],{duration:800,delay:1820,easing:FLY});
+    setTimeout(heroGo,2150);
+
+    var done=false;
+    function finish(){
+      if(done) return; done=true;
+      document.documentElement.classList.remove('intro-lock');
+      el.parentNode && el.parentNode.removeChild(el);
+      heroGo();
+    }
+    function skip(){ anims.forEach(function(a){ a.finish(); }); }
+    Promise.all(anims.map(function(a){ return a.finished; })).then(finish, finish);
+    ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){ addEventListener(ev, skip, {once:true, passive:true}); });
+    setTimeout(finish,4500);   // red de seguridad
+  })();
+
+  /* ---- FAQ ---- */
+  document.querySelectorAll('.acc-trigger').forEach(function(t){
+    t.addEventListener('click', function(){ var it=t.parentNode, o=!it.classList.contains('open'); it.classList.toggle('open',o); t.setAttribute('aria-expanded',o); });
+  });
+
+  /* ---- lightbox: cada grupo (fichas de cabañas, galería) navega dentro de sí mismo ---- */
+  var lb=document.getElementById('lb'), li=lb.querySelector('img'), lp=lb.querySelector('p'), gb=[], cur=0, lastFocus=null;
+  var lbBtns=[].slice.call(lb.querySelectorAll('button'));
+  function openLb(list,i){ gb=list; cur=(i+gb.length)%gb.length; var im=gb[cur].querySelector('img'); li.src=im.src; li.alt=im.alt; lp.textContent=gb[cur].dataset.cap; if(!lb.classList.contains('on')){ lastFocus=document.activeElement; lb.classList.add('on'); document.body.style.overflow='hidden'; lb.querySelector('.x').focus(); } }
+  function closeLb(){ lb.classList.remove('on'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+  [document.querySelectorAll('#gal button'), document.querySelectorAll('#cabs .cab-foto')].forEach(function(nl){
+    var list=[].slice.call(nl);
+    list.forEach(function(b,i){ b.addEventListener('click', function(){ openLb(list,i); }); });
+  });
+  lb.querySelector('.x').addEventListener('click', closeLb);
+  lb.querySelector('.prev').addEventListener('click', function(){ openLb(gb,cur-1); });
+  lb.querySelector('.next').addEventListener('click', function(){ openLb(gb,cur+1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+  addEventListener('keydown', function(e){
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') closeLb();
+    if(e.key==='ArrowLeft') openLb(gb,cur-1);
+    if(e.key==='ArrowRight') openLb(gb,cur+1);
+    // el foco queda dentro del modal: Tab da la vuelta entre sus tres botones
+    if(e.key==='Tab'){ var k=lbBtns.indexOf(document.activeElement), n=lbBtns.length; e.preventDefault(); lbBtns[((k<0?0:k)+(e.shiftKey?n-1:1))%n].focus(); }
+  });
+
+  /* ---- promo: marca el mes actual y avisa si está vigente ---- */
+  var mesJujuy=+new Intl.DateTimeFormat('es-AR',{month:'numeric',timeZone:'America/Argentina/Jujuy'}).format(new Date());
+  document.querySelectorAll('#promo-meses span').forEach(function(s){ s.classList.toggle('hoy', +s.dataset.m===mesJujuy); });
+  if(isPromoActive(new Date())) document.getElementById('promo-vigente').hidden=false;
+
+  /* ---- estado de recepción (hora de Jujuy) ---- */
+  try{
+    var h=+new Intl.DateTimeFormat('es-AR',{hour:'numeric',hour12:false,timeZone:'America/Argentina/Jujuy'}).format(new Date());
+    var est=document.getElementById('estado'), open=h>=13 && h<21;
+    est.classList.toggle('abierto',open);
+    est.querySelector('span').textContent = open ? 'Recibiendo huéspedes ahora' : (h<13 ? 'Hoy recibe huéspedes desde las 13 h' : 'Mañana recibe huéspedes desde las 13 h');
+  }catch(e){}
+
+  /* =========================================================
+     EL RELOJ DE SOL — un 21 de diciembre en Huacalera (23°26' S)
+     El sol sale 06:37, pasa por el cenit a las 13:20 (mediodía
+     solar) y se pone 20:02. Con el sol en el cenit, sin sombra.
+     ========================================================= */
+  var sec=document.getElementById('tropico');
+  var $=function(id){return document.getElementById(id);};
+  var cardon=$('cardon'), sun=$('sun'), glow=$('glow'), moon=$('moon'), sp=$('sombraPath'), stars=$('stars');
+  var sky0=$('sky0'), sky1=$('sky1'), m1=$('m1'), m2=$('m2'), suelo=$('suelo'), plato=$('plato');
+  var hora=$('hora'), largo=$('largo'), bar=$('bar');
+  var caps=[].slice.call(document.querySelectorAll('.cap'));
+  var NS='http://www.w3.org/2000/svg';
+
+  // estrellas (semilla fija: siempre el mismo cielo)
+  var seed=7; function rnd(){ seed=(seed*16807)%2147483647; return seed/2147483647; }
+  for(var i=0;i<140;i++){ var c=document.createElementNS(NS,'circle'); c.setAttribute('cx',(rnd()*1600).toFixed(1)); c.setAttribute('cy',(rnd()*1500-950).toFixed(1)); c.setAttribute('r',(rnd()*1.6+.4).toFixed(2)); c.setAttribute('fill','#fff'); c.setAttribute('opacity',(rnd()*.6+.3).toFixed(2)); stars.appendChild(c); }
+  // horas del reloj sobre el plato
+  var hs=$('horas');
+  [7,8,9,10,11,12,13,14,15,16,17,18,19].forEach(function(hh,k){
+    var a=Math.PI*(.94-.88*k/12); var x=800+470*Math.cos(a), y=770+62*Math.sin(a)+10;
+    var t=document.createElementNS(NS,'text'); t.setAttribute('x',x.toFixed(1)); t.setAttribute('y',y.toFixed(1)); t.textContent=hh; hs.appendChild(t);
+  });
+
+  // Marcas grabadas en perspectiva; no agregan trabajo al render por scroll.
+  var dialMarks=$('dialMarks');
+  for(var tick=0;tick<60;tick++){
+    var angle=tick*Math.PI*2/60, major=tick%5===0;
+    var line=document.createElementNS(NS,'path');
+    line.setAttribute('d','M'+(800+Math.cos(angle)*535).toFixed(1)+' '+(770+Math.sin(angle)*101).toFixed(1)+'L'+(800+Math.cos(angle)*(major?511:522)).toFixed(1)+' '+(770+Math.sin(angle)*(major?93:97)).toFixed(1));
+    line.setAttribute('stroke-width',major?'1.4':'.8');
+    line.setAttribute('opacity',major?'.65':'.35');
+    dialMarks.appendChild(line);
+  }
+
+  function mix(a,b,t){ return a+(b-a)*t; }
+  function hex(h){ return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]; }
+  function col(a,b,t){ var A=hex(a),B=hex(b); return 'rgb('+Math.round(mix(A[0],B[0],t))+','+Math.round(mix(A[1],B[1],t))+','+Math.round(mix(A[2],B[2],t))+')'; }
+  function col3(n,d,dd,k,night){ // noche → amanecer → día
+    return night>0 ? col(d,n,night) : (k<.35 ? col(d,dd,k/.35) : dd);
+  }
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function fmt(mins){ mins=Math.round(mins); var h=Math.floor(mins/60)%24, m=mins%60; return (h<10?'0':'')+h+':'+(m<10?'0':'')+m; }
+
+  // en mobile la cámara se aleja: se ve el plato entero y el sol no se va de cuadro
+  var RX=700, mq=matchMedia('(max-width:759px)');
+  function cam(){ var m=mq.matches; RX=m?300:700; document.getElementById('scene').setAttribute('viewBox', m?'150 -1000 1300 1900':'0 0 1600 900'); }
+  cam(); mq.addEventListener && mq.addEventListener('change', function(){ cam(); if(reduce) render(.46); else onScroll(); });
+  var RISE=6*60+37, NOON=13*60+20, SET=20*60+2;
+  var HS=260; // alto del cardón en px de la escena (≈ 4 m)
+
+  function render(p){
+    // p: progreso 0..1 de la sección. s: fracción del día solar 0..1 (con meseta en el mediodía)
+    var s, night=0, mins;
+    if(p<.04){ s=0; night=1-p/.04; mins=RISE-40+40*(p/.04); }
+    else if(p<.40){ s=.5*(p-.04)/.36; }
+    else if(p<.52){ s=.5; }
+    else if(p<.80){ s=.5+.5*(p-.52)/.28; }
+    else { s=1; night=clamp((p-.80)/.08,0,1); mins=SET+(p-.80)/.20*150; }
+    if(mins===undefined) mins = s<=.5 ? mix(RISE,NOON,s*2) : mix(NOON,SET,(s-.5)*2);
+
+    var phi=Math.PI*s;                        // 0 = horizonte este, π/2 = cenit
+    var sx=800-RX*Math.cos(phi), sy=700-560*Math.sin(phi);
+    var up = s>0 && s<1 && night===0;
+    sun.setAttribute('cx',sx); sun.setAttribute('cy',up?sy:1200);
+    glow.setAttribute('cx',sx); glow.setAttribute('cy',up?sy:1200);
+    var k=Math.sin(phi);                      // altura del sol 0..1
+
+    // cielo
+    sky0.setAttribute('stop-color', col3('#0B1426','#34467A','#2F74BF',k,night));
+    sky1.setAttribute('stop-color', col3('#1D2B48','#F0A267','#B9D6EA',k,night));
+    stars.setAttribute('opacity', night>0 ? night : clamp(1-k*6,0,1)*(s<.02||s>.98?1:0));
+    m2.setAttribute('fill', night>0 ? col('#8E5A48','#2A2E44',night) : col('#6E4A52','#B97C62',clamp(k*2,0,1)));
+    m1.setAttribute('fill', night>0 ? col('#6B4336','#1C2033',night) : col('#503440','#94593F',clamp(k*2,0,1)));
+    suelo.setAttribute('fill', night>0 ? col('#9C8466','#23232E',night) : col('#6F5F55','#A48B69',clamp(k*2,0,1)));
+    plato.setAttribute('fill', night>0 ? col('#C9BCA4','#3A3A48',night) : col('#9E927F','#D2C6AE',clamp(k*2,0,1)));
+
+    // Los detalles pierden saturación y presencia a medida que cae la luz.
+    $('backStrata').setAttribute('opacity',1-night*.82);
+    $('frontStrata').setAttribute('opacity',1-night*.85);
+    $('groundDetails').setAttribute('opacity',1-night*.8);
+    $('stoneTexture').setAttribute('opacity',1-night*.85);
+    hs.setAttribute('fill',col('#5E513F','#AAA99F',night));
+
+    // sombra: largo = alto / tan(elevación). En el cenit, cero.
+    var L = up ? HS*Math.cos(phi)/Math.max(Math.sin(phi),.12) : 0;
+    L = clamp(L,-820,820);
+    // el sol está del lado opuesto: sombra hacia +x a la mañana, hacia -x a la tarde, apenas hacia el frente por la perspectiva
+    var ex=L, ey=Math.abs(L)*0.07, d=L>=0?1:-1;
+    // tronco + los dos brazos del cardón proyectados (a 0.42 y 0.55 del alto)
+    function arm(t,off){ var ax=L*t, ay=ey*t; return ' M'+(ax).toFixed(1)+' '+(ay-2).toFixed(1)+' L'+(ax+d*6).toFixed(1)+' '+(ay+off).toFixed(1)+' L'+(ax+d*6+L*.22).toFixed(1)+' '+(ay+off+ey*.22).toFixed(1)+' L'+(ax+L*.22).toFixed(1)+' '+(ay+ey*.22+2).toFixed(1)+'Z'; }
+    sp.setAttribute('d', Math.abs(L)<3 ? 'M-24 0a24 6 0 1 0 48 0a24 6 0 1 0 -48 0Z' :
+      'M0 -12 L'+ex.toFixed(1)+' '+(ey-7).toFixed(1)+' Q'+(ex+d*9).toFixed(1)+' '+ey.toFixed(1)+' '+ex.toFixed(1)+' '+(ey+7).toFixed(1)+' L0 12 Z'
+      + arm(.34,-16) + arm(.48,14));
+    sp.setAttribute('opacity', up ? .55*clamp(k*5,0,1)+.1 : 0);
+    cardon.setAttribute('fill', night>0 ? col('#3E5A3A','#1B2620',night) : col('#2E3F2C','#3E5A3A',clamp(k*2,0,1)));
+
+    // luna: sale por el cerro de la derecha
+    var mp=clamp((p-.82)/.18,0,1);
+    moon.setAttribute('opacity', mp>0 ? clamp(mp*3,0,1) : 0);
+    moon.setAttribute('transform','translate('+(1240-120*mp)+' '+(470-300*mp)+')');
+
+    // lectura
+    hora.textContent=fmt(mins);
+    var metros = up ? Math.abs(4*Math.cos(phi)/Math.max(Math.sin(phi),.03)) : null;
+    largo.textContent = metros===null ? '—' : (metros<0.05 ? '0,0 m' : (metros>40?'+40 m':metros.toFixed(1).replace('.',',')+' m'));
+    bar.style.width=(p*100).toFixed(1)+'%';
+    caps.forEach(function(c){ c.classList.toggle('on', p>=+c.dataset.from && p<+c.dataset.to); });
+  }
+
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      var r=sec.getBoundingClientRect(), total=r.height-innerHeight;
+      render(clamp(-r.top/total,0,1));
+    });
+  }
+  if(reduce){ render(.46); } else { addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); onScroll(); }
+})();
+</script>
+</body>
+</html>
