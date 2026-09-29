@@ -221,6 +221,28 @@ section.block{padding:clamp(80px,11vw,140px) 0}
 .caps b{font-size:2.2rem;line-height:1;font-weight:800}
 .caps .dot{width:6px;height:6px;border-radius:50%;background:var(--ocre)}
 
+/* ---------- quincho para familias y grupos ---------- */
+.quincho-feature{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);min-height:430px;background:var(--noche);color:var(--cal);border-radius:var(--radius);overflow:hidden;margin-top:clamp(56px,8vw,100px)}
+.quincho-feature>img{width:100%;height:100%;min-height:430px;object-fit:cover}
+.quincho-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(30px,5vw,68px)}
+.quincho-copy .eyebrow{color:var(--ocre)}
+.quincho-copy h3{font-size:clamp(2.5rem,4.5vw,4.4rem);line-height:.95;margin:12px 0 18px}
+.quincho-copy p:not(.eyebrow){max-width:34em;color:rgba(243,241,236,.78)}
+.quincho-cap{display:flex;align-items:baseline;gap:12px;margin:22px 0 28px;font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+.quincho-cap b{font-size:clamp(3.8rem,7vw,6rem);line-height:.8;color:var(--ocre)}
+@media(max-width:760px){.quincho-feature{grid-template-columns:1fr}.quincho-feature>img{min-height:0;aspect-ratio:4/3}.quincho-copy{padding:30px 24px 36px}}
+
+/* ---------- alquiler de auto ---------- */
+.auto-card{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center;margin-top:clamp(42px,6vw,72px);padding:clamp(24px,4vw,44px);overflow:hidden;background:var(--noche);color:var(--cal);border-radius:var(--radius)}
+.auto-card::after{content:"";position:absolute;width:320px;height:320px;right:12%;top:-235px;border:1px solid rgba(243,241,236,.13);border-radius:50%;box-shadow:0 0 0 26px rgba(243,241,236,.035),0 0 0 54px rgba(243,241,236,.025);pointer-events:none}
+.auto-icon{width:62px;height:62px;display:grid;place-items:center;border:1px solid rgba(243,241,236,.28);border-radius:50%;color:var(--ocre)}
+.auto-icon svg{width:32px;height:32px}
+.auto-card .eyebrow{color:var(--ocre);margin-bottom:7px}
+.auto-card h3{font-size:clamp(1.9rem,3.3vw,3rem);line-height:1;margin-bottom:9px}
+.auto-card p:not(.eyebrow){max-width:56ch;color:rgba(243,241,236,.76)}
+.auto-card .btn{white-space:nowrap;position:relative;z-index:1}
+@media(max-width:760px){.auto-card{grid-template-columns:auto minmax(0,1fr);gap:16px}.auto-icon{width:50px;height:50px}.auto-icon svg{width:26px;height:26px}.auto-card .btn{grid-column:1/-1;justify-self:start}}
+
 /* ---------- adentro: lista editorial que cambia la foto ---------- */
 .adentro{background:var(--cal-2)}
 .equipo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,6vw,90px);align-items:start}
@@ -570,7 +592,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <p class="eyebrow">Las cabañas</p>
         <h2>Cuatro cabañas, cuatro elementos</h2>
       </div>
-      <p class="lead rv">Cada cabaña lleva el nombre de un elemento. Todas son nuevas, amplias y equipadas, con techos de vigas, piedra y telares de la zona. Tocá una foto para verla grande.</p>
+      <p class="lead rv">Cada cabaña lleva el nombre de un elemento. Todas son nuevas, amplias y equipadas, con techos de caña, piedra y telares de la zona. Tocá una foto para verla grande.</p>
     </div>
 
     <div class="cabs rv" id="cabs">
@@ -609,6 +631,15 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <span><b>2</b></span><i class="dot"></i><span><b>3</b></span><i class="dot"></i><span><b>4</b></span><i class="dot"></i><span><b>5</b></span>
       <span>personas · parejas, familias y grupos</span>
     </div>
+    <article class="quincho-feature rv" aria-labelledby="quincho-t">
+      <img src="f/quincho-grupos.webp" alt="Mesas preparadas en el quincho de Cabañas 4 Elementos, un espacio para compartir en familia o en grupo" loading="lazy" width="1200" height="1800">
+      <div class="quincho-copy">
+        <p class="eyebrow">Para compartir juntos</p>
+        <h3 id="quincho-t">Un quincho para reunirse</h3>
+        <p>Un espacio amplio para que familias y grupos disfruten de una comida y compartan tiempo juntos durante su estadía en la Quebrada.</p>
+        <p class="quincho-cap"><b>40</b><span>personas de capacidad</span></p>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -622,7 +653,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
     <div class="equipo rv">
       <figure class="equipo-foto" id="eqFoto" aria-hidden="true">
       <img class="on" src="f/cocina-living.webp" alt="Cocina comedor con pared amarilla y mesa de madera" loading="lazy" width="1080" height="810">
-      <img src="f/dormitorio.webp" alt="Dormitorio con cama matrimonial, techo de vigas y cabecera de piedra" loading="lazy" width="810" height="1080">
+      <img src="f/dormitorio.webp" alt="Dormitorio con cama matrimonial, techo de caña y cabecera de piedra" loading="lazy" width="810" height="1080">
       <img src="f/sillones.webp" alt="Living con sillones fucsia y mesa ratona con camino de telar" loading="lazy" width="1024" height="768">
       <img src="f/galeria.webp" alt="Galería con mesa redonda y sillas blancas, con los cerros de fondo" loading="lazy" width="1024" height="768">
       <img src="f/quincho.webp" alt="Pérgola de caña con mesa de piedra y parrilla, con los cerros detrás" loading="lazy" width="810" height="1080">
@@ -633,7 +664,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <div>
         <ul class="eqs" id="eqs">
       <li class="eq on"><button class="eq-btn" type="button" aria-expanded="true" aria-controls="eq-0"><span class="eq-n">01</span><span class="eq-t">Cocina comedor</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-0"><div><p>Anafe, frigobar, vajilla completa y una mesa grande para comer todos juntos.</p><img src="f/cocina-living.webp" alt="" loading="lazy" width="1080" height="810"></div></div></li>
-      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-1"><span class="eq-n">02</span><span class="eq-t">Dormitorios</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-1"><div><p>Techos de vigas, cabeceras de piedra, calefacción y ropa blanca incluida.</p><img src="f/dormitorio.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-1"><span class="eq-n">02</span><span class="eq-t">Dormitorios</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-1"><div><p>Techos de caña, cabeceras de piedra, calefacción y ropa blanca incluida.</p><img src="f/dormitorio.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-2"><span class="eq-n">03</span><span class="eq-t">Living con telares</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-2"><div><p>Sillones, Wi-Fi y TV. Telares de la zona en cada ambiente.</p><img src="f/sillones.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-3"><span class="eq-n">04</span><span class="eq-t">Galerías al cerro</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-3"><div><p>Mesa afuera para el mate de la tarde, mirando los colores de la Quebrada.</p><img src="f/galeria.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-4"><span class="eq-n">05</span><span class="eq-t">Pérgola con parrillas</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-4"><div><p>Bajo la caña, con mesa de piedra: para hacer tu asado a la vista del cerro.</p><img src="f/quincho.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
@@ -1372,6 +1403,11 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Caba%C3%B1as+4+Elementos+Huacalera+Jujuy" target="_blank" rel="noopener">Cómo llegar</a>
       </div>
     </div>
+    <aside class="auto-card rv" id="auto" aria-labelledby="auto-t">
+      <span class="auto-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 19 2-7a3 3 0 0 1 2.9-2.2h12.2A3 3 0 0 1 25 12l2 7v6h-3v-3H8v3H5z"/><path d="M7 19h18M10 14h12"/><circle cx="10" cy="19" r="1.5"/><circle cx="22" cy="19" r="1.5"/></svg></span>
+      <div><p class="eyebrow">Movete a tu ritmo</p><h3 id="auto-t">Alquiler de auto</h3><p>También podés consultar por el alquiler de auto y recorrer la Quebrada con más libertad. Escribile a Lili para conocer las opciones y coordinar.</p></div>
+      <a class="btn btn-primary" href="https://wa.me/5493885186442?text=Hola%20Lili%2C%20quer%C3%ADa%20consultar%20por%20el%20alquiler%20de%20auto." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </aside>
   </div>
 </section>
 
