@@ -33,8 +33,7 @@ require('fs').mkdirSync(OUT, { recursive: true });
     await page.selectOption('#bkw-pax', '4');
     await page.click('#bkw-search'); await page.waitForTimeout(900); await shot('20-res-results');
     await page.click('#bkw-step-results button[data-name]'); await page.waitForTimeout(300);
-    await page.fill('#bkw-name', 'Prueba Demo'); await shot('21-res-form');
-    await page.click('#bkw-confirm'); await page.waitForTimeout(1000); await shot('22-res-done');
+    await shot('21-res-form');   // NUNCA confirmar: el widget es el real y crea reservas en la base de la clienta
     const wa = await page.getAttribute('#bkw-step-done a.btn-wa', 'href');
     // FAQ + lightbox
     await page.click('.acc-trigger'); await page.waitForTimeout(500);
