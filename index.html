@@ -206,6 +206,7 @@ section.block{padding:clamp(80px,11vw,140px) 0}
 .cab-top svg{width:40px;height:40px;flex:none;color:var(--element-ink)}
 .cab h3{font-size:clamp(2rem,2.6vw,2.5rem)}
 .cab h3 small{display:block;font-size:.8rem;letter-spacing:.14em;font-weight:700;color:var(--piedra-soft);margin-bottom:2px}
+.cab-cap{display:table;margin:0 0 10px;padding:3px 10px;border:1.5px solid var(--element-ink);border-radius:100px;color:var(--element-ink);font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
 .cab p{margin-top:10px;color:var(--piedra-soft);font-size:.98rem;line-height:1.5}
 @media (max-width:1000px){.cabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){
@@ -600,36 +601,36 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <button class="cab-foto" type="button" data-cap="Cabaña Tierra · living y cocina"><img src="f/cab-tierra.webp" alt="Cabaña Tierra: living con sillón verde, sillones terracota y cocina integrada al fondo" loading="lazy" width="960" height="1280"></button>
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-tierra"/></svg><h3><small>Cabaña</small>Tierra</h3></div>
-          <p>Living amplio con cocina integrada y mesa para todos. Telares en cada rincón.</p>
+          <p><span class="cab-cap">Hasta 5 personas</span>Living amplio con cocina integrada y mesa para todos. Telares en cada rincón.</p>
         </div>
       </article>
       <article class="cab" data-element="agua">
         <button class="cab-foto" type="button" data-cap="Cabaña Agua · dormitorio"><img src="f/cab-agua.webp" alt="Cabaña Agua: cama matrimonial con cabecera de piedra y pie de cama fucsia" loading="lazy" width="960" height="1280"></button>
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-agua"/></svg><h3><small>Cabaña</small>Agua</h3></div>
-          <p>Dormitorio con cabecera de piedra y el sol de la mañana entrando por la ventana.</p>
+          <p><span class="cab-cap">Hasta 4 personas</span>Dormitorio con cabecera de piedra y el sol de la mañana entrando por la ventana.</p>
         </div>
       </article>
       <article class="cab" data-element="fuego">
         <button class="cab-foto" type="button" data-cap="Cabaña Fuego · dormitorio"><img src="f/cab-fuego.webp" alt="Cabaña Fuego: cama con manta de rayas de colores, pared de piedra y ventana al patio" loading="lazy" width="960" height="1280"></button>
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-fuego"/></svg><h3><small>Cabaña</small>Fuego</h3></div>
-          <p>Manta de colores, pared de piedra y ventana al patio y a los cerros.</p>
+          <p><span class="cab-cap">Hasta 5 personas</span>Manta de colores, pared de piedra y ventana al patio y a los cerros.</p>
         </div>
       </article>
       <article class="cab" data-element="aire">
         <button class="cab-foto" type="button" data-cap="Cabaña Aire · living y cocina"><img src="f/cab-aire.webp" alt="Cabaña Aire: living con sillones rojos, mesa ratona con telar y cocina con pared amarilla" loading="lazy" width="1600" height="1200"></button>
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-aire"/></svg><h3><small>Cabaña</small>Aire</h3></div>
-          <p>Living luminoso con sillones rojos y la pared amarilla de la cocina.</p>
+          <p><span class="cab-cap">Hasta 4 personas</span>Living luminoso con sillones rojos y la pared amarilla de la cocina.</p>
         </div>
       </article>
     </div>
 
-    <div class="caps rv" aria-label="Capacidades: cabañas para 2, 3, 4 y 5 personas">
-      <span>Para</span>
-      <span><b>2</b></span><i class="dot"></i><span><b>3</b></span><i class="dot"></i><span><b>4</b></span><i class="dot"></i><span><b>5</b></span>
-      <span>personas · parejas, familias y grupos</span>
+    <div class="caps rv" aria-label="Capacidades: dos cabañas para hasta 4 personas y dos para hasta 5">
+      <span>Hasta</span>
+      <span><b>4</b></span><i class="dot"></i><span><b>5</b></span>
+      <span>personas por cabaña · parejas, familias y grupos</span>
     </div>
     <article class="quincho-feature rv" aria-labelledby="quincho-t">
       <img src="f/quincho-grupos.webp" alt="Mesas preparadas en el quincho de Cabañas 4 Elementos, un espacio para compartir en familia o en grupo" loading="lazy" width="1200" height="1800">
@@ -1163,11 +1164,11 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   // El resto es el backend central de Operon Reservas: es SIEMPRE igual.
   // ============================================================
   var CONFIG = {
-    ORG_SLUG:     'cabanas-4-elementos',
+    ORG_SLUG:     'cabanas4elementos',
     WA_NUMBER:    '5493885186442',
     SUPA_URL:     'https://guoxthaxwdsgwcsnvefq.supabase.co',
     SUPA_KEY:     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1b3h0aGF4d2RzZ3djc252ZWZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0MDc1MjAsImV4cCI6MjEwMTk4MzUyMH0.s9MrKfQTs1KyzkY6esVZdxm6OwMUNt4y43ZjbgoEDsc',
-    RESERVAS_APP: 'https://operon-reservas.vercel.app'
+    RESERVAS_APP: 'https://www.operonreservas.com'
   };
 
   var ORG = CONFIG.ORG_SLUG, WA_NUM = CONFIG.WA_NUMBER;
@@ -1416,7 +1417,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   <div class="wrap">
     <div class="rv" style="margin-bottom:40px"><p class="eyebrow">Antes de venir</p><h2 class="sm" id="faq-t">Preguntas frecuentes</h2></div>
     <div class="faq rv" id="faq">
-      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Para cuántas personas son las cabañas?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Son cuatro cabañas: para 2, 3, 4 y hasta 5 personas. Sirven para parejas, familias o grupos de amigos que quieren alquilar el complejo entero.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Para cuántas personas son las cabañas?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Son cuatro cabañas: Agua y Aire para hasta 4 personas, Fuego y Tierra para hasta 5. Sirven para parejas, familias o grupos de amigos que quieren alquilar el complejo entero.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Qué tan cerca está el Trópico de Capricornio?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>A 300 metros: se va caminando. Ahí está el monumento con el reloj de sol que marca el paso del trópico por la Quebrada.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Se puede comer en el complejo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Cada cabaña tiene cocina equipada, y en el patio hay una pérgola con parrillas para tu asado. Luis cocina, y su especialidad es el asado a la estaca: preguntá el menú cuando reserves.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hay desayuno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, en el salón desayunador, de 8 a 10 h y con reserva previa. Avisale a Lili el día anterior.</p></div></div></div>

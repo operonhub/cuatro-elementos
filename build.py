@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 ASSET = Path.home() / ".claude/skills/web-hustler/assets/booking-widget.html"
 
-ORG_SLUG = "cabanas-4-elementos"
+ORG_SLUG = "cabanas4elementos"
 WA_NUMBER = "5493885186442"
 
 widget = ASSET.read_text(encoding="utf-8")
