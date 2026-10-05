@@ -1101,6 +1101,12 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   .bkw .field label{display:block;font-size:.8rem;font-weight:700;margin-bottom:5px}
   .bkw .field input,.bkw .field select,.bkw .field textarea{width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid var(--bkw-line);font-family:inherit;font-size:.94rem;background:var(--bkw-bg);color:var(--bkw-text)}
   .bkw .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  /* La fecha elegida, en palabras: el campo nativo ordena día y mes según el
+     idioma del equipo del visitante (en uno en inglés es mes/día). */
+  .bkw .bkw-date{display:block;min-height:1.2em;margin-top:5px;font-size:.78rem;opacity:.75}
+  .bkw .bkw-date::first-letter{text-transform:uppercase}
+  /* Aviso solo para equipos que no escriben día/mes/año. */
+  .bkw .bkw-order{margin:-4px 0 14px;padding:8px 10px;border-radius:9px;font-size:.78rem;background:rgba(196,106,46,.14)}
   .bkw .btn-primary{width:100%;justify-content:center;display:flex;align-items:center;gap:8px;background:var(--bkw-primary);color:var(--bkw-white);border:none;border-radius:100px;padding:14px;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .2s}
   .bkw .btn-primary:hover{transform:translateY(-2px)}
   .bkw .btn-primary:disabled{opacity:.6;cursor:default;transform:none}
@@ -1136,9 +1142,10 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <h3>Elegí tus fechas</h3>
       <p class="mini">Disponibilidad en tiempo real — reservá al instante, sin esperar respuesta.</p>
       <div class="field-row">
-        <div class="field"><label for="bkw-in">Llegada</label><input id="bkw-in" type="date"></div>
-        <div class="field"><label for="bkw-out">Salida</label><input id="bkw-out" type="date"></div>
+        <div class="field"><label for="bkw-in">Llegada</label><input id="bkw-in" type="date"><span class="bkw-date" id="bkw-in-words" aria-live="polite"></span></div>
+        <div class="field"><label for="bkw-out">Salida</label><input id="bkw-out" type="date"><span class="bkw-date" id="bkw-out-words" aria-live="polite"></span></div>
       </div>
+      <p class="bkw-order" id="bkw-order" hidden></p>
       <div class="field"><label for="bkw-pax">Huéspedes</label>
         <select id="bkw-pax">
           <option value="1">1 persona</option><option value="2" selected>2 personas</option>
@@ -1189,6 +1196,9 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   function iso(d){ var z=new Date(d.getTime()-d.getTimezoneOffset()*60000); return z.toISOString().slice(0,10); }
   function addDays(s,n){ var d=new Date(s+'T00:00:00'); d.setDate(d.getDate()+n); return iso(d); }
   function nights(a,b){ return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
+  // "2026-10-25" -> "domingo, 25 de octubre de 2026" y "25 oct".
+  function dateWords(s){ return /^\d{4}-\d{2}-\d{2}$/.test(s||'') ? new Date(s+'T12:00:00Z').toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}) : ''; }
+  function shortDate(s){ return new Date(s+'T12:00:00Z').toLocaleDateString('es-AR',{day:'numeric',month:'short',timeZone:'UTC'}); }
 
   var state = { in:'', out:'', pax:2, unit:null };
 
@@ -1196,7 +1206,30 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   var today = iso(new Date());
   $('bkw-in').min = today; $('bkw-out').min = addDays(today,1);
   $('bkw-in').value = addDays(today,14); $('bkw-out').value = addDays(today,16);
-  $('bkw-in').addEventListener('change', function(){ $('bkw-out').min = addDays($('bkw-in').value||today, 1); });
+  function showDates(){ $('bkw-in-words').textContent = dateWords($('bkw-in').value); $('bkw-out-words').textContent = dateWords($('bkw-out').value); }
+  var lastIn = $('bkw-in').value;
+  $('bkw-in').addEventListener('change', function(){
+    var ci = $('bkw-in').value, co = $('bkw-out').value;
+    $('bkw-out').min = addDays(ci||today, 1);
+    // Si la salida quedó el mismo día o antes, se corre conservando las noches.
+    if (ci && (!co || co <= ci)) {
+      var keep = (co && lastIn && co > lastIn) ? nights(lastIn, co) : 1;
+      $('bkw-out').value = addDays(ci, Math.max(1, keep));
+    }
+    if (ci) lastIn = ci;
+    showDates();
+  });
+  $('bkw-out').addEventListener('change', showDates);
+  showDates();
+  // El campo nativo usa el orden del equipo del visitante: si no es día/mes/año, se avisa.
+  (function(){
+    try {
+      var first = new Intl.DateTimeFormat(undefined,{year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(Date.UTC(2026,10,25,12)))
+        .filter(function(p){ return p.type==='day'||p.type==='month'||p.type==='year'; })[0].type;
+      var text = first==='month' ? 'En tu equipo el orden es mes / día / año.' : first==='year' ? 'En tu equipo el orden es año / mes / día.' : '';
+      if (text) { $('bkw-order').textContent = text + ' Tocá el ícono del calendario para elegir el día.'; $('bkw-order').hidden = false; }
+    } catch(e) {}
+  })();
 
   var steps = { search:$('bkw-step-search'), results:$('bkw-step-results'), form:$('bkw-step-form'), done:$('bkw-step-done') };
   function show(step){ for(var k in steps){ steps[k].style.display = (k===step)?'':'none'; } }
@@ -1208,8 +1241,26 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
     .then(function(r){ mpEnabled = !!(r && r.enabled); })
     .catch(function(){ mpEnabled = false; });
 
+  // El selector de huéspedes llega hasta la unidad más grande del complejo.
+  // Si el panel no informa el dato, quedan las opciones escritas en el HTML.
+  function fillGuests(max){
+    var sel = $('bkw-pax'), current = Math.min(parseInt(sel.value,10)||2, max);
+    while (sel.firstChild) sel.removeChild(sel.firstChild);
+    for (var i=1; i<=max; i++) {
+      var option = document.createElement('option');
+      option.value = String(i);
+      option.textContent = i + ' persona' + (i>1 ? 's' : '');
+      if (i === current) option.selected = true;
+      sel.appendChild(option);
+    }
+  }
+
   var propertyReady = rpc('public_property', { p_org_slug: ORG, p_property_slug: null })
-    .then(function(p){ depositPct = (p && Number(p.deposit_pct)) || 0; })
+    .then(function(p){
+      depositPct = (p && Number(p.deposit_pct)) || 0;
+      var max = p ? parseInt(p.max_guests,10) : 0;
+      if (max >= 1 && max <= 50) fillGuests(max);
+    })
     .catch(function(){ depositPct = 0; });
 
   // ----- Buscar disponibilidad -----
@@ -1232,7 +1283,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   function renderResults(units){
     var n = nights(state.in, state.out);
     var html = '<button class="bk-back" id="bkw-back1">&larr; Cambiar fechas</button>'
-      + '<div class="bk-summary">'+state.in+' &rarr; '+state.out+' · <b>'+n+' noche'+(n>1?'s':'')+'</b> · '+state.pax+' huésped'+(state.pax>1?'es':'')+'</div>';
+      + '<div class="bk-summary">'+shortDate(state.in)+' &rarr; '+shortDate(state.out)+' · <b>'+n+' noche'+(n>1?'s':'')+'</b> · '+state.pax+' huésped'+(state.pax>1?'es':'')+'</div>';
     if(!units.length){
       html += '<div class="bk-empty">No hay unidades disponibles para esas fechas. Probá con otras o escribinos por WhatsApp.</div>';
     } else {
@@ -1260,7 +1311,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   function renderForm(){
     var n = nights(state.in, state.out);
     steps.form.innerHTML = '<button class="bk-back" id="bkw-back2">&larr; Ver otras unidades</button>'
-      + '<div class="bk-summary"><b>'+state.unit.name+'</b> · '+state.in+' &rarr; '+state.out+' · '+n+' noche'+(n>1?'s':'')+' · <b>'+money(state.unit.total)+'</b></div>'
+      + '<div class="bk-summary"><b>'+state.unit.name+'</b> · '+shortDate(state.in)+' &rarr; '+shortDate(state.out)+' · '+n+' noche'+(n>1?'s':'')+' · <b>'+money(state.unit.total)+'</b></div>'
       + '<div class="field"><label for="bkw-name">Nombre y apellido</label><input id="bkw-name" type="text" placeholder="Tu nombre" required></div>'
       + '<div class="field-row"><div class="field"><label for="bkw-email">Email</label><input id="bkw-email" type="email" placeholder="tu@mail.com"></div>'
       + '<div class="field"><label for="bkw-phone">Teléfono / WhatsApp</label><input id="bkw-phone" type="text" placeholder="+54 9…"></div></div>'
@@ -1319,7 +1370,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       + '<h3>¡Reserva generada!</h3>'
       + introHtml
       + (code ? '<div class="bk-code">'+code+'</div>' : '')
-      + '<p class="mini">'+state.unit.name+' · '+state.in+' &rarr; '+state.out+'</p>'
+      + '<p class="mini">'+state.unit.name+' · '+shortDate(state.in)+' &rarr; '+shortDate(state.out)+'</p>'
       + priceHtml
       + payHtml
       + '<a class="btn-wa" style="margin-top:10px;text-decoration:none" href="'+wa+'" target="_blank" rel="noopener">Avisar por WhatsApp</a>'
