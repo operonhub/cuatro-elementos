@@ -208,6 +208,12 @@ section.block{padding:clamp(80px,11vw,140px) 0}
 .cab h3 small{display:block;font-size:.8rem;letter-spacing:.14em;font-weight:700;color:var(--piedra-soft);margin-bottom:2px}
 .cab-cap{display:table;margin:0 0 10px;padding:3px 10px;border:1.5px solid var(--element-ink);border-radius:100px;color:var(--element-ink);font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
 .cab p{margin-top:10px;color:var(--piedra-soft);font-size:.98rem;line-height:1.5}
+/* CTA secundario de cada cabaña: baja al widget con esa cabaña elegida */
+.cab-txt{display:flex;flex-direction:column}
+.cab-txt p{margin-bottom:14px}
+.cab-ver{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;margin-top:auto;padding:6px 0 4px;border-bottom:2px solid currentColor;color:var(--element-ink);font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.92rem;text-decoration:none}
+.cab-ver span{transition:transform .25s}
+@media (hover:hover) and (pointer:fine){.cab-ver:hover span{transform:translateX(4px)}}
 @media (max-width:1000px){.cabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){
   .cabs{gap:10px}
@@ -562,6 +568,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-tierra"/></svg><h3><small>Cabaña</small>Tierra</h3></div>
           <p><span class="cab-cap">Hasta 5 personas</span>Living amplio con cocina integrada y mesa para todos. Telares en cada rincón.</p>
+          <a class="cab-ver" href="#reservar" data-bkw-unit="Tierra" data-bkw-photo="f/cab-tierra.webp">Ver disponibilidad <span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
       <article class="cab" data-element="agua">
@@ -569,6 +576,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-agua"/></svg><h3><small>Cabaña</small>Agua</h3></div>
           <p><span class="cab-cap">Hasta 4 personas</span>Dormitorio con cabecera de piedra y el sol de la mañana entrando por la ventana.</p>
+          <a class="cab-ver" href="#reservar" data-bkw-unit="Agua" data-bkw-photo="f/cab-agua.webp">Ver disponibilidad <span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
       <article class="cab" data-element="fuego">
@@ -576,6 +584,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-fuego"/></svg><h3><small>Cabaña</small>Fuego</h3></div>
           <p><span class="cab-cap">Hasta 5 personas</span>Manta de colores, pared de piedra y ventana al patio y a los cerros.</p>
+          <a class="cab-ver" href="#reservar" data-bkw-unit="Fuego" data-bkw-photo="f/cab-fuego.webp">Ver disponibilidad <span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
       <article class="cab" data-element="aire">
@@ -583,6 +592,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         <div class="cab-txt">
           <div class="cab-top"><svg aria-hidden="true"><use href="#g-aire"/></svg><h3><small>Cabaña</small>Aire</h3></div>
           <p><span class="cab-cap">Hasta 4 personas</span>Living luminoso con sillones rojos y la pared amarilla de la cocina.</p>
+          <a class="cab-ver" href="#reservar" data-bkw-unit="Aire" data-bkw-photo="f/cab-aire.webp">Ver disponibilidad <span aria-hidden="true">&rarr;</span></a>
         </div>
       </article>
     </div>
