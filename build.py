@@ -63,6 +63,9 @@ THEME = """
   .bkw .btn-primary{font-family:var(--bkw-font-display);text-transform:uppercase;letter-spacing:.06em;font-size:1.02rem}
   .bkw .field input,.bkw .field select,.bkw .field textarea{border-radius:var(--bkw-radius)}
   .bkw .bk-summary,.bkw .bk-code,.bkw .bk-unit{border-radius:var(--bkw-radius)}
+  /* mobile: los input date tienen ancho mínimo propio y empujaban "Salida" fuera de la tarjeta */
+  .bkw .field-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .bkw .field input{min-width:0}
 </style>
 """
 

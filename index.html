@@ -433,7 +433,7 @@ section.block{padding:clamp(80px,11vw,140px) 0}
 .res-notas{list-style:none;margin-top:30px;display:grid;gap:14px}
 .res-notas li{display:flex;gap:12px;align-items:flex-start}
 .res-notas svg{width:22px;height:22px;flex:none;color:var(--ocre-hondo);margin-top:2px}
-@media (max-width:900px){.res-grid{grid-template-columns:1fr}}
+@media (max-width:900px){.res-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- ubicación ---------- */
 .mapa{position:relative;border-radius:var(--radius);overflow:hidden;min-height:480px;background:var(--cal-2)}
@@ -1525,6 +1525,9 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   .bkw .btn-primary{font-family:var(--bkw-font-display);text-transform:uppercase;letter-spacing:.06em;font-size:1.02rem}
   .bkw .field input,.bkw .field select,.bkw .field textarea{border-radius:var(--bkw-radius)}
   .bkw .bk-summary,.bkw .bk-code,.bkw .bk-unit{border-radius:var(--bkw-radius)}
+  /* mobile: los input date tienen ancho mínimo propio y empujaban "Salida" fuera de la tarjeta */
+  .bkw .field-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .bkw .field input{min-width:0}
 </style>
 
     </div>
