@@ -4,15 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!--
-  CABAÑAS 4 ELEMENTOS — demo Operon (2026-09-19)
+  CABAÑAS 4 ELEMENTOS — sitio de Cabañas 4 Elementos.
   Huacalera, Quebrada de Humahuaca, Jujuy. Atendido por Lili y Luis.
   index.html se genera con build.py (inyecta el widget de reservas). Editar src.html.
 -->
-<title>Cabañas 4 Elementos · Huacalera, Quebrada de Humahuaca</title>
-<meta name="description" content="Cuatro cabañas —tierra, agua, fuego y aire— en Huacalera, Jujuy, a 300 metros del Trópico de Capricornio. Atendidas por sus dueños, Lili y Luis.">
+<title>Cabañas 4 Elementos en Huacalera, Jujuy | Desayuno incluido</title>
+<meta name="description" content="Cabañas en Huacalera, Jujuy, con desayuno incluido en la tarifa. Cuatro espacios frente a la Quebrada, atendidos por sus dueños, Lili y Luis.">
+<link rel="canonical" href="https://www.cabanas4elementos.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Cabañas 4 Elementos">
+<meta property="og:url" content="https://www.cabanas4elementos.com/">
 <meta property="og:title" content="Cabañas 4 Elementos · Huacalera, Jujuy">
-<meta property="og:description" content="Cuatro cabañas en el medio de la Quebrada, a 300 m del Trópico de Capricornio.">
-<meta property="og:image" content="f/complejo-atardecer.webp">
+<meta property="og:description" content="Cabañas en Huacalera con desayuno incluido en la tarifa. Viví la Quebrada atendida por Lili y Luis.">
+<meta property="og:image" content="https://www.cabanas4elementos.com/f/complejo-atardecer.webp">
+<meta property="og:image:alt" content="Cabañas 4 Elementos al atardecer, frente a los cerros de Huacalera">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://www.cabanas4elementos.com/#lodgingbusiness",
+  "name": "Cabañas 4 Elementos",
+  "url": "https://www.cabanas4elementos.com/",
+  "image": "https://www.cabanas4elementos.com/f/complejo-atardecer.webp",
+  "description": "Cuatro cabañas en Huacalera, Jujuy, atendidas por sus dueños. El desayuno está incluido en la tarifa.",
+  "telephone": "+5493885186442",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Huacalera",
+    "addressRegion": "Jujuy",
+    "addressCountry": "AR"
+  },
+  "hasMap": "https://www.google.com/maps?q=Caba%C3%B1as+4+Elementos,+Huacalera,+Jujuy",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Desayuno incluido en la tarifa", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Estacionamiento privado", "value": true }
+  ],
+  "sameAs": ["https://www.instagram.com/cabanas_4_elementos/"]
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 2L46 24L24 46L2 24Z' fill='%23fff' stroke='%23B27314' stroke-width='3'/%3E%3Cpath d='M9 27H39L24 42Z' fill='%23B27314'/%3E%3Cpath d='M14 20L24 11L34 20' fill='none' stroke='%23B27314' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,6 +148,10 @@ html.intro-lock .nav .brand img{opacity:0}
 .hero h1{font-size:clamp(2.7rem,6vw,5.8rem);margin:.24em 0 .3em;max-width:9em;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--ocre-logo)}
 .hero-lead{font-size:clamp(1.06rem,1.4vw,1.22rem);max-width:29em;color:var(--piedra-soft)}
+.hero-breakfast{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:2px 11px;max-width:29em;margin-top:20px;padding:12px 15px;border:1px solid rgba(178,115,20,.28);border-left:4px solid var(--ocre-logo);border-radius:var(--radius);background:rgba(213,174,58,.12)}
+.hero-breakfast svg{grid-row:1/3;width:26px;height:26px;color:var(--ocre-hondo)}
+.hero-breakfast strong{font-family:var(--display);font-size:1.02rem;line-height:1.1;letter-spacing:.035em;text-transform:uppercase}
+.hero-breakfast span{color:var(--piedra-soft);font-size:.86rem;line-height:1.35}
 .hero-elems{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--display);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem}
 .hero-elems span{display:inline-flex;align-items:center;gap:7px}
 .hero-elems svg{width:22px;height:22px}
@@ -523,6 +558,11 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <p class="eyebrow hr" style="--d:.05s"><span>Huacalera · Jujuy</span><span>A 300 m del Trópico de Capricornio</span></p>
       <h1 class="hr" style="--d:.12s">Cuatro cabañas en el <em>medio</em> de la Quebrada</h1>
       <p class="hero-lead hr" style="--d:.2s">Cabañas nuevas con los cerros enfrente, a una cuadra del Trópico. Lili y Luis te atienden en persona.</p>
+      <div class="hero-breakfast hr" style="--d:.24s" aria-label="Desayuno incluido en la tarifa, de 8 a 10, con reserva previa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h13v3a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-3Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M7 5v2m4-3v3m4-2v2M3 21h16"/></svg>
+        <strong>Desayuno incluido en la tarifa</strong>
+        <span>En el salón de Lili, de 8 a 10 h · con reserva previa</span>
+      </div>
       <p class="hero-elems hr" style="--d:.26s" aria-label="Las cuatro cabañas: Tierra, Agua, Fuego y Aire">
         <span style="color:#8B512F"><svg aria-hidden="true"><use href="#g-tierra"/></svg>Tierra</span>
         <span style="color:#126F6A"><svg aria-hidden="true"><use href="#g-agua"/></svg>Agua</span>
@@ -643,6 +683,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-6"><span class="eq-n">07</span><span class="eq-t">Estacionamiento privado</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-6"><div><p>Gratis y dentro del complejo, junto al cardón de piedra de la entrada.</p><img src="f/cardon-piedra.webp" alt="" loading="lazy" width="960" height="1280"></div></div></li>
         </ul>
         <div class="facts">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10h13v3a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-3Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M7 5v2m4-3v3m4-2v2"/></svg>Desayuno incluido en la tarifa</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><circle cx="12" cy="19.5" r=".8" fill="currentColor"/></svg>Wi-Fi y TV</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Check-in de 13 a 21 h</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M12 7v6h5l2 5M12 10H8M10 21a5 5 0 1 1 0-10"/></svg>Adaptado a movilidad reducida</span>
@@ -688,7 +729,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
           <img src="f/desayuno-ventana.webp" alt="Mesa de desayuno junto a la ventana, con pan casero, dulces y jugo de naranja" loading="lazy" width="960" height="1280">
           <img src="f/salon-desayunador.webp" alt="Salón desayunador con techo de caña, mesas de madera y ventanales al patio" loading="lazy" width="1200" height="1600">
         </div>
-        <p class="quien">A la mañana · Lili</p>
+        <p class="quien">Incluido en la tarifa · A la mañana · Lili</p>
         <h3>El desayuno</h3>
         <p>En el salón desayunador, con vista al patio: pan casero tostado, dulces en cazuelitas de barro, manteca, jugo y café con leche en tazas de cerámica.</p>
         <p class="horario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>De 8 a 10 h · previa reserva</p>
@@ -1004,7 +1045,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   </div>
 </section>
 
-<!-- ================= RESERVAS (Operon Reservas, simulado) ================= -->
+<!-- ================= RESERVAS ================= -->
 <section class="block reservas" id="reservar" aria-labelledby="res-t">
   <div class="wrap res-grid">
     <div class="rv">
@@ -1013,7 +1054,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <p class="lead" style="margin-top:22px">Buscá tus fechas, elegí la cabaña según cuántos son y dejá la reserva hecha en un minuto. Sin esperar que te contesten un mensaje.</p>
       <ul class="res-notas">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg><span>Check-in de <b>13 a 21 h</b>. Si llegás más tarde, avisale a Lili.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11h13a3 3 0 0 1 0 6h-1M4 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5M8 3v4M12 3v4"/></svg><span>Desayuno en el salón de <b>8 a 10 h</b>, con reserva previa.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h13v3a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-3Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M7 5v2m4-3v3m4-2v2"/></svg><span><b>Desayuno incluido en la tarifa:</b> en el salón, de 8 a 10 h y con reserva previa.</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg><span>Traslado desde el aeropuerto de Jujuy (a 130 km), a coordinar.</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H8a2.5 2.5 0 1 1 0-5c3 0 4 5 4 5ZM12 7h4a2.5 2.5 0 1 0 0-5c-3 0-4 5-4 5Z"/></svg><span>Mayo, junio y de septiembre a diciembre: <b>pagás 2 noches y te quedás 3</b> (salvo feriados y fines de semana largos).</span></li>
       </ul>
@@ -1062,7 +1103,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Para cuántas personas son las cabañas?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Son cuatro cabañas: Agua y Aire para hasta 4 personas, Fuego y Tierra para hasta 5. Sirven para parejas, familias o grupos de amigos que quieren alquilar el complejo entero.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Qué tan cerca está el Trópico de Capricornio?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>A 300 metros: se va caminando. Ahí está el monumento con el reloj de sol que marca el paso del trópico por la Quebrada.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Se puede comer en el complejo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Cada cabaña tiene cocina equipada, y en el patio hay una pérgola con parrillas para tu asado. Luis cocina, y su especialidad es el asado a la estaca: preguntá el menú cuando reserves.</p></div></div></div>
-      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hay desayuno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, en el salón desayunador, de 8 a 10 h y con reserva previa. Avisale a Lili el día anterior.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿El desayuno está incluido?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, el desayuno está incluido en la tarifa. Se sirve en el salón desayunador de 8 a 10 h; reservá previamente y avisale a Lili el día anterior.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hace frío en invierno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Huacalera está a más de 2.600 metros: las noches de invierno bajan de cero. Las cabañas tienen calefacción; si sos friolento, avisale a Lili y te deja mantas de más.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Cómo reservo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Desde el buscador de esta página, o escribiéndole a Lili por WhatsApp al 388 518-6442.</p></div></div></div>
     </div>

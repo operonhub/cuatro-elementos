@@ -6,6 +6,7 @@ Unidades, tarifas y disponibilidad salen del backend central (tenant ORG_SLUG),
 dado de alta con provision-tenant.sql.
 """
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).parent
 ASSET = Path.home() / ".claude/skills/web-hustler/assets/booking-widget.html"
@@ -25,6 +26,21 @@ for old in (CONFIG_OLD, "<h3>Reservá online</h3>"):
 widget = (widget
     .replace(CONFIG_OLD, f"    ORG_SLUG:     '{ORG_SLUG}',\n    WA_NUMBER:    '{WA_NUMBER}',")
     .replace("<h3>Reservá online</h3>", "<h3>Elegí tus fechas</h3>"))
+
+# El widget conserva comentarios internos del tema original. No publicar
+# referencias a maquetas de otros proyectos dentro del HTML final.
+widget = re.sub(
+    r"/\*.*?\*/",
+    lambda match: "" if re.search(r"\bdemos?\b", match.group(), flags=re.IGNORECASE) else match.group(),
+    widget,
+    flags=re.DOTALL,
+)
+widget = re.sub(
+    r"<!--.*?-->",
+    lambda match: "" if re.search(r"\bdemos?\b", match.group(), flags=re.IGNORECASE) else match.group(),
+    widget,
+    flags=re.DOTALL,
+)
 
 THEME = """
 <style>
@@ -54,7 +70,8 @@ src = (ROOT / "src.html").read_text(encoding="utf-8")
 assert "<!--BOOKING-->" in src and "<!--LOGO-INTRO-->" in src
 # la intro anima el logo por partes (.lg-frame, .lg-line, .lg-glyph…): va inline, no como <img>
 logo = (ROOT / "f/logo.svg").read_text(encoding="utf-8").replace('role="img"', 'aria-hidden="true"', 1)
-(ROOT / "index.html").write_text(
-    src.replace("<!--BOOKING-->", widget + THEME).replace("<!--LOGO-INTRO-->", logo),
-    encoding="utf-8")
+html = src.replace("<!--BOOKING-->", widget + THEME).replace("<!--LOGO-INTRO-->", logo)
+html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
+assert not re.search(r"\bdemos?\b", html, flags=re.IGNORECASE), "Quedó una referencia a demo en el HTML final"
+(ROOT / "index.html").write_text(html, encoding="utf-8")
 print("index.html OK")

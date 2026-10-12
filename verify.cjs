@@ -34,14 +34,30 @@ require('fs').mkdirSync(OUT, { recursive: true });
     await page.click('#bkw-search'); await page.waitForTimeout(900); await shot('20-res-results');
     await page.click('#bkw-step-results button[data-name]'); await page.waitForTimeout(300);
     await shot('21-res-form');   // NUNCA confirmar: el widget es el real y crea reservas en la base de la clienta
-    const wa = await page.getAttribute('#bkw-step-done a.btn-wa', 'href');
+    const formVisible = await page.locator('#bkw-name').isVisible();
+    const confirmAvailable = await page.locator('#bkw-confirm').isVisible();
     // FAQ + lightbox
     await page.click('.acc-trigger'); await page.waitForTimeout(500);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (vp.name === 'mob') { await page.evaluate(() => scrollTo(0, 0)); await page.click('#burger'); await page.waitForTimeout(400); await shot('30-menu'); await page.click('#burger'); }
     await page.evaluate(() => document.querySelector('#gal button').scrollIntoView()); await page.click('#gal button'); await page.waitForTimeout(500); await shot('31-lightbox'); for (let t = 0; t < 5; t++) await page.keyboard.press('Tab'); const trapped = await page.evaluate(() => document.getElementById('lb').contains(document.activeElement)); await page.keyboard.press('Escape');
     await page.evaluate(() => document.querySelector('#vids').scrollIntoView()); await page.click('.vid-play'); await page.waitForTimeout(2500); const playing = await page.evaluate(() => { const v = document.querySelector('.vid video'); return v && !v.paused && v.currentTime > 0; }); await shot('32-video');
-    console.log(vp.name, { overflow, wa, trapped, playing, errors });
+    await page.evaluate(() => document.querySelector('footer.pie').scrollIntoView()); await page.waitForTimeout(300); await shot('40-footer');
+    const footerVisible = await page.locator('footer.pie').isVisible();
+    const brokenImages = await page.evaluate(async () => {
+      const images = [...document.images];
+      await Promise.all(images.map(img => {
+        img.loading = 'eager';
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+          setTimeout(resolve, 10000);
+        });
+      }));
+      return images.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.currentSrc || img.src);
+    });
+    console.log(vp.name, { overflow, formVisible, confirmAvailable, trapped, playing, footerVisible, brokenImages, errors });
     await ctx.close();
   }
   await browser.close();

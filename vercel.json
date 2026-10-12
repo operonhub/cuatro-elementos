@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "cabanas4elementos.com" }],
+      "destination": "https://www.cabanas4elementos.com/$1",
+      "permanent": true
+    }
+  ]
+}
