@@ -270,6 +270,19 @@ section.block{padding:clamp(80px,11vw,140px) 0}
 .quincho-copy .eyebrow{color:var(--ocre)}
 .quincho-copy h3{font-size:clamp(2.5rem,4.5vw,4.4rem);line-height:.95;margin:12px 0 18px}
 .quincho-copy p:not(.eyebrow){max-width:34em;color:rgba(243,241,236,.78)}
+.lema{font-style:italic;font-weight:500;margin-top:12px}
+.quincho-copy p.lema{color:var(--cal)}
+.mesa-col>p.lema{color:var(--piedra)}
+/* ---------- espacios con nombre propio ---------- */
+.nombres{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:start;margin-top:clamp(56px,8vw,100px)}
+.nombres h3{font-size:clamp(2.2rem,4vw,3.6rem);line-height:.95;margin:12px 0 16px}
+.nombres-intro p:not(.eyebrow){color:var(--piedra-soft);max-width:30em}
+.nombres-list{list-style:none;border-top:2px solid var(--piedra)}
+.nombres-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:4px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.nombres-list b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,3.6vw,3rem);line-height:.95}
+.nombres-list span{font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.9rem;color:var(--ocre-hondo)}
+.nombres-list em{display:block;margin-top:4px;font-family:var(--body);font-weight:400;letter-spacing:0;text-transform:none;font-size:1rem;color:var(--piedra-soft)}
+@media(max-width:760px){.nombres{grid-template-columns:1fr}.nombres-list li{grid-template-columns:1fr}}
 .quincho-cap{display:flex;align-items:baseline;gap:12px;margin:22px 0 28px;font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-weight:700}
 .quincho-cap b{font-size:clamp(3.8rem,7vw,6rem);line-height:.8;color:var(--ocre)}
 @media(max-width:760px){.quincho-feature{grid-template-columns:1fr}.quincho-feature>img{min-height:0;aspect-ratio:4/3}.quincho-copy{padding:30px 24px 36px}}
@@ -318,7 +331,7 @@ section.block{padding:clamp(80px,11vw,140px) 0}
   .eq-btn{padding:17px 0}
 }
 
-/* ---------- la mesa de Lili, el fuego de Luis (columnas de revista) ---------- */
+/* ---------- la mesa: Buenavida y el fuego de Luis (columnas de revista) ---------- */
 .mesa-head{max-width:760px;margin-bottom:clamp(40px,6vw,70px)}
 .mesa-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px);align-items:start}
 .mesa-col:last-child{margin-top:clamp(0px,9vw,120px)}
@@ -597,11 +610,11 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
     <div class="hero-txt">
       <p class="eyebrow hr" style="--d:.05s"><span>Huacalera · Jujuy</span><span>A 300 m del Trópico de Capricornio</span></p>
       <h1 class="hr" style="--d:.12s">Cuatro cabañas en el <em>medio</em> de la Quebrada</h1>
-      <p class="hero-lead hr" style="--d:.2s">Cabañas nuevas con los cerros enfrente, a una cuadra del Trópico. Lili y Luis te atienden en persona.</p>
+      <p class="hero-lead hr" style="--d:.2s">Cabañas nuevas con los cerros enfrente, a 300 metros del Trópico. Lili y Luis te atienden en persona.</p>
       <div class="hero-breakfast hr" style="--d:.24s" aria-label="Desayuno incluido en la tarifa, de 8 a 10, con reserva previa">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h13v3a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-3Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M7 5v2m4-3v3m4-2v2M3 21h16"/></svg>
         <strong>Desayuno incluido en la tarifa</strong>
-        <span>En el salón de Lili, de 8 a 10 h · con reserva previa</span>
+        <span>En Buenavida, nuestro salón desayunador · de 8 a 10 h, con reserva previa</span>
       </div>
       <p class="hero-elems hr" style="--d:.26s" aria-label="Las cuatro cabañas: Tierra, Agua, Fuego y Aire">
         <span style="color:#8B512F"><svg aria-hidden="true"><use href="#g-tierra"/></svg>Tierra</span>
@@ -682,12 +695,26 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <span><b>4</b></span><i class="dot"></i><span><b>5</b></span>
       <span>personas por cabaña · parejas, familias y grupos</span>
     </div>
+    <div class="nombres rv" aria-labelledby="nombres-t">
+      <div class="nombres-intro">
+        <p class="eyebrow">Con nombre propio</p>
+        <h3 id="nombres-t">Cada rincón tiene su nombre</h3>
+        <p>En Cabañas 4 Elementos nuestros espacios tienen nombres propios. Porque no son simplemente lugares: son parte de la experiencia de vivir la Quebrada.</p>
+      </div>
+      <ul class="nombres-list">
+        <li><b>Buenavida</b><span>Nuestro salón desayunador<em>Aquí comienza la buena vida.</em></span></li>
+        <li><b>Quitapenas</b><span>Nuestro quincho<em>Aquí las penas se quedan afuera.</em></span></li>
+        <li><b>Robacielos</b><span>Nuestra terraza mirador y solárium<em>Un lugar para tocar el cielo con la mirada.</em></span></li>
+      </ul>
+    </div>
+
     <article class="quincho-feature rv" aria-labelledby="quincho-t">
-      <img src="f/quincho-grupos.webp" alt="Mesas preparadas en el quincho de Cabañas 4 Elementos, un espacio para compartir en familia o en grupo" loading="lazy" width="1200" height="1800">
+      <img src="f/quincho-grupos.webp" alt="Mesas preparadas en Quitapenas, el quincho de Cabañas 4 Elementos, un espacio para compartir en familia o en grupo" loading="lazy" width="1200" height="1800">
       <div class="quincho-copy">
-        <p class="eyebrow">Para compartir juntos</p>
-        <h3 id="quincho-t">Un quincho para reunirse</h3>
-        <p>Un espacio amplio para que familias y grupos disfruten de una comida y compartan tiempo juntos durante su estadía en la Quebrada.</p>
+        <p class="eyebrow">Nuestro quincho</p>
+        <h3 id="quincho-t">Quitapenas</h3>
+        <p>Un espacio para encontrarnos, compartir sabores, conversaciones, risas y buenos momentos. Porque creemos que las mejores experiencias son aquellas que se disfrutan en compañía.</p>
+        <p class="lema">Aquí las penas se quedan afuera.</p>
         <p class="quincho-cap"><b>40</b><span>personas de capacidad</span></p>
       </div>
     </article>
@@ -719,7 +746,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-2"><span class="eq-n">03</span><span class="eq-t">Living con telares</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-2"><div><p>Sillones, Wi-Fi y TV. Telares de la zona en cada ambiente.</p><img src="f/sillones.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-3"><span class="eq-n">04</span><span class="eq-t">Galerías al cerro</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-3"><div><p>Mesa afuera para el mate de la tarde, mirando los colores de la Quebrada.</p><img src="f/galeria.webp" alt="" loading="lazy" width="1024" height="768"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-4"><span class="eq-n">05</span><span class="eq-t">Pérgola con parrillas</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-4"><div><p>Bajo la caña, con mesa de piedra: para hacer tu asado a la vista del cerro.</p><img src="f/quincho.webp" alt="" loading="lazy" width="810" height="1080"></div></div></li>
-      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-5"><span class="eq-n">06</span><span class="eq-t">Salón desayunador</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-5"><div><p>El desayuno de Lili, de 8 a 10 h y con reserva previa.</p><img src="f/salon-ventana.webp" alt="" loading="lazy" width="1200" height="1600"></div></div></li>
+      <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-5"><span class="eq-n">06</span><span class="eq-t">Buenavida, el desayunador</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-5"><div><p>Nuestro salón desayunador: el desayuno se sirve de 8 a 10 h, con reserva previa.</p><img src="f/salon-ventana.webp" alt="" loading="lazy" width="1200" height="1600"></div></div></li>
       <li class="eq"><button class="eq-btn" type="button" aria-expanded="false" aria-controls="eq-6"><span class="eq-n">07</span><span class="eq-t">Estacionamiento privado</span><span class="eq-a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button><div class="eq-d" id="eq-6"><div><p>Gratis y dentro del complejo, junto al cardón de piedra de la entrada.</p><img src="f/cardon-piedra.webp" alt="" loading="lazy" width="960" height="1280"></div></div></li>
         </ul>
         <div class="facts">
@@ -755,13 +782,13 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
   </div>
 </section>
 
-<!-- ================= LA MESA DE LILI ================= -->
+<!-- ================= LA MESA: BUENAVIDA Y EL FUEGO ================= -->
 <section class="block" id="mesa" aria-labelledby="mesa-t">
   <div class="wrap">
     <div class="mesa-head rv">
       <p class="eyebrow">Atendido por sus dueños</p>
-      <h2 id="mesa-t">La mesa de Lili, el fuego de Luis</h2>
-      <p class="lead" style="margin-top:22px">Lo que más repiten los huéspedes no es la vista: es el trato. Lili te recibe a la mañana con el desayuno; Luis se encarga del fuego a la noche.</p>
+      <h2 id="mesa-t">Buenavida a la mañana, el fuego de Luis a la noche</h2>
+      <p class="lead" style="margin-top:22px">Lo que más repiten los huéspedes no es la vista: es el trato. A la mañana te espera el desayuno en Buenavida; a la noche, Luis se encarga del fuego.</p>
     </div>
     <div class="mesa-cols">
       <div class="mesa-col rv">
@@ -769,9 +796,10 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
           <img src="f/desayuno-ventana.webp" alt="Mesa de desayuno junto a la ventana, con pan casero, dulces y jugo de naranja" loading="lazy" width="960" height="1280">
           <img src="f/salon-desayunador.webp" alt="Salón desayunador con techo de caña, mesas de madera y ventanales al patio" loading="lazy" width="1200" height="1600">
         </div>
-        <p class="quien">Incluido en la tarifa · A la mañana · Lili</p>
+        <p class="quien">Incluido en la tarifa · A la mañana · Buenavida</p>
         <h3>El desayuno</h3>
-        <p>En el salón desayunador, con vista al patio: pan casero tostado, dulces en cazuelitas de barro, manteca, jugo y café con leche en tazas de cerámica.</p>
+        <p>En Buenavida, nuestro salón desayunador, con vista al patio: pan casero tostado, dulces en cazuelitas de barro, manteca, jugo y café con leche en tazas de cerámica.</p>
+        <p class="lema">Aquí comienza la buena vida.</p>
         <p class="horario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>De 8 a 10 h · previa reserva</p>
       </div>
       <div class="mesa-col rv">
@@ -983,7 +1011,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
         </div>
         <div class="cap" data-from=".40" data-to=".55">
           <h2>13:20. Cero sombra.</h2>
-          <p>Huacalera está sobre el Trópico de Capricornio: el mediodía del solsticio, el sol se para justo encima tuyo. Es de los pocos lugares del país donde pasa, y el monumento está a una cuadra de las cabañas.</p>
+          <p>Huacalera está sobre el Trópico de Capricornio: el mediodía del solsticio, el sol se para justo encima tuyo. Es de los pocos lugares del país donde pasa, y el monumento está a 300 metros de las cabañas.</p>
         </div>
         <div class="cap" data-from=".55" data-to=".80">
           <h2>La tarde es de los cerros</h2>
@@ -1010,7 +1038,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <figure class="vid">
         <div class="vid-box">
           <img src="f/v-tropico.webp" alt="" loading="lazy" width="478" height="850">
-          <button class="vid-play" type="button" data-src="f/v-tropico.mp4" data-poster="f/v-tropico.webp"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>El Trópico desde el aire</b><small>1:17 · el monumento, a una cuadra</small></button>
+          <button class="vid-play" type="button" data-src="f/v-tropico.mp4" data-poster="f/v-tropico.webp"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><b>El Trópico desde el aire</b><small>1:17 · el monumento, a 300 m</small></button>
         </div>
       </figure>
       <figure class="vid">
@@ -1040,7 +1068,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <button class="a" data-cap="El patio bajo la pérgola"><img src="f/pergola-patio.webp" alt="Patio de ripio visto desde la pérgola de caña, con sillas turquesa y las cabañas amarillas" loading="lazy" width="960" height="1280"><span>El patio</span></button>
       <button class="b" data-cap="Espacios para compartir"><img src="f/espacios-compartir.webp" alt="Sillas blancas de hierro con almohadones turquesa sobre el ripio, bajo el cielo azul" loading="lazy" width="960" height="1280"><span>Para compartir</span></button>
       <button class="c" data-cap="Las galerías"><img src="f/galeria-mesa.webp" alt="Galería techada con mesa redonda blanca, sillas de hierro y una vasija de barro" loading="lazy" width="960" height="1280"><span>Galerías</span></button>
-      <button class="d" data-cap="El quincho"><img src="f/comedor-quincho.webp" alt="Quincho con mesas largas de madera, caminos de telar y paredes de adobe" loading="lazy" width="960" height="1280"><span>Quincho</span></button>
+      <button class="d" data-cap="Quitapenas, el quincho"><img src="f/comedor-quincho.webp" alt="Quincho con mesas largas de madera, caminos de telar y paredes de adobe" loading="lazy" width="960" height="1280"><span>Quitapenas</span></button>
       <button class="e" data-cap="Trabajar con esta vista"><img src="f/galeria-remoto.webp" alt="Notebook y termo sobre la mesa de la galería, con los cerros de fondo" loading="lazy" width="960" height="1280"><span>Galería</span></button>
       <button class="f" data-cap="El cardón de piedra de la entrada"><img src="f/cardon-piedra.webp" alt="Cardón hecho de piedras en el estacionamiento, con los cerros detrás" loading="lazy" width="960" height="1280"><span>La entrada</span></button>
       <button class="g1" data-cap="Las cabañas y los cerros"><img src="f/complejo-dorado.webp" alt="Cabaña amarilla con techo rojo y los cerros iluminados por el sol de la tarde" loading="lazy" width="960" height="1280"><span>Las cabañas</span></button>
@@ -1538,7 +1566,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
 <section class="block" id="llegar" aria-labelledby="llegar-t">
   <div class="wrap">
     <div class="sec-head">
-      <div class="rv"><p class="eyebrow">Cómo llegar</p><h2 class="sm" id="llegar-t">Sobre la Ruta 9, a una cuadra del Trópico</h2></div>
+      <div class="rv"><p class="eyebrow">Cómo llegar</p><h2 class="sm" id="llegar-t">Sobre la Ruta 9, a 300 metros del Trópico</h2></div>
       <p class="lead rv">Barrio San Lorenzo, Huacalera. A 400 metros del centro del pueblo y a 15 minutos en auto de Tilcara.</p>
     </div>
     <div class="mapa rv">
@@ -1572,7 +1600,7 @@ footer.pie{background:var(--piedra);color:rgba(243,241,236,.78);padding:50px 0 3
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Para cuántas personas son las cabañas?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Son cuatro cabañas: Agua y Aire para hasta 4 personas, Fuego y Tierra para hasta 5. Sirven para parejas, familias o grupos de amigos que quieren alquilar el complejo entero.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Qué tan cerca está el Trópico de Capricornio?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>A 300 metros: se va caminando. Ahí está el monumento con el reloj de sol que marca el paso del trópico por la Quebrada.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Se puede comer en el complejo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Cada cabaña tiene cocina equipada, y en el patio hay una pérgola con parrillas para tu asado. Luis cocina, y su especialidad es el asado a la estaca: preguntá el menú cuando reserves.</p></div></div></div>
-      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿El desayuno está incluido?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, el desayuno está incluido en la tarifa. Se sirve en el salón desayunador de 8 a 10 h; reservá previamente y avisale a Lili el día anterior.</p></div></div></div>
+      <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿El desayuno está incluido?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Sí, el desayuno está incluido en la tarifa. Se sirve en Buenavida, nuestro salón desayunador, de 8 a 10 h; reservá previamente y avisale a Lili el día anterior.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Hace frío en invierno?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Huacalera está a más de 2.600 metros: las noches de invierno bajan de cero. Las cabañas tienen calefacción; si sos friolento, avisale a Lili y te deja mantas de más.</p></div></div></div>
       <div class="acc-item"><button class="acc-trigger" aria-expanded="false">¿Cómo reservo?<span class="acc-ico" aria-hidden="true"></span></button><div class="acc-panel"><div><p>Desde el buscador de esta página, o escribiéndole a Lili por WhatsApp al 388 518-6442.</p></div></div></div>
     </div>
